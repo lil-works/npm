@@ -467,9 +467,9 @@
     <parameter key="fr3d_ldap.ldap_driver.parameters" type="collection">
       <parameter key="host">netsrv1.iram.fr</parameter>
       <parameter key="port">636</parameter>
+      <parameter key="bindRequiresDn">true</parameter>
       <parameter key="useSsl">true</parameter>
       <parameter key="useStartTls">false</parameter>
-      <parameter key="bindRequiresDn">false</parameter>
       <parameter key="baseDn">ou=People, dc=iram, dc=fr</parameter>
       <parameter key="accountFilterFormat">(&amp;(ObjectClass=Person))</parameter>
     </parameter>
@@ -479,6 +479,10 @@
       <parameter key="baseDn">ou=People, dc=iram, dc=fr</parameter>
       <parameter key="filter">(&amp;(ObjectClass=Person))</parameter>
       <parameter key="attributes" type="collection">
+        <parameter type="collection">
+          <parameter key="ldap_attr">uidNumber</parameter>
+          <parameter key="user_method">setId</parameter>
+        </parameter>
         <parameter type="collection">
           <parameter key="ldap_attr">uid</parameter>
           <parameter key="user_method">setUsername</parameter>
@@ -2175,7 +2179,7 @@
         <argument type="service" id="fr3d_ldap.security.authentication.provider.main"/>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
-            <argument type="service" id="fr3d_ldap.security.user.provider"/>
+            <argument type="service" id="security.user.provider.concrete.chain_provider"/>
             <argument type="service" id="security.user_checker.main"/>
             <argument>main</argument>
             <argument type="service" id="security.encoder_factory"/>
@@ -2184,7 +2188,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5809a42b13dda7.05185270</argument>
+            <argument>580adb54d6c3d7.58506279</argument>
           </service>
         </argument>
       </argument>
@@ -2293,10 +2297,16 @@
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
     </service>
+    <service id="security.user.provider.concrete.chain_provider" class="Symfony\Component\Security\Core\User\ChainUserProvider" public="false">
+      <argument type="collection">
+        <argument type="service" id="fos_user.user_manager"/>
+        <argument type="service" id="fr3d_ldap.security.user.provider"/>
+      </argument>
+    </service>
     <service id="fr3d_ldap.security.authentication.provider.main" class="FR3D\LdapBundle\Security\Authentication\LdapAuthenticationProvider">
       <argument type="service" id="security.user_checker.main"/>
       <argument>main</argument>
-      <argument type="service" id="fr3d_ldap.security.user.provider"/>
+      <argument type="service" id="security.user.provider.concrete.chain_provider"/>
       <argument type="service" id="fr3d_ldap.ldap_manager.default"/>
       <argument>true</argument>
     </service>
@@ -2366,6 +2376,7 @@
           <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
             <argument type="service" id="security.token_storage"/>
             <argument type="collection">
+              <argument type="service" id="security.user.provider.concrete.chain_provider"/>
               <argument type="service" id="fr3d_ldap.security.user.provider"/>
               <argument type="service" id="fos_user.user_manager"/>
             </argument>
@@ -2408,7 +2419,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener" public="false">
-            <tag name="security.remember_me_aware" id="main" provider="fr3d_ldap.security.user.provider"/>
+            <tag name="security.remember_me_aware" id="main" provider="security.user.provider.concrete.chain_provider"/>
             <argument type="service" id="security.token_storage"/>
             <argument type="service" id="security.authentication.manager"/>
             <argument type="service" id="security.authentication.session_strategy"/>
@@ -2480,7 +2491,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener" public="false">
-            <tag name="security.remember_me_aware" id="main" provider="fr3d_ldap.security.user.provider"/>
+            <tag name="security.remember_me_aware" id="main" provider="security.user.provider.concrete.chain_provider"/>
             <argument type="service" id="security.token_storage"/>
             <argument type="service" id="security.authentication.manager"/>
             <argument type="service" id="security.authentication.session_strategy"/>
@@ -2553,7 +2564,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5809a42b13dda7.05185270</argument>
+            <argument>580adb54d6c3d7.58506279</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3939,6 +3950,10 @@
         <argument key="filter">(&amp;(ObjectClass=Person))</argument>
         <argument key="attributes" type="collection">
           <argument type="collection">
+            <argument key="ldap_attr">uidNumber</argument>
+            <argument key="user_method">setId</argument>
+          </argument>
+          <argument type="collection">
             <argument key="ldap_attr">uid</argument>
             <argument key="user_method">setUsername</argument>
           </argument>
@@ -3960,6 +3975,10 @@
         <argument key="baseDn">ou=People, dc=iram, dc=fr</argument>
         <argument key="filter">(&amp;(ObjectClass=Person))</argument>
         <argument key="attributes" type="collection">
+          <argument type="collection">
+            <argument key="ldap_attr">uidNumber</argument>
+            <argument key="user_method">setId</argument>
+          </argument>
           <argument type="collection">
             <argument key="ldap_attr">uid</argument>
             <argument key="user_method">setUsername</argument>
@@ -3999,9 +4018,9 @@
           <argument type="collection">
             <argument key="host">netsrv1.iram.fr</argument>
             <argument key="port">636</argument>
+            <argument key="bindRequiresDn">true</argument>
             <argument key="useSsl">true</argument>
             <argument key="useStartTls">false</argument>
-            <argument key="bindRequiresDn">false</argument>
             <argument key="baseDn">ou=People, dc=iram, dc=fr</argument>
             <argument key="accountFilterFormat">(&amp;(ObjectClass=Person))</argument>
           </argument>

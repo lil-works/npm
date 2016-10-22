@@ -24,11 +24,13 @@ class User extends BaseUser implements LdapUserInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * Ldap Object Distinguished Name
+     * @ORM\Column(type="string", length=128)
+     * @var string $dn
      */
     protected $dn;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $name;
 
@@ -44,13 +46,19 @@ class User extends BaseUser implements LdapUserInterface
             $this->roles[] = 'ROLE_USER';
         }
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public function setDn($dn) {
         $this->dn = $dn;
     }
+    /**
+     * {@inheritDoc}
+     */
     public function getDn() {
         return $this->dn;
     }
+
 
     /**
      * Set name
@@ -74,29 +82,5 @@ class User extends BaseUser implements LdapUserInterface
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set emailCannonical
-     *
-     * @param \email_cannonical $emailCannonical
-     *
-     * @return User
-     */
-    public function setEmailCannonical(\email_cannonical $emailCannonical)
-    {
-        $this->email_cannonical = $emailCannonical;
-
-        return $this;
-    }
-
-    /**
-     * Get emailCannonical
-     *
-     * @return \email_cannonical
-     */
-    public function getEmailCannonical()
-    {
-        return $this->email_cannonical;
     }
 }

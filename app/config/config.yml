@@ -133,7 +133,7 @@ fr3d_ldap:
         port:                636    # Optional
 #       username:            foo    # Optional
 #       password:            bar    # Optional
-#       bindRequiresDn:      true   # Optional
+        bindRequiresDn:      true   # Optional
 #       baseDn:              ou=users, dc=host, dc=foo   # Optional
 #       accountFilterFormat: (&(uid=%s)) # Optional. sprintf format %s will be the username
 #       optReferrals:        false  # Optional
@@ -147,8 +147,9 @@ fr3d_ldap:
         filter: (&(ObjectClass=Person))
 #       usernameAttribute: uid # Optional
         attributes:          # Specify ldap attributes mapping [ldap attribute, user object method]
-           - { ldap_attr: uid,  user_method: setUsername } # Default
-           - { ldap_attr: cn,   user_method: setName }     # Optional
+           - { ldap_attr: uidNumber,  user_method: setId }
+           - { ldap_attr: uid,  user_method: setUsername }
+           - { ldap_attr: cn,   user_method: setName }
            - { ldap_attr: mail,  user_method: setEmail }
 
 #   service:

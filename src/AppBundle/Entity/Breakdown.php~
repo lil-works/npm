@@ -27,9 +27,7 @@ class Breakdown
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\BoringMachine", mappedBy="breakdown")
      */
-    private $boringMachine;
-
-
+    private $boringMachines;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
@@ -264,29 +262,6 @@ class Breakdown
         return $this->boringMachine;
     }
 
-    /**
-     * Set creator
-     *
-     * @param \AppBundle\Entity\User $creator
-     *
-     * @return Breakdown
-     */
-    public function setCreator(\AppBundle\Entity\User $creator = null)
-    {
-        $this->creator = $creator;
-
-        return $this;
-    }
-
-    /**
-     * Get creator
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
 
     /**
      * Add descriptor
@@ -354,5 +329,39 @@ class Breakdown
     public function getBreakdownsInterferos()
     {
         return $this->breakdowns_interferos;
+    }
+
+    /**
+     * Get boringMachines
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBoringMachines()
+    {
+        return $this->boringMachines;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \AppBundle\Entity\User $creator
+     *
+     * @return Breakdown
+     */
+    public function setCreator(\AppBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
     }
 }

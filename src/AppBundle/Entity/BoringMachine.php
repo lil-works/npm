@@ -38,20 +38,25 @@ class BoringMachine
      */
     private $createdBy;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="BoringMachineType", type="string" ,length=10,nullable=false)
-     */
-    private $type;
-
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Breakdown")
-     * @ORM\JoinColumn(name="breakdown_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Breakdown", inversedBy="boringMachines")
+     * @ORM\JoinColumn(name="breakdown", referencedColumnName="id")
      */
     private $breakdown;
 
+    /**
+     * @var json_array
+     *
+     * @ORM\Column(name="breakdownBefore", type="json_array")
+     */
+    private $breakdownBefore;
+    /**
+     * @var json_array
+     *
+     * @ORM\Column(name="breakdownAfter", type="json_array")
+     */
+    private $breakdownAfter;
     /**
      * Get id
      *
@@ -156,5 +161,53 @@ class BoringMachine
     public function getBreakdown()
     {
         return $this->breakdown;
+    }
+
+    /**
+     * Set breakdownBefore
+     *
+     * @param \json $breakdownBefore
+     *
+     * @return BoringMachine
+     */
+    public function setBreakdownBefore(\json $breakdownBefore)
+    {
+        $this->breakdownBefore = $breakdownBefore;
+
+        return $this;
+    }
+
+    /**
+     * Get breakdownBefore
+     *
+     * @return \json
+     */
+    public function getBreakdownBefore()
+    {
+        return $this->breakdownBefore;
+    }
+
+    /**
+     * Set breakdownAfter
+     *
+     * @param \json $breakdownAfter
+     *
+     * @return BoringMachine
+     */
+    public function setBreakdownAfter(\json $breakdownAfter)
+    {
+        $this->breakdownAfter = $breakdownAfter;
+
+        return $this;
+    }
+
+    /**
+     * Get breakdownAfter
+     *
+     * @return \json
+     */
+    public function getBreakdownAfter()
+    {
+        return $this->breakdownAfter;
     }
 }
