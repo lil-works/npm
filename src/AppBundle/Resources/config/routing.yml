@@ -1,0 +1,5 @@
+
+breakdown_ajax_searchOne:
+    path:     /breakdown_ajax_searchOne
+    defaults: { _controller: AppBundle:BreakdownAjax:searchOneByLabel }
+

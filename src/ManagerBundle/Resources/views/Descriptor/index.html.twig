@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Descriptor list</h1>
+
+
+
+    <ul>
+        <li>
+            <a href="{{ path('manager_descriptor_new') }}">Create a new descriptor</a>
+        </li>
+    </ul>
+
+    <div id="filterBox">
+        <h3>Filters:</h3>
+        <form method="get" action="" name="descriptor_filter" id="descriptor_filter">
+            <div id="formErrors">
+                {{ form_errors(form.category) }}
+            </div>
+            <div class="filterBoxField">
+                {{ form_label(form.category) }}
+                {{ form_widget(form.category) }}
+            </div>
+            <div class="filterBoxField">
+                {{ form_label(form.label) }}
+                {{ form_widget(form.label) }}
+            </div>
+            {{ form_rest(form) }}
+            <input id="descriptor_filter_submit" type="submit" name="submit-filter" value="apply-filter" />
+        </form>
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+
+    <table class="entityList">
+        <thead>
+        <tr>
+            <th>Actions</th>
+            {% set direction = pagination.getDirection() %}
+            <th{% if pagination.isSorted('a.id') %} class="sorted {{ direction }}"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'id', 'a.id') }}
+            </th>
+            {% set direction = pagination.getDirection() %}
+            <th{% if pagination.isSorted('a.label') %} class="sorted {{ direction }}"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'label', 'a.label') }}
+            </th>
+            {% set direction = pagination.getDirection() %}
+            <th{% if pagination.isSorted('b.label') %} class="sorted {{ direction }}"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'category', 'b.label') }}
+            </th>
+            <th{% if pagination.isSorted('synonym_count') %} class="sorted {{ direction }}"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'synonym', 'synonym_count') }}
+            </th>
+            <th{% if pagination.isSorted('breakdown_count') %} class="sorted {{ direction }}"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'breakdown', 'breakdown_count') }}
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for descriptor in pagination %}
+            <tr>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('manager_descriptor_show', { 'id': descriptor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('manager_descriptor_edit', { 'id': descriptor.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('manager_descriptor_delete', { 'id': descriptor.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+
+                <td><a href="{{ path('manager_descriptor_show', { 'id': descriptor.id }) }}">{{ descriptor.id }}</a></td>
+                <td>{{ descriptor.label }}</td>
+
+                <td style="color:{{ descriptor.color }}; ">
+                    {{ descriptor.category_label }}</td>
+                <td>{{ descriptor.synonym_list }}</td>
+                <td>
+                    <strong>({{ descriptor.breakdown_count }})</strong>
+                     {{ descriptor.breakdown_list }}
+                </td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

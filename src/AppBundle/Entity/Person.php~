@@ -1,0 +1,265 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Person
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\PersonRepository")
+ */
+class Person
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string" , length=50)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Groupy", inversedBy="persons")
+     * @ORM\JoinTable(name="persons_groupies")
+     */
+    private $groupies;
+    /**
+     * @ORM\ManyToMany(targetEntity="Gift", inversedBy="persons")
+     * @ORM\JoinTable(name="persons_gifts")
+     */
+    private $gifts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PersonsQualities", mappedBy="person", cascade={"persist", "remove"}, orphanRemoval=TRUE )
+     */
+    protected $persons_qualities;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PersonsMilestones", mappedBy="person", cascade={ "persist","remove"}, orphanRemoval=TRUE)
+     */
+    protected $persons_milestones;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groupies = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gifts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->persons_qualities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Person
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add groupy
+     *
+     * @param \AppBundle\Entity\Groupy $groupy
+     *
+     * @return Person
+     */
+    public function addGroupy(\AppBundle\Entity\Groupy $groupy)
+    {
+        $this->groupies[] = $groupy;
+
+        return $this;
+    }
+
+    /**
+     * Remove groupy
+     *
+     * @param \AppBundle\Entity\Groupy $groupy
+     */
+    public function removeGroupy(\AppBundle\Entity\Groupy $groupy)
+    {
+        $this->groupies->removeElement($groupy);
+    }
+
+    /**
+     * Get groupies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroupies()
+    {
+        return $this->groupies;
+    }
+
+    /**
+     * Add gift
+     *
+     * @param \AppBundle\Entity\Gift $gift
+     *
+     * @return Person
+     */
+    public function addGift(\AppBundle\Entity\Gift $gift)
+    {
+        $this->gifts[] = $gift;
+
+        return $this;
+    }
+
+    /**
+     * Remove gift
+     *
+     * @param \AppBundle\Entity\Gift $gift
+     */
+    public function removeGift(\AppBundle\Entity\Gift $gift)
+    {
+        $this->gifts->removeElement($gift);
+    }
+
+    /**
+     * Get gifts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGifts()
+    {
+        return $this->gifts;
+    }
+
+    /**
+     * Add personsQuality
+     *
+     * @param \AppBundle\Entity\PersonsQualities $personsQuality
+     *
+     * @return Person
+     */
+    public function addPersonsQuality(\AppBundle\Entity\PersonsQualities $personsQuality)
+    {
+        $this->persons_qualities[] = $personsQuality;
+
+        return $this;
+    }
+
+    /**
+     * Remove personsQuality
+     *
+     * @param \AppBundle\Entity\PersonsQualities $personsQuality
+     */
+    public function removePersonsQuality(\AppBundle\Entity\PersonsQualities $personsQuality)
+    {
+        $this->persons_qualities->removeElement($personsQuality);
+    }
+
+    /**
+     * Get personsQualities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersonsQualities()
+    {
+        return $this->persons_qualities;
+    }
+
+    /**
+     * Add milestone
+     *
+     * @param \AppBundle\Entity\PersonsMilestones $milestone
+     *
+     * @return Person
+     */
+    public function addMilestone(\AppBundle\Entity\PersonsMilestones $milestone)
+    {
+        $this->milestones[] = $milestone;
+
+        return $this;
+    }
+
+    /**
+     * Remove milestone
+     *
+     * @param \AppBundle\Entity\PersonsMilestones $milestone
+     */
+    public function removeMilestone(\AppBundle\Entity\PersonsMilestones $milestone)
+    {
+        $this->milestones->removeElement($milestone);
+    }
+
+    /**
+     * Get milestones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMilestones()
+    {
+        return $this->milestones;
+    }
+
+    /**
+     * Add personsMilestone
+     *
+     * @param \AppBundle\Entity\PersonsMilestones $personsMilestone
+     *
+     * @return Person
+     */
+    public function addPersonsMilestone(\AppBundle\Entity\PersonsMilestones $personsMilestone)
+    {
+        $this->persons_milestones[] = $personsMilestone;
+
+        return $this;
+    }
+
+    /**
+     * Remove personsMilestone
+     *
+     * @param \AppBundle\Entity\PersonsMilestones $personsMilestone
+     */
+    public function removePersonsMilestone(\AppBundle\Entity\PersonsMilestones $personsMilestone)
+    {
+        $this->persons_milestones->removeElement($personsMilestone);
+    }
+
+    /**
+     * Get personsMilestones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersonsMilestones()
+    {
+        return $this->persons_milestones;
+    }
+}

@@ -1,0 +1,136 @@
+<?php
+// MyEntity.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ParamRepository")
+ */
+class Param
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $available;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SnapshotsParams", mappedBy="param", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    private  $snapshots_params;
+
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->snapshots_params = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Param
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set available
+     *
+     * @param boolean $available
+     *
+     * @return Param
+     */
+    public function setAvailable($available)
+    {
+        $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * Get available
+     *
+     * @return boolean
+     */
+    public function getAvailable()
+    {
+        return $this->available;
+    }
+
+    /**
+     * Add snapshotsParam
+     *
+     * @param \AppBundle\Entity\SnapshotsParams $snapshotsParam
+     *
+     * @return Param
+     */
+    public function addSnapshotsParam(\AppBundle\Entity\SnapshotsParams $snapshotsParam)
+    {
+        $this->snapshots_params[] = $snapshotsParam;
+
+        return $this;
+    }
+
+    /**
+     * Remove snapshotsParam
+     *
+     * @param \AppBundle\Entity\SnapshotsParams $snapshotsParam
+     */
+    public function removeSnapshotsParam(\AppBundle\Entity\SnapshotsParams $snapshotsParam)
+    {
+        $this->snapshots_params->removeElement($snapshotsParam);
+    }
+
+    /**
+     * Get snapshotsParams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSnapshotsParams()
+    {
+        return $this->snapshots_params;
+    }
+}

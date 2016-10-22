@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Breakdown list</h1>
+    <ul>
+        <li>
+            <a href="{{ path('operator_breakdown_new') }}">Create a new breakdown</a>
+        </li>
+    </ul>
+    <div id="filterBox">
+        <h3>Filters:</h3>
+        <form method="get" action="" name="descriptor_filter" id="descriptor_filter">
+            <div id="formErrors">
+                {{ form_errors(form.closed) }}
+            </div>
+            <div class="filterBoxField">
+                {{ form_label(form.closed) }}
+                {{ form_widget(form.closed) }}
+            </div>
+            {{ form_rest(form) }}
+            <input id="descriptor_filter_submit" type="submit" name="submit-filter" value="apply-filter" />
+        </form>
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    <table class="entityList">
+        <thead>
+            <tr>
+                {% set direction = pagination.getDirection() %}
+                <th>Actions</th>
+                <th{% if pagination.isSorted('a.id') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'id', 'a.id') }}
+                </th>
+
+                <th{% if pagination.isSorted('a.created') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'created', 'a.created') }}
+                </th>
+                <th{% if pagination.isSorted('a.start') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'start', 'a.start') }}
+                </th>
+                <th{% if pagination.isSorted('a.stop') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'stop', 'a.stop') }}
+                </th>
+                <th{% if pagination.isSorted('breakdown_length') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'length', 'breakdown_length') }}
+                </th>
+                <th{% if pagination.isSorted('a.notFinished') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'not finished', 'a.notFinished') }}
+                </th>
+                <th{% if pagination.isSorted('a.closed') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'closed', 'a.closed') }}
+                </th>
+                <th>Element descriptor</th>
+                <th>Status descriptor</th>
+                <th>Action descriptor</th>
+                <th>Contributor descriptor</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for breakdown in pagination %}
+            <tr>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('operator_breakdown_show', { 'id': breakdown.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('operator_breakdown_edit', { 'id': breakdown.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('operator_breakdown_delete', { 'id': breakdown.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+                <td>#{{ breakdown.id }}</td>
+
+                <td>{% if breakdown.created %}{{ breakdown.created|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}</td>
+
+                <td>{% if breakdown.notFinished %}Yes{% else %}No{% endif %}</td>
+                <td>{% if breakdown.closed %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    {{  breakdown.descriptors_element_list }}
+                </td>
+                <td>
+                    {{  breakdown.descriptors_status_list }}
+                </td>
+                <td>
+                    {{  breakdown.descriptors_action_list }}
+                </td>
+                <td>
+                    {{  breakdown.descriptors_contributor_list }}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

@@ -1,0 +1,171 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Intervs
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\IntervsRepository")
+ */
+class Intervs
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digitI", type="integer")
+     */
+    private $digitI;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="roman", type="string",length=5,nullable=true)
+     */
+    private $roman;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="intervalName", type="string",length=5)
+     */
+    private $intervalName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\SequenceDsr", mappedBy="interv")
+     */
+    private $sequences;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set digitI
+     *
+     * @param integer $digitI
+     *
+     * @return Intervs
+     */
+    public function setDigitI($digitI)
+    {
+        $this->digitI = $digitI;
+
+        return $this;
+    }
+
+    /**
+     * Get digitI
+     *
+     * @return integer
+     */
+    public function getDigitI()
+    {
+        return $this->digitI;
+    }
+
+    /**
+     * Set intervalName
+     *
+     * @param string $intervalName
+     *
+     * @return Intervs
+     */
+    public function setIntervalName($intervalName)
+    {
+        $this->intervalName = $intervalName;
+
+        return $this;
+    }
+
+    /**
+     * Get intervalName
+     *
+     * @return string
+     */
+    public function getIntervalName()
+    {
+        return $this->intervalName;
+    }
+
+    /**
+     * Set roman
+     *
+     * @param string $roman
+     *
+     * @return Intervs
+     */
+    public function setRoman($roman)
+    {
+        $this->roman = $roman;
+
+        return $this;
+    }
+
+    /**
+     * Get roman
+     *
+     * @return string
+     */
+    public function getRoman()
+    {
+        return $this->roman;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sequences = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add sequence
+     *
+     * @param \ManagerBundle\Entity\Sequence $sequence
+     *
+     * @return Intervs
+     */
+    public function addSequence(\ManagerBundle\Entity\Sequence $sequence)
+    {
+        $this->sequences[] = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * Remove sequence
+     *
+     * @param \ManagerBundle\Entity\Sequence $sequence
+     */
+    public function removeSequence(\ManagerBundle\Entity\Sequence $sequence)
+    {
+        $this->sequences->removeElement($sequence);
+    }
+
+    /**
+     * Get sequences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSequences()
+    {
+        return $this->sequences;
+    }
+}

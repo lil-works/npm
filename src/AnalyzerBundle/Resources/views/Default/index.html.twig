@@ -1,0 +1,30 @@
+{%  set page_title = "analyzer" %}
+{%  set bundle_title = "analyzer" %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+    <h2>some statistics:</h2>
+    <ul>
+        <li>{{ breakdowns|length }} breakdowns</li>
+    </ul>
+
+    <h2>last breakdowns:</h2>
+    <ul>
+        {% for breakdown in lastBreakdowns %}
+           <li>
+                #{{ breakdown.id }}
+                {% if breakdown.created %}{{ breakdown.created|date('Y-m-d H:i') }}{% endif %}
+                {% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}
+                {% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}
+                {% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}
+                {% if breakdown.notFinished %}Yes{% else %}No{% endif %}
+                {% if breakdown.closed %}Yes{% else %}No{% endif %}
+                {% for element in breakdown.descriptors %}
+                {{ element.label }}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

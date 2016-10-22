@@ -1,0 +1,192 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use ManagerBundle\Entity\PMElement;
+use Symfony\Component\Validator\Constraints as Assert;
+use ManagerBundle\Validator\Constraints as AcmeAssert;
+
+/**
+ * PMSynonym
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\PMSynonymRepository")
+ * 
+ */
+class PMSynonym
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string", length=100,unique=true)
+     * @AcmeAssert\SynonymElement
+     */
+    private $label;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMElement", inversedBy="synonyms")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id")
+     */
+    private $element;
+    /**
+     * @ORM\ManyToOne(targetEntity="PMStatus", inversedBy="synonyms")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
+     */
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMContributor", inversedBy="synonyms")
+     * @ORM\JoinColumn(name="contributor", referencedColumnName="id")
+     */
+    private $contributor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMAction", inversedBy="synonyms")
+     * @ORM\JoinColumn(name="action", referencedColumnName="id")
+     */
+    private $action;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return PMSynonym
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \ManagerBundle\Entity\PMElement $element
+     *
+     * @return PMSynonym
+     */
+    public function setElement(\ManagerBundle\Entity\PMElement $element = null)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \ManagerBundle\Entity\PMElement
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \ManagerBundle\Entity\PMStatus $status
+     *
+     * @return PMSynonym
+     */
+    public function setStatus(\ManagerBundle\Entity\PMStatus $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \ManagerBundle\Entity\PMStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set contributor
+     *
+     * @param \ManagerBundle\Entity\PMContributor $contributor
+     *
+     * @return PMSynonym
+     */
+    public function setContributor(\ManagerBundle\Entity\PMContributor $contributor = null)
+    {
+        $this->contributor = $contributor;
+
+        return $this;
+    }
+
+    /**
+     * Get contributor
+     *
+     * @return \ManagerBundle\Entity\PMContributor
+     */
+    public function getContributor()
+    {
+        return $this->contributor;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \ManagerBundle\Entity\PMAction $action
+     *
+     * @return PMSynonym
+     */
+    public function setAction(\ManagerBundle\Entity\PMAction $action = null)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \ManagerBundle\Entity\PMAction
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+}

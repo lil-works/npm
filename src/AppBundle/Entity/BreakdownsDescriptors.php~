@@ -1,0 +1,126 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BreakdownsDescriptors
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\BreakdownsDescriptorsRepository")
+ */
+class BreakdownsDescriptors
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Breakdown", inversedBy="breakdowns_descriptors")
+     * @ORM\JoinColumn(name="breakdown_id", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $breakdown;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Descriptor", inversedBy="breakdowns_descriptors")
+     * @ORM\JoinColumn(name="descriptor_id", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $descriptor;
+
+
+    /**
+     * @ORM\Column(type="integer", name="pos")
+     */
+    protected $pos;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set pos
+     *
+     * @param integer $pos
+     *
+     * @return BreakdownsDescriptors
+     */
+    public function setPos($pos)
+    {
+        $this->pos = $pos;
+
+        return $this;
+    }
+
+    /**
+     * Get pos
+     *
+     * @return integer
+     */
+    public function getPos()
+    {
+        return $this->pos;
+    }
+
+    /**
+     * Set breakdown
+     *
+     * @param \AppBundle\Entity\Breakdown $breakdown
+     *
+     * @return BreakdownsDescriptors
+     */
+    public function setBreakdown(\AppBundle\Entity\Breakdown $breakdown)
+    {
+        $this->breakdown = $breakdown;
+
+        return $this;
+    }
+
+    /**
+     * Get breakdown
+     *
+     * @return \AppBundle\Entity\Breakdown
+     */
+    public function getBreakdown()
+    {
+        return $this->breakdown;
+    }
+
+    /**
+     * Set descriptor
+     *
+     * @param \AppBundle\Entity\Descriptor $descriptor
+     *
+     * @return BreakdownsDescriptors
+     */
+    public function setDescriptor(\AppBundle\Entity\Descriptor $descriptor)
+    {
+        $this->descriptor = $descriptor;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptor
+     *
+     * @return \AppBundle\Entity\Descriptor
+     */
+    public function getDescriptor()
+    {
+        return $this->descriptor;
+    }
+}

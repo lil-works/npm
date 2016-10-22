@@ -1,0 +1,20 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * PMSyn
+ *
+ * @ORM\MappedSuperclass()
+ */
+class PMSyn
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="syn", type="string", length=255)
+     */
+    private $syn;
+
+
+}

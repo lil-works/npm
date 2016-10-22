@@ -1,0 +1,92 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ */
+class InterferoStatusElement
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\InterferoStatus", inversedBy="status")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
+     */
+    private $status;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\InterferoElement", inversedBy="element")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id")
+     */
+    private $element;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \ManagerBundle\Entity\InterferoStatus $status
+     *
+     * @return InterferoStatusElement
+     */
+    public function setStatus(\ManagerBundle\Entity\InterferoStatus $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \ManagerBundle\Entity\InterferoStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \ManagerBundle\Entity\InterferoElement $element
+     *
+     * @return InterferoStatusElement
+     */
+    public function setElement(\ManagerBundle\Entity\InterferoElement $element = null)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \ManagerBundle\Entity\InterferoElement
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+}

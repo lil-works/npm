@@ -1,0 +1,178 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * NPMCurrentArray
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\NPMCurrentArrayRepository")
+ */
+class NPMCurrentArray
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="string",length=5)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="ManagerBundle\LilClass\CurrentInterferoIdGenerator")
+     */
+    private $id;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="antenna", type="integer")
+     */
+    private $antenna;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="band", type="integer")
+     */
+    private $band;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="available", type="boolean", nullable=true)
+     */
+    private $available;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsCurrentArrays", mappedBy="currentArray", cascade={"persist", "remove"})
+     */
+    protected $events_currentArrays;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events_currentArrays = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set antenna
+     *
+     * @param integer $antenna
+     *
+     * @return NPMCurrentArray
+     */
+    public function setAntenna($antenna)
+    {
+        $this->antenna = $antenna;
+
+        return $this;
+    }
+
+    /**
+     * Get antenna
+     *
+     * @return integer
+     */
+    public function getAntenna()
+    {
+        return $this->antenna;
+    }
+
+    /**
+     * Set band
+     *
+     * @param integer $band
+     *
+     * @return NPMCurrentArray
+     */
+    public function setBand($band)
+    {
+        $this->band = $band;
+
+        return $this;
+    }
+
+    /**
+     * Get band
+     *
+     * @return integer
+     */
+    public function getBand()
+    {
+        return $this->band;
+    }
+
+    /**
+     * Set available
+     *
+     * @param boolean $available
+     *
+     * @return NPMCurrentArray
+     */
+    public function setAvailable($available)
+    {
+        $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * Get available
+     *
+     * @return boolean
+     */
+    public function getAvailable()
+    {
+        return $this->available;
+    }
+
+    /**
+     * Add eventsCurrentArray
+     *
+     * @param \ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray
+     *
+     * @return NPMCurrentArray
+     */
+    public function addEventsCurrentArray(\ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray)
+    {
+        $this->events_currentArrays[] = $eventsCurrentArray;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsCurrentArray
+     *
+     * @param \ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray
+     */
+    public function removeEventsCurrentArray(\ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray)
+    {
+        $this->events_currentArrays->removeElement($eventsCurrentArray);
+    }
+
+    /**
+     * Get eventsCurrentArrays
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsCurrentArrays()
+    {
+        return $this->events_currentArrays;
+    }
+}

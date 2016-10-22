@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Noema Pareto Manager {% if page_title is defined %} • {{ page_title|capitalize }} {% endif %}</title>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/manager/js/jquery-2.2.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/manager/js/jquery.balloon.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/manager/js/vis/dist/vis.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/analyzer/js/Chart.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/manager/js/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/manager/js/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/manager/js/jquery-date-range-picker-master/dist/jquery.daterangepicker.min.js') }}"></script>
+
+    {% javascripts '@SiteBundle/Resources/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts '@AppBundle/Resources/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts '@AnalyzerBundle/Resources/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts '@OperatorBundle/Resources/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% stylesheets '@SiteBundle/Resources/public/css/*.css' filter="cssrewrite"  %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    {% stylesheets '@AnalyzerBundle/Resources/public/css/*.css' filter="cssrewrite"  %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    {% stylesheets '@OperatorBundle/Resources/public/css/*.css' filter="cssrewrite"  %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <link rel="stylesheet" href="{{ asset('bundles/manager/js/jquery-date-range-picker-master/dist/daterangepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/manager/js/vis/dist/vis.css') }}">
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <h1>Noema Pareto Manager {% if bundle_title is defined %} • {{ bundle_title|capitalize }} {% endif %}</h1>
+        <div id="login">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+            {% else %}
+                {{ render(controller("FOSUserBundle:Security:login")) }}
+            {% endif %}
+        </div>
+        <div id="fontlinks">
+            <a href="#" id="incfont" class="button buttonfont">A+</a>
+            <a href="#" id="decfont" class="button buttonfont">A-</a>
+        </div>
+        <div class="menu">
+            {{ render(controller("OperatorBundle:Default:menu")) }}
+            {{ render(controller("AnalyzerBundle:Default:menu")) }}
+            {{ render(controller("ManagerBundle:Default:menu")) }}
+        </div>
+    </div>
+
+    <div id="content">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <div id="footer">
+        <div class="left">Noema Pareto Manager • Design to track breakdowns... </div>
+        <div class="right">Masnada Lilian • 2016</div>
+    </div>
+</div>
+</body>
+</html>

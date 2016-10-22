@@ -1,0 +1,90 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmactions_contributors")
+ */
+class PMActionsContributors
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMAction", inversedBy="actions_contributors")
+     * @ORM\JoinColumn(name="seq", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $action;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMContributor", inversedBy="actions_contributors")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $contributor;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \ManagerBundle\Entity\PMAction $action
+     *
+     * @return PMActionsContributors
+     */
+    public function setAction(\ManagerBundle\Entity\PMAction $action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \ManagerBundle\Entity\PMAction
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * Set contributor
+     *
+     * @param \ManagerBundle\Entity\PMContributor $contributor
+     *
+     * @return PMActionsContributors
+     */
+    public function setContributor(\ManagerBundle\Entity\PMContributor $contributor)
+    {
+        $this->contributor = $contributor;
+
+        return $this;
+    }
+
+    /**
+     * Get contributor
+     *
+     * @return \ManagerBundle\Entity\PMContributor
+     */
+    public function getContributor()
+    {
+        return $this->contributor;
+    }
+}

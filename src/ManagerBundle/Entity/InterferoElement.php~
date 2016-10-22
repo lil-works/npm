@@ -1,0 +1,94 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use ManagerBundle\LilClass\InterferoElementIdGenerator;
+
+/**
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\InterferoElementRepository")
+ * @UniqueEntity({"$baseline", "$band"})
+ */
+class InterferoElement
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="ManagerBundle\LilClass\InterferoElementIdGenerator")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string",length=10,nullable=false)
+     */
+    protected $baseline;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $band;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set baseline
+     *
+     * @param string $baseline
+     *
+     * @return InterferoElement
+     */
+    public function setBaseline($baseline)
+    {
+        $this->baseline = $baseline;
+
+        return $this;
+    }
+
+    /**
+     * Get baseline
+     *
+     * @return string
+     */
+    public function getBaseline()
+    {
+        return $this->baseline;
+    }
+
+    /**
+     * Set band
+     *
+     * @param integer $band
+     *
+     * @return InterferoElement
+     */
+    public function setBand($band)
+    {
+        $this->band = $band;
+
+        return $this;
+    }
+
+    /**
+     * Get band
+     *
+     * @return integer
+     */
+    public function getBand()
+    {
+        return $this->band;
+    }
+}

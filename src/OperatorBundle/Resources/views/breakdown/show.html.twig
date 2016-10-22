@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Operator - Breakdown details</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ breakdown.id }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{% if breakdown.created %}{{ breakdown.created|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Stop</th>
+                <td>{% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Length</th>
+                <td>{% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}</td>
+            </tr>
+
+            <tr>
+                <th>Notfinished</th>
+                <td>{% if breakdown.notFinished %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Closed</th>
+                <td>{% if breakdown.closed %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Descriptors</th>
+                <td>
+                    {% for element in breakdown.descriptors %}
+                        <li>{{ element.label }}</li>
+                    {% endfor %}
+                    <div style="position:absolute;top:200px;right:0;width:800px;height:600px;" id="mynetwork"></div>
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ breakdown.description|raw }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('operator_breakdown') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('operator_breakdown_edit', { 'id': breakdown.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    <script>
+
+        {% if nodes is not null %}
+
+        JSONNodes = '{{ nodes }}';
+        //JSONEdges = '';
+
+
+
+        nodes = JSON.parse(JSONNodes.replace(/&quot;/g, '\"').replace(/idField/g,'id').replace(/valueField/g,'value').replace(/categoryField/g,'group').replace(/labelField/g,'label'));
+        console.log(nodes);
+
+        draw(
+                nodes,
+                Array()
+        );
+        {% endif %}
+
+
+    </script>
+{% endblock %}

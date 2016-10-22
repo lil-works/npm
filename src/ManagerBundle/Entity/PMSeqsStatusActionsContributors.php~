@@ -1,0 +1,92 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmseqs_status_actions_contributors")
+ */
+class PMSeqsStatusActionsContributors
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMSeqsStatusActions", inversedBy="seqs_status_actions_contributors")
+     * @ORM\JoinColumn(name="seqsstatusactions", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $seqsstatusactions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMContributor", inversedBy="seqs_status_actions_contributors")
+     * @ORM\JoinColumn(name="contributor", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $contributor;
+
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set seqsstatusactions
+     *
+     * @param \ManagerBundle\Entity\PMSeqsStatusActions $seqsstatusactions
+     *
+     * @return PMSeqsStatusActionsContributors
+     */
+    public function setSeqsstatusactions(\ManagerBundle\Entity\PMSeqsStatusActions $seqsstatusactions)
+    {
+        $this->seqsstatusactions = $seqsstatusactions;
+
+        return $this;
+    }
+
+    /**
+     * Get seqsstatusactions
+     *
+     * @return \ManagerBundle\Entity\PMSeqsStatusActions
+     */
+    public function getSeqsstatusactions()
+    {
+        return $this->seqsstatusactions;
+    }
+
+    /**
+     * Set contributor
+     *
+     * @param \ManagerBundle\Entity\PMContributor $contributor
+     *
+     * @return PMSeqsStatusActionsContributors
+     */
+    public function setContributor(\ManagerBundle\Entity\PMContributor $contributor)
+    {
+        $this->contributor = $contributor;
+
+        return $this;
+    }
+
+    /**
+     * Get contributor
+     *
+     * @return \ManagerBundle\Entity\PMContributor
+     */
+    public function getContributor()
+    {
+        return $this->contributor;
+    }
+}

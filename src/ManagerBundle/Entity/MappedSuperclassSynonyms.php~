@@ -1,0 +1,27 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\MappedSuperclass
+ */
+abstract class  MappedSuperclassSynonyms
+{
+    /** @ORM\Column(type="string") */
+    protected $mappedOnElement;
+
+    /** @ORM\Column(type="string") */
+    protected $mappedOnStatus;
+
+    /**
+     * @ORM\OneToOne(targetEntity="PMElement")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id")
+     */
+    protected $mappedRelatedElement;
+
+    /**
+     * @ORM\OneToOne(targetEntity="PMStatus")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
+     */
+    protected $mappedRelatedStatus;
+}

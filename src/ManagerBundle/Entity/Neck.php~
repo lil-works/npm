@@ -1,0 +1,156 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Instrument
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\NeckRepository")
+ */
+class Neck
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Instrument", inversedBy="neck")
+     * @ORM\JoinColumn(name="instrument", referencedColumnName="id")
+     */
+    private $instrument;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stringNum", type="integer")
+     */
+    private $stringNum;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="caseNum", type="integer")
+     */
+    private $caseNum;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digitA", type="integer")
+     */
+    private $digitA;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set stringNum
+     *
+     * @param integer $stringNum
+     *
+     * @return Neck
+     */
+    public function setStringNum($stringNum)
+    {
+        $this->stringNum = $stringNum;
+
+        return $this;
+    }
+
+    /**
+     * Get stringNum
+     *
+     * @return integer
+     */
+    public function getStringNum()
+    {
+        return $this->stringNum;
+    }
+
+    /**
+     * Set caseNum
+     *
+     * @param integer $caseNum
+     *
+     * @return Neck
+     */
+    public function setCaseNum($caseNum)
+    {
+        $this->caseNum = $caseNum;
+
+        return $this;
+    }
+
+    /**
+     * Get caseNum
+     *
+     * @return integer
+     */
+    public function getCaseNum()
+    {
+        return $this->caseNum;
+    }
+
+    /**
+     * Set digitA
+     *
+     * @param integer $digitA
+     *
+     * @return Neck
+     */
+    public function setDigitA($digitA)
+    {
+        $this->digitA = $digitA;
+
+        return $this;
+    }
+
+    /**
+     * Get digitA
+     *
+     * @return integer
+     */
+    public function getDigitA()
+    {
+        return $this->digitA;
+    }
+
+    /**
+     * Set instrument
+     *
+     * @param \ManagerBundle\Entity\Instrument $instrument
+     *
+     * @return Neck
+     */
+    public function setInstrument(\ManagerBundle\Entity\Instrument $instrument = null)
+    {
+        $this->instrument = $instrument;
+
+        return $this;
+    }
+
+    /**
+     * Get instrument
+     *
+     * @return \ManagerBundle\Entity\Instrument
+     */
+    public function getInstrument()
+    {
+        return $this->instrument;
+    }
+}

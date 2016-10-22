@@ -1,0 +1,107 @@
+<?php
+// MyEntity.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\SnapshotRepository")
+ */
+class Snapshot
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $gender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SnapshotsParams", mappedBy="snapshot", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    protected $snapshots_params;
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->snapshots_params = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add snapshotsParam
+     *
+     * @param \AppBundle\Entity\SnapshotsParams $snapshotsParam
+     *
+     * @return Snapshot
+     */
+    public function addSnapshotsParam(\AppBundle\Entity\SnapshotsParams $snapshotsParam)
+    {
+        $this->snapshots_params[] = $snapshotsParam;
+
+        return $this;
+    }
+
+    /**
+     * Remove snapshotsParam
+     *
+     * @param \AppBundle\Entity\SnapshotsParams $snapshotsParam
+     */
+    public function removeSnapshotsParam(\AppBundle\Entity\SnapshotsParams $snapshotsParam)
+    {
+        $this->snapshots_params->removeElement($snapshotsParam);
+    }
+
+    /**
+     * Get snapshotsParams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSnapshotsParams()
+    {
+        return $this->snapshots_params;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Snapshot
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+}

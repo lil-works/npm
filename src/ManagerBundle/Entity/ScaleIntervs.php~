@@ -1,0 +1,95 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Instrument
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\ScaleIntervsRepository")
+ */
+class ScaleIntervs
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Scale", inversedBy="interv")
+     * @ORM\JoinColumn(name="scale", referencedColumnName="id")
+     */
+    private $scale;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interv", type="string", length=5)
+     */
+    private $interv;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set interv
+     *
+     * @param string $interv
+     *
+     * @return ScaleIntervs
+     */
+    public function setInterv($interv)
+    {
+        $this->interv = $interv;
+
+        return $this;
+    }
+
+    /**
+     * Get interv
+     *
+     * @return string
+     */
+    public function getInterv()
+    {
+        return $this->interv;
+    }
+
+    /**
+     * Set scale
+     *
+     * @param \ManagerBundle\Entity\Scale $scale
+     *
+     * @return ScaleIntervs
+     */
+    public function setScale(\ManagerBundle\Entity\Scale $scale = null)
+    {
+        $this->scale = $scale;
+
+        return $this;
+    }
+
+    /**
+     * Get scale
+     *
+     * @return \ManagerBundle\Entity\Scale
+     */
+    public function getScale()
+    {
+        return $this->scale;
+    }
+}

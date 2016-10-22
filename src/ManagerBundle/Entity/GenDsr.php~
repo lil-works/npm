@@ -1,0 +1,301 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * GenDsr
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\GenDsrRepository")
+ */
+class GenDsr
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Scale", inversedBy="dsr")
+     * @ORM\JoinColumn(name="scaleId", referencedColumnName="id")
+     */
+    private $scaleId;
+    
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="root",  type="string", length=5)
+     */
+    private $root;
+
+
+    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filenameC", type="string", length=100,nullable=true)
+     */
+    private $filenameC;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filenameS", type="string", length=100,nullable=true)
+     */
+    private $filenameS;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\GenDsrChilds", mappedBy="fingeringId",cascade={"persist", "remove"})
+     * @ORM\OrderBy({"digitI" = "ASC" , "digit" = "ASC" })
+     */
+    protected $childIds;
+
+
+ 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->childIds = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set scaleId
+     *
+     * @param integer $scaleId
+     *
+     * @return GenDsr
+     */
+    public function setScaleId($scaleId)
+    {
+        $this->scaleId = $scaleId;
+
+        return $this;
+    }
+
+    /**
+     * Get scaleId
+     *
+     * @return integer
+     */
+    public function getScaleId()
+    {
+        return $this->scaleId;
+    }
+
+    /**
+     * Set scaleType
+     *
+     * @param integer $scaleType
+     *
+     * @return GenDsr
+     */
+    public function setScaleType($scaleType)
+    {
+        $this->scaleType = $scaleType;
+
+        return $this;
+    }
+
+    /**
+     * Get scaleType
+     *
+     * @return integer
+     */
+    public function getScaleType()
+    {
+        return $this->scaleType;
+    }
+
+    /**
+     * Set scaleName
+     *
+     * @param string $scaleName
+     *
+     * @return GenDsr
+     */
+    public function setScaleName($scaleName)
+    {
+        $this->scaleName = $scaleName;
+
+        return $this;
+    }
+
+    /**
+     * Get scaleName
+     *
+     * @return string
+     */
+    public function getScaleName()
+    {
+        return $this->scaleName;
+    }
+
+ 
+
+    /**
+     * Set root
+     *
+     * @param string $root
+     *
+     * @return GenDsr
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return string
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set filenameC
+     *
+     * @param string $filenameC
+     *
+     * @return GenDsr
+     */
+    public function setFilenameC($filenameC)
+    {
+        $this->filenameC = $filenameC;
+
+        return $this;
+    }
+
+    /**
+     * Get filenameC
+     *
+     * @return string
+     */
+    public function getFilenameC()
+    {
+        return $this->filenameC;
+    }
+
+    /**
+     * Set filenameS
+     *
+     * @param string $filenameS
+     *
+     * @return GenDsr
+     */
+    public function setFilenameS($filenameS)
+    {
+        $this->filenameS = $filenameS;
+
+        return $this;
+    }
+
+    /**
+     * Get filenameS
+     *
+     * @return string
+     */
+    public function getFilenameS()
+    {
+        return $this->filenameS;
+    }
+
+    /**
+     * Add childId
+     *
+     * @param \ManagerBundle\Entity\GenDsrChilds $childId
+     *
+     * @return GenDsr
+     */
+    public function addChildId(\ManagerBundle\Entity\GenDsrChilds $childId)
+    {
+        $this->childIds[] = $childId;
+
+        return $this;
+    }
+
+    /**
+     * Remove childId
+     *
+     * @param \ManagerBundle\Entity\GenDsrChilds $childId
+     */
+    public function removeChildId(\ManagerBundle\Entity\GenDsrChilds $childId)
+    {
+        $this->childIds->removeElement($childId);
+    }
+
+    /**
+     * Get childIds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildIds()
+    {
+        return $this->childIds;
+    }
+
+    /**
+     * Set scaleTypeName
+     *
+     * @param string $scaleTypeName
+     *
+     * @return GenDsr
+     */
+    public function setScaleTypeName($scaleTypeName)
+    {
+        $this->scaleTypeName = $scaleTypeName;
+
+        return $this;
+    }
+
+    /**
+     * Get scaleTypeName
+     *
+     * @return string
+     */
+    public function getScaleTypeName()
+    {
+        return $this->scaleTypeName;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return GenDsr
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+}

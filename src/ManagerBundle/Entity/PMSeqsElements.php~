@@ -1,0 +1,122 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmseqs_elements")
+ */
+class PMSeqsElements
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMSeq", inversedBy="seqs_elements")
+     * @ORM\JoinColumn(name="seq", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $seq;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMElement", inversedBy="seqs_elements")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $element;
+
+
+    /**
+     * @ORM\Column(type="integer", name="pos")
+     */
+    protected $pos;
+
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set pos
+     *
+     * @param integer $pos
+     *
+     * @return PMSeqsElements
+     */
+    public function setPos($pos)
+    {
+        $this->pos = $pos;
+
+        return $this;
+    }
+
+    /**
+     * Get pos
+     *
+     * @return integer
+     */
+    public function getPos()
+    {
+        return $this->pos;
+    }
+
+    /**
+     * Set seq
+     *
+     * @param \ManagerBundle\Entity\PMSeq $seq
+     *
+     * @return PMSeqsElements
+     */
+    public function setSeq(\ManagerBundle\Entity\PMSeq $seq)
+    {
+        $this->seq = $seq;
+
+        return $this;
+    }
+
+    /**
+     * Get seq
+     *
+     * @return \ManagerBundle\Entity\PMSeq
+     */
+    public function getSeq()
+    {
+        return $this->seq;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \ManagerBundle\Entity\PMElement $element
+     *
+     * @return PMSeqsElements
+     */
+    public function setElement(\ManagerBundle\Entity\PMElement $element)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \ManagerBundle\Entity\PMElement
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+}

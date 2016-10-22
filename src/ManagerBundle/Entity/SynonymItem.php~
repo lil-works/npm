@@ -1,0 +1,29 @@
+<?php
+namespace ManagerBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * This class represents a LabLog item, either a BlogPost or an Event.
+ * It is abstract because we never have a LabLog entity, it's either an event or a blog post.
+ * @ORM\Entity
+ * @ORM\Table(name="SynonymItem")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap( {"element" = "PMElement", "status" = "PMStatus"} )
+ */
+abstract class SynonymItem
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $label;
+
+}

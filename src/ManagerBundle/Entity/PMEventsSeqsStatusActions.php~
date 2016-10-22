@@ -1,0 +1,136 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmevents_seqs_status_actions")
+ */
+class PMEventsSeqsStatusActions
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMEventsSeqsStatus", inversedBy="events_seqs_status_actions")
+     * @ORM\JoinColumn(name="event_seq_status", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $event_seq_status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMAction", inversedBy="events_seqs_status_actions")
+     * @ORM\JoinColumn(name="action", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $action;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PMEventsSeqsStatusActionsContributors", mappedBy="event_seq_status_action", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $events_seqs_status_actions_contributors;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events_seqs_status_actions_contributors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set eventSeqStatus
+     *
+     * @param \ManagerBundle\Entity\PMEventsSeqsStatus $eventSeqStatus
+     *
+     * @return PMEventsSeqsStatusActions
+     */
+    public function setEventSeqStatus(\ManagerBundle\Entity\PMEventsSeqsStatus $eventSeqStatus)
+    {
+        $this->event_seq_status = $eventSeqStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get eventSeqStatus
+     *
+     * @return \ManagerBundle\Entity\PMEventsSeqsStatus
+     */
+    public function getEventSeqStatus()
+    {
+        return $this->event_seq_status;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \ManagerBundle\Entity\PMAction $action
+     *
+     * @return PMEventsSeqsStatusActions
+     */
+    public function setAction(\ManagerBundle\Entity\PMAction $action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \ManagerBundle\Entity\PMAction
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * Add eventsSeqsStatusActionsContributor
+     *
+     * @param \ManagerBundle\Entity\PMEventsSeqsStatusActionsContributors $eventsSeqsStatusActionsContributor
+     *
+     * @return PMEventsSeqsStatusActions
+     */
+    public function addEventsSeqsStatusActionsContributor(\ManagerBundle\Entity\PMEventsSeqsStatusActionsContributors $eventsSeqsStatusActionsContributor)
+    {
+        $this->events_seqs_status_actions_contributors[] = $eventsSeqsStatusActionsContributor;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsSeqsStatusActionsContributor
+     *
+     * @param \ManagerBundle\Entity\PMEventsSeqsStatusActionsContributors $eventsSeqsStatusActionsContributor
+     */
+    public function removeEventsSeqsStatusActionsContributor(\ManagerBundle\Entity\PMEventsSeqsStatusActionsContributors $eventsSeqsStatusActionsContributor)
+    {
+        $this->events_seqs_status_actions_contributors->removeElement($eventsSeqsStatusActionsContributor);
+    }
+
+    /**
+     * Get eventsSeqsStatusActionsContributors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsSeqsStatusActionsContributors()
+    {
+        return $this->events_seqs_status_actions_contributors;
+    }
+}

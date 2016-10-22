@@ -1,0 +1,91 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="npmevents_actions")
+ */
+class NPMEventsActions
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NPMEvent", inversedBy="events_actions")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NPMAction", inversedBy="events_actions")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $action;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\NPMEvent $event
+     *
+     * @return NPMEventsActions
+     */
+    public function setEvent(\ManagerBundle\Entity\NPMEvent $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\NPMEvent
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \ManagerBundle\Entity\NPMAction $action
+     *
+     * @return NPMEventsActions
+     */
+    public function setAction(\ManagerBundle\Entity\NPMAction $action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \ManagerBundle\Entity\NPMAction
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+}

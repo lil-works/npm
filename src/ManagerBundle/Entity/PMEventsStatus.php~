@@ -1,0 +1,135 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmevents_status")
+ */
+class PMEventsStatus
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMEvent", inversedBy="events_status")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMStatus", inversedBy="events_seqs_status")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PMEventsStatusActions", mappedBy="event_status", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $events_status_actions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events_status_actions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\PMEvent $event
+     *
+     * @return PMEventsStatus
+     */
+    public function setEvent(\ManagerBundle\Entity\PMEvent $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\PMEvent
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \ManagerBundle\Entity\PMStatus $status
+     *
+     * @return PMEventsStatus
+     */
+    public function setStatus(\ManagerBundle\Entity\PMStatus $status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \ManagerBundle\Entity\PMStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Add eventsStatusAction
+     *
+     * @param \ManagerBundle\Entity\PMEventsStatusActions $eventsStatusAction
+     *
+     * @return PMEventsStatus
+     */
+    public function addEventsStatusAction(\ManagerBundle\Entity\PMEventsStatusActions $eventsStatusAction)
+    {
+        $this->events_status_actions[] = $eventsStatusAction;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsStatusAction
+     *
+     * @param \ManagerBundle\Entity\PMEventsStatusActions $eventsStatusAction
+     */
+    public function removeEventsStatusAction(\ManagerBundle\Entity\PMEventsStatusActions $eventsStatusAction)
+    {
+        $this->events_status_actions->removeElement($eventsStatusAction);
+    }
+
+    /**
+     * Get eventsStatusActions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsStatusActions()
+    {
+        return $this->events_status_actions;
+    }
+}

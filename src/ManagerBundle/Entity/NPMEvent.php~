@@ -1,0 +1,472 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
+/**
+ * PMEvent
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\NPMEventRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class NPMEvent
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="creator", referencedColumnName="id")
+     */
+    private $creator;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="start", type="datetime",nullable=true)
+     */
+    private $start;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="stop", type="datetime",nullable=true)
+     */
+    private $stop;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="notFinished", type="boolean",nullable=true)
+     */
+    private $notFinished;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="closed", type="boolean",nullable=true)
+     */
+    private $closed;
+
+
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="description", type="text",nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsCurrentArrays", mappedBy="event", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $events_currentArrays;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsElements", mappedBy="event", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    protected $events_elements;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsStates", mappedBy="event", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    protected $events_states;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsActions", mappedBy="event", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    protected $events_actions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsContributors", mappedBy="event", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    protected $events_contributors;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+
+
+        $this->events_currentArrays = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events_elements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events_states = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events_actions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events_contributors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return NPMEvent
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set start
+     *
+     * @param \DateTime $start
+     *
+     * @return NPMEvent
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    /**
+     * Get start
+     *
+     * @return \DateTime
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * Set stop
+     *
+     * @param \DateTime $stop
+     *
+     * @return NPMEvent
+     */
+    public function setStop($stop)
+    {
+        $this->stop = $stop;
+
+        return $this;
+    }
+
+    /**
+     * Get stop
+     *
+     * @return \DateTime
+     */
+    public function getStop()
+    {
+        return $this->stop;
+    }
+
+    /**
+     * Set notFinished
+     *
+     * @param boolean $notFinished
+     *
+     * @return NPMEvent
+     */
+    public function setNotFinished($notFinished)
+    {
+        $this->notFinished = $notFinished;
+
+        return $this;
+    }
+
+    /**
+     * Get notFinished
+     *
+     * @return boolean
+     */
+    public function getNotFinished()
+    {
+        return $this->notFinished;
+    }
+
+    /**
+     * Set closed
+     *
+     * @param boolean $closed
+     *
+     * @return NPMEvent
+     */
+    public function setClosed($closed)
+    {
+        $this->closed = $closed;
+
+        return $this;
+    }
+
+    /**
+     * Get closed
+     *
+     * @return boolean
+     */
+    public function getClosed()
+    {
+        return $this->closed;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return NPMEvent
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \AppBundle\Entity\User $creator
+     *
+     * @return NPMEvent
+     */
+    public function setCreator(\AppBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Add eventsCurrentArray
+     *
+     * @param \ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray
+     *
+     * @return NPMEvent
+     */
+    public function addEventsCurrentArray(\ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray)
+    {
+        $this->events_currentArrays[] = $eventsCurrentArray;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsCurrentArray
+     *
+     * @param \ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray
+     */
+    public function removeEventsCurrentArray(\ManagerBundle\Entity\NPMEventsCurrentArrays $eventsCurrentArray)
+    {
+        $this->events_currentArrays->removeElement($eventsCurrentArray);
+    }
+
+    /**
+     * Get eventsCurrentArrays
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsCurrentArrays()
+    {
+        return $this->events_currentArrays;
+    }
+
+    /**
+     * Add eventsElement
+     *
+     * @param \ManagerBundle\Entity\NPMEventsElements $eventsElement
+     *
+     * @return NPMEvent
+     */
+    public function addEventsElement(\ManagerBundle\Entity\NPMEventsElements $eventsElement)
+    {
+        $this->events_elements[] = $eventsElement;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsElement
+     *
+     * @param \ManagerBundle\Entity\NPMEventsElements $eventsElement
+     */
+    public function removeEventsElement(\ManagerBundle\Entity\NPMEventsElements $eventsElement)
+    {
+        $this->events_elements->removeElement($eventsElement);
+    }
+
+    /**
+     * Get eventsElements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsElements()
+    {
+        return $this->events_elements;
+    }
+
+    /**
+     * Add eventsState
+     *
+     * @param \ManagerBundle\Entity\NPMEventsStates $eventsState
+     *
+     * @return NPMEvent
+     */
+    public function addEventsState(\ManagerBundle\Entity\NPMEventsStates $eventsState)
+    {
+        $this->events_states[] = $eventsState;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsState
+     *
+     * @param \ManagerBundle\Entity\NPMEventsStates $eventsState
+     */
+    public function removeEventsState(\ManagerBundle\Entity\NPMEventsStates $eventsState)
+    {
+        $this->events_states->removeElement($eventsState);
+    }
+
+    /**
+     * Get eventsStates
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsStates()
+    {
+        return $this->events_states;
+    }
+
+    /**
+     * Add eventsAction
+     *
+     * @param \ManagerBundle\Entity\NPMEventsActions $eventsAction
+     *
+     * @return NPMEvent
+     */
+    public function addEventsAction(\ManagerBundle\Entity\NPMEventsActions $eventsAction)
+    {
+        $this->events_actions[] = $eventsAction;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsAction
+     *
+     * @param \ManagerBundle\Entity\NPMEventsActions $eventsAction
+     */
+    public function removeEventsAction(\ManagerBundle\Entity\NPMEventsActions $eventsAction)
+    {
+        $this->events_actions->removeElement($eventsAction);
+    }
+
+    /**
+     * Get eventsActions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsActions()
+    {
+        return $this->events_actions;
+    }
+
+    /**
+     * Add eventsContributor
+     *
+     * @param \ManagerBundle\Entity\NPMEventsContributors $eventsContributor
+     *
+     * @return NPMEvent
+     */
+    public function addEventsContributor(\ManagerBundle\Entity\NPMEventsContributors $eventsContributor)
+    {
+        $this->events_contributors[] = $eventsContributor;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsContributor
+     *
+     * @param \ManagerBundle\Entity\NPMEventsContributors $eventsContributor
+     */
+    public function removeEventsContributor(\ManagerBundle\Entity\NPMEventsContributors $eventsContributor)
+    {
+        $this->events_contributors->removeElement($eventsContributor);
+    }
+
+    /**
+     * Get eventsContributors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsContributors()
+    {
+        return $this->events_contributors;
+    }
+}

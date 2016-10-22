@@ -1,0 +1,431 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Instrument
+ *
+ * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\FingeringRepository")
+ */
+class Fingering
+{
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload() {
+        if(!is_null($this->filename) && file_exists("graphical/".$this->instrument->getName()."/".$this->instrument->getTuningName()."/".$this->filename))
+            unlink("graphical/".$this->instrument->getName()."/".$this->instrument->getTuningName()."/".$this->filename);
+    }
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filename", type="string", length=50,nullable=true)
+     */
+    private $filename;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Scale", inversedBy="fingering")
+     * @ORM\JoinColumn(name="scale", referencedColumnName="id")
+     */
+    private $scale;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\Finger", mappedBy="fingering",cascade={"persist", "remove"})
+     */
+    protected $fingers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\FsequenceFingering", mappedBy="fingering",cascade={"persist", "remove"})
+     */
+    protected $fingeringInFsequences;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Instrument", inversedBy="fingerings")
+     * @ORM\JoinColumn(name="instrument", referencedColumnName="id")
+     */
+    protected $instrument;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="root", type="string", length=5)
+     */
+    private $root;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="drops", type="string", length=10,nullable=true)
+     */
+    private $drops;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="openstring", type="boolean",nullable=true)
+     */
+    private $openstring;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="context", type="string",length=10,nullable=true)
+     */
+    private $context;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fingers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set filename
+     *
+     * @param string $filename
+     *
+     * @return Fingering
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get filename
+     *
+     * @return string
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set scale
+     *
+     * @param \ManagerBundle\Entity\Scale $scale
+     *
+     * @return Fingering
+     */
+    public function setScale(\ManagerBundle\Entity\Scale $scale = null)
+    {
+        $this->scale = $scale;
+
+        return $this;
+    }
+
+    /**
+     * Get scale
+     *
+     * @return \ManagerBundle\Entity\Scale
+     */
+    public function getScale()
+    {
+        return $this->scale;
+    }
+
+    /**
+     * Add finger
+     *
+     * @param \ManagerBundle\Entity\Finger $finger
+     *
+     * @return Fingering
+     */
+    public function addFinger(\ManagerBundle\Entity\Finger $finger)
+    {
+        $this->fingers[] = $finger;
+
+        return $this;
+    }
+
+    /**
+     * Remove finger
+     *
+     * @param \ManagerBundle\Entity\Finger $finger
+     */
+    public function removeFinger(\ManagerBundle\Entity\Finger $finger)
+    {
+        $this->fingers->removeElement($finger);
+    }
+
+    /**
+     * Get fingers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFingers()
+    {
+        return $this->fingers;
+    }
+
+    /**
+     * Set instrument
+     *
+     * @param \ManagerBundle\Entity\Instrument $instrument
+     *
+     * @return Fingering
+     */
+    public function setInstrument(\ManagerBundle\Entity\Instrument $instrument = null)
+    {
+        $this->instrument = $instrument;
+
+        return $this;
+    }
+
+    /**
+     * Get instrument
+     *
+     * @return \ManagerBundle\Entity\Instrument
+     */
+    public function getInstrument()
+    {
+        return $this->instrument;
+    }
+
+    /**
+     * Set drops
+     *
+     * @param string $drops
+     *
+     * @return Fingering
+     */
+    public function setDrops($drops)
+    {
+        $this->drops = $drops;
+
+        return $this;
+    }
+
+    /**
+     * Get drops
+     *
+     * @return string
+     */
+    public function getDrops()
+    {
+        return $this->drops;
+    }
+
+    /**
+     * Set openstring
+     *
+     * @param boolean $openstring
+     *
+     * @return Fingering
+     */
+    public function setOpenstring($openstring)
+    {
+        $this->openstring = $openstring;
+
+        return $this;
+    }
+
+    /**
+     * Get openstring
+     *
+     * @return boolean
+     */
+    public function getOpenstring()
+    {
+        return $this->openstring;
+    }
+
+    /**
+     * Set root
+     *
+     * @param string $root
+     *
+     * @return Fingering
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return string
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    private function initArray(){
+        $o = array();
+        for($string = 0 ; $string<count($this->getInstrument()->getTuningInArray());$string++){
+            $o[$string]=[];
+        }
+        return $o;
+    }
+    public function getIntervalsInArray()
+    {
+        $context = $this->getContext();
+        $o = $this->initArray();
+
+
+        foreach($this->getFingers() as $finger){
+            switch ($context){
+                case "scale":
+                    if(!isset( $o[$finger->getStringNum()] ))
+                        $o[$finger->getStringNum()] = array();
+                    array_push($o[$finger->getStringNum()], $finger->getInterv());
+                    break;
+                case "arpeggio":
+                    if(!isset( $o[$finger->getStringNum()] ))
+                        $o[$finger->getStringNum()] = array();
+                    array_push($o[$finger->getStringNum()], $finger->getInterv());
+                    break;
+                case "chord":
+                    $o[$finger->getStringNum()] = $finger->getInterv();
+                    break;
+            }
+        }
+        return $o;
+    }
+    public function getCasesInArray()
+    {
+
+        $context = $this->getContext();
+        $o = $this->initArray();
+
+        foreach($this->getFingers() as $finger){
+            switch ($context){
+                case "scale":
+                    if(!isset( $o[$finger->getStringNum()] ))
+                        $o[$finger->getStringNum()] = array();
+                    array_push($o[$finger->getStringNum()], $finger->getCaseNum()) ;
+                    break;
+                case "arpeggio":
+                    if(!isset( $o[$finger->getStringNum()] ))
+                        $o[$finger->getStringNum()] = array();
+                    array_push($o[$finger->getStringNum()], $finger->getCaseNum()) ;
+                    break;
+                case "chord":
+                    (!is_null($finger->getCaseNum()))?
+                        $o[$finger->getStringNum()] = $finger->getCaseNum() : $o[$finger->getStringNum()] = "x";
+                    break;
+            }
+        }
+        return $o;
+    }
+
+
+
+
+    /**
+     * Set context
+     *
+     * @param string $context
+     *
+     * @return Fingering
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+
+        return $this;
+    }
+
+    /**
+     * Get context
+     *
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * Set fsequence
+     *
+     * @param \ManagerBundle\Entity\Fsequence $fsequence
+     *
+     * @return Fingering
+     */
+    public function setFsequence(\ManagerBundle\Entity\Fsequence $fsequence = null)
+    {
+        $this->fsequence = $fsequence;
+
+        return $this;
+    }
+
+    /**
+     * Get fsequence
+     *
+     * @return \ManagerBundle\Entity\Fsequence
+     */
+    public function getFsequence()
+    {
+        return $this->fsequence;
+    }
+
+    /**
+     * Add fingeringInFsequence
+     *
+     * @param \ManagerBundle\Entity\FsequenceFingering $fingeringInFsequence
+     *
+     * @return Fingering
+     */
+    public function addFingeringInFsequence(\ManagerBundle\Entity\FsequenceFingering $fingeringInFsequence)
+    {
+        $this->fingeringInFsequences[] = $fingeringInFsequence;
+
+        return $this;
+    }
+
+    /**
+     * Remove fingeringInFsequence
+     *
+     * @param \ManagerBundle\Entity\FsequenceFingering $fingeringInFsequence
+     */
+    public function removeFingeringInFsequence(\ManagerBundle\Entity\FsequenceFingering $fingeringInFsequence)
+    {
+        $this->fingeringInFsequences->removeElement($fingeringInFsequence);
+    }
+
+    /**
+     * Get fingeringInFsequences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFingeringInFsequences()
+    {
+        return $this->fingeringInFsequences;
+    }
+}

@@ -1,0 +1,98 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * ISSEventSeq
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\ISSEventSeqRepository")
+ */
+class ISSEventSeq
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="ManagerBundle\Entity\ISSSeq")
+     * @ORM\JoinColumn(name="seq", referencedColumnName="id")
+     */
+    protected $seq;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ISSEvent", inversedBy="event")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id")
+     */
+    protected $event;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set seq
+     *
+     * @param \ManagerBundle\Entity\ISSSeq $seq
+     *
+     * @return ISSEventSeq
+     */
+    public function setSeq(\ManagerBundle\Entity\ISSSeq $seq = null)
+    {
+        $this->seq = $seq;
+
+        return $this;
+    }
+
+    /**
+     * Get seq
+     *
+     * @return \ManagerBundle\Entity\ISSSeq
+     */
+    public function getSeq()
+    {
+        return $this->seq;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\ISSEvent $event
+     *
+     * @return ISSEventSeq
+     */
+    public function setEvent(\ManagerBundle\Entity\ISSEvent $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\ISSEvent
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+}

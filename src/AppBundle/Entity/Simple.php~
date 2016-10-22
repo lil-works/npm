@@ -1,0 +1,203 @@
+<?php
+// MyEntity.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\SimpleRepository")
+ */
+class Simple
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $emails;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+    /**
+     * @ORM\ManyToMany(targetEntity="Groupy", inversedBy="simples")
+     * @ORM\JoinTable(name="simples_groups")
+     */
+    private $groups;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SimplesTags", mappedBy="simple", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    protected $simples_tags;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->simples_tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Simple
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add group
+     *
+     * @param \AppBundle\Entity\Groupy $group
+     *
+     * @return Simple
+     */
+    public function addGroup(\AppBundle\Entity\Groupy $group)
+    {
+        $this->groups[] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Remove group
+     *
+     * @param \AppBundle\Entity\Groupy $group
+     */
+    public function removeGroup(\AppBundle\Entity\Groupy $group)
+    {
+        $this->groups->removeElement($group);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Add simplesTag
+     *
+     * @param \AppBundle\Entity\SimplesTags $simplesTag
+     *
+     * @return Simple
+     */
+    public function addSimplesTag(\AppBundle\Entity\SimplesTags $simplesTag)
+    {
+        $this->simples_tags[] = $simplesTag;
+
+        return $this;
+    }
+
+    /**
+     * Remove simplesTag
+     *
+     * @param \AppBundle\Entity\SimplesTags $simplesTag
+     */
+    public function removeSimplesTag(\AppBundle\Entity\SimplesTags $simplesTag)
+    {
+        $this->simples_tags->removeElement($simplesTag);
+    }
+
+    /**
+     * Get simplesTags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSimplesTags()
+    {
+        return $this->simples_tags;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Simple
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set emails
+     *
+     * @param string $emails
+     *
+     * @return Simple
+     */
+    public function setEmails($emails)
+    {
+        $this->emails = $emails;
+
+        return $this;
+    }
+
+    /**
+     * Get emails
+     *
+     * @return string
+     */
+    public function getEmails()
+    {
+        return $this->emails;
+    }
+}

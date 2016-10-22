@@ -1,0 +1,148 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="playalongs_scales")
+ */
+class PlayalongsScales
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Playalong", inversedBy="playalongs_scales")
+     * @ORM\JoinColumn(name="playalong_id", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $playalong;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Scale", inversedBy="playalongs_scales")
+     * @ORM\JoinColumn(name="scale_id", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $scale;
+
+    /**
+     * @ORM\Column(type="float", name="pos")
+     */
+    protected $pos;
+
+    /**
+     * @ORM\Column(type="text", name="root",length=3)
+     */
+    protected $root;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set pos
+     *
+     * @param float $pos
+     *
+     * @return PlayalongsScales
+     */
+    public function setPos($pos)
+    {
+        $this->pos = $pos;
+
+        return $this;
+    }
+
+    /**
+     * Get pos
+     *
+     * @return float
+     */
+    public function getPos()
+    {
+        return $this->pos;
+    }
+
+    /**
+     * Set root
+     *
+     * @param string $root
+     *
+     * @return PlayalongsScales
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return string
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set playalong
+     *
+     * @param \ManagerBundle\Entity\Playalong $playalong
+     *
+     * @return PlayalongsScales
+     */
+    public function setPlayalong(\ManagerBundle\Entity\Playalong $playalong)
+    {
+        $this->playalong = $playalong;
+
+        return $this;
+    }
+
+    /**
+     * Get playalong
+     *
+     * @return \ManagerBundle\Entity\Playalong
+     */
+    public function getPlayalong()
+    {
+        return $this->playalong;
+    }
+
+    /**
+     * Set scale
+     *
+     * @param \ManagerBundle\Entity\Scale $scale
+     *
+     * @return PlayalongsScales
+     */
+    public function setScale(\ManagerBundle\Entity\Scale $scale)
+    {
+        $this->scale = $scale;
+
+        return $this;
+    }
+
+    /**
+     * Get scale
+     *
+     * @return \ManagerBundle\Entity\Scale
+     */
+    public function getScale()
+    {
+        return $this->scale;
+    }
+}

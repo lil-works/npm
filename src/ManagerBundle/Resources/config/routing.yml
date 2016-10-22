@@ -1,0 +1,52 @@
+manager_homepage:
+    path:     /manager
+    defaults: { _controller: ManagerBundle:Default:index }
+
+manager_synonym:
+    path:     /manager/synonym
+    defaults: { _controller: ManagerBundle:Synonym:index }
+
+manager_synonym_new:
+    path:     /manager/synonym/new
+    defaults: { _controller: ManagerBundle:Synonym:new }
+
+manager_synonym_show:
+    path:     /manager/synonym/{id}/show
+    defaults: { _controller: ManagerBundle:Synonym:show }
+
+manager_synonym_edit:
+    path:     /manager/synonym/{id}/edit
+    defaults: { _controller: ManagerBundle:Synonym:edit }
+
+manager_synonym_delete:
+    path:     /manager/synonym/{id}/delete
+    defaults: { _controller: ManagerBundle:Synonym:delete }
+
+
+manager_descriptor:
+    path:     /manager/descriptor
+    defaults: { _controller: ManagerBundle:Descriptor:index }
+
+manager_descriptor_new:
+    path:     /manager/descriptor/new
+    defaults: { _controller: ManagerBundle:Descriptor:new }
+
+manager_descriptor_show:
+    path:     /manager/descriptor/{id}/show
+    defaults: { _controller: ManagerBundle:Descriptor:show }
+
+manager_descriptor_edit:
+    path:     /manager/descriptor/{id}/edit
+    defaults: { _controller: ManagerBundle:Descriptor:edit }
+
+manager_descriptor_delete:
+    path:     /manager/descriptor/{id}/delete
+    defaults: { _controller: ManagerBundle:Descriptor:delete }
+
+
+
+
+manager_interfero:
+    path:     /manager/interfero
+    defaults: { _controller: ManagerBundle:Interfero:index }
+

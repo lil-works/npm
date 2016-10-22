@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <script>
+        window.onload = function() {
+            if (window.jQuery) {
+                new manageFormBreakdown('{{ path('breakdown_ajax_searchExact' ) }}','{{ path('breakdown_ajax_searchAll' ) }}','{{ path('breakdown_ajax_addDescriptor' ) }}','{{ path('operator_ajax_sequence_searchMatching') }}');
+            }
+        }
+    </script>
+
+    {{ form_start(form, {'attr': {'id': 'breakdown'}}) }}
+
+    <input type="submit" value="create breakdown" />
+
+    <div id="start">
+        {{ form_label(form.start) }}
+        {{ form_errors(form.start) }}
+        {{ form_widget(form.start) }}
+    </div>
+
+    <div id="stop">
+        {{ form_label(form.stop) }}
+        {{ form_errors(form.stop) }}
+        {{ form_widget(form.stop) }}
+    </div>
+
+    <div id="notFinished">
+        {{ form_label(form.notFinished) }}
+        {{ form_errors(form.notFinished) }}
+        {{ form_widget(form.notFinished) }}
+    </div>
+    <div id="closed">
+        {{ form_label(form.closed) }}
+        {{ form_errors(form.closed) }}
+        {{ form_widget(form.closed) }}
+    </div>
+    <div id="descriptors">
+        {{ form_label(form.descriptors) }}
+        {{ form_errors(form.descriptors) }}
+        {{ form_widget(form.descriptors) }}
+    </div>
+    <ul id="breakdowns_interferos-list"
+        data-prototype="{{ form_widget(form.breakdowns_interferos.vars.prototype)|e }}">
+        {% for interferoField in form.breakdowns_interferos %}
+            <li>
+                {{ form_errors(interferoField) }}
+                {{ form_widget(interferoField) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    <hr>
+    <div id="description">
+        {{ form_label(form.description) }}
+        {{ form_errors(form.description) }}
+        {{ form_widget(form.description) }}
+    </div>
+
+
+    {{ form_end(form) }}
+{% endblock %}

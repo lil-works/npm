@@ -1,0 +1,162 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * NPMState
+ *
+ * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\NPMStateRepository")
+ */
+class NPMState
+{
+
+    /**
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
+     */
+    public function formatLabel() {
+        $this->label = strtolower($this->label);
+    }
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string" , length=50)
+     */
+    protected $label;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMSynonym", mappedBy="state")
+     */
+    private $synonyms;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NPMEventsStates", mappedBy="state", cascade={"persist", "remove" }, orphanRemoval=TRUE)
+     */
+    private  $events_states;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->synonyms = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return NPMState
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Add synonym
+     *
+     * @param \ManagerBundle\Entity\NPMSynonym $synonym
+     *
+     * @return NPMState
+     */
+    public function addSynonym(\ManagerBundle\Entity\NPMSynonym $synonym)
+    {
+        $this->synonyms[] = $synonym;
+
+        return $this;
+    }
+
+    /**
+     * Remove synonym
+     *
+     * @param \ManagerBundle\Entity\NPMSynonym $synonym
+     */
+    public function removeSynonym(\ManagerBundle\Entity\NPMSynonym $synonym)
+    {
+        $this->synonyms->removeElement($synonym);
+    }
+
+    /**
+     * Get synonyms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSynonyms()
+    {
+        return $this->synonyms;
+    }
+
+    /**
+     * Add eventsState
+     *
+     * @param \ManagerBundle\Entity\NPMEventsStates $eventsState
+     *
+     * @return NPMState
+     */
+    public function addEventsState(\ManagerBundle\Entity\NPMEventsStates $eventsState)
+    {
+        $this->events_states[] = $eventsState;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsState
+     *
+     * @param \ManagerBundle\Entity\NPMEventsStates $eventsState
+     */
+    public function removeEventsState(\ManagerBundle\Entity\NPMEventsStates $eventsState)
+    {
+        $this->events_states->removeElement($eventsState);
+    }
+
+    /**
+     * Get eventsStates
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventsStates()
+    {
+        return $this->events_states;
+    }
+}

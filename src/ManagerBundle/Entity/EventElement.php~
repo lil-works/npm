@@ -1,0 +1,91 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ */
+class EventElement
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ObjectTreeElement", inversedBy="element")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id")
+     */
+    private $element;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Event", inversedBy="event")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id")
+     */
+    private $event;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \ManagerBundle\Entity\ObjectTreeElement $element
+     *
+     * @return EventElement
+     */
+    public function setElement(\ManagerBundle\Entity\ObjectTreeElement $element = null)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \ManagerBundle\Entity\ObjectTreeElement
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\Event $event
+     *
+     * @return EventElement
+     */
+    public function setEvent(\ManagerBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+}

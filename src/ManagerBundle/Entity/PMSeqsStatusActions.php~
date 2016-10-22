@@ -1,0 +1,136 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmseqs_status_actions")
+ */
+class PMSeqsStatusActions
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMSeqsStatus", inversedBy="seqs_status_actions")
+     * @ORM\JoinColumn(name="seqsstatus", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $seqsstatus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMAction", inversedBy="seqs_status_actions")
+     * @ORM\JoinColumn(name="action", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $action;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PMSeqsStatusActionsContributors", mappedBy="seqsstatusactions", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $seqs_status_actions_contributors;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->seqs_status_actions_contributors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set seqsstatus
+     *
+     * @param \ManagerBundle\Entity\PMSeqsStatus $seqsstatus
+     *
+     * @return PMSeqsStatusActions
+     */
+    public function setSeqsstatus(\ManagerBundle\Entity\PMSeqsStatus $seqsstatus)
+    {
+        $this->seqsstatus = $seqsstatus;
+
+        return $this;
+    }
+
+    /**
+     * Get seqsstatus
+     *
+     * @return \ManagerBundle\Entity\PMSeqsStatus
+     */
+    public function getSeqsstatus()
+    {
+        return $this->seqsstatus;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \ManagerBundle\Entity\PMAction $action
+     *
+     * @return PMSeqsStatusActions
+     */
+    public function setAction(\ManagerBundle\Entity\PMAction $action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \ManagerBundle\Entity\PMAction
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * Add seqsStatusActionsContributor
+     *
+     * @param \ManagerBundle\Entity\PMSeqsStatusActionsContributors $seqsStatusActionsContributor
+     *
+     * @return PMSeqsStatusActions
+     */
+    public function addSeqsStatusActionsContributor(\ManagerBundle\Entity\PMSeqsStatusActionsContributors $seqsStatusActionsContributor)
+    {
+        $this->seqs_status_actions_contributors[] = $seqsStatusActionsContributor;
+
+        return $this;
+    }
+
+    /**
+     * Remove seqsStatusActionsContributor
+     *
+     * @param \ManagerBundle\Entity\PMSeqsStatusActionsContributors $seqsStatusActionsContributor
+     */
+    public function removeSeqsStatusActionsContributor(\ManagerBundle\Entity\PMSeqsStatusActionsContributors $seqsStatusActionsContributor)
+    {
+        $this->seqs_status_actions_contributors->removeElement($seqsStatusActionsContributor);
+    }
+
+    /**
+     * Get seqsStatusActionsContributors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSeqsStatusActionsContributors()
+    {
+        return $this->seqs_status_actions_contributors;
+    }
+}

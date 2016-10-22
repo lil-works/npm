@@ -1,0 +1,91 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="npmevents_elements")
+ */
+class NPMEventsElements
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NPMEvent", inversedBy="events_elements")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NPMElement", inversedBy="events_elements")
+     * @ORM\JoinColumn(name="element", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $element;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\NPMEvent $event
+     *
+     * @return NPMEventsElements
+     */
+    public function setEvent(\ManagerBundle\Entity\NPMEvent $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\NPMEvent
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \ManagerBundle\Entity\NPMElement $element
+     *
+     * @return NPMEventsElements
+     */
+    public function setElement(\ManagerBundle\Entity\NPMElement $element)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \ManagerBundle\Entity\NPMElement
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+}

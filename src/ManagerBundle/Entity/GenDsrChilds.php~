@@ -1,0 +1,204 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GenDsrChilds
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\GenDsrChildsRepository")
+ */
+class GenDsrChilds
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     */
+    private $id;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\GenDsr", inversedBy="childIds")
+     * @ORM\JoinColumn(name="fingeringId", referencedColumnName="id")
+     */
+    private $fingeringId;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digit",   type="integer")
+     */
+    private $digit;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tone",   type="string",length=5)
+     */
+    private $tone;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interv",   type="string",length=5)
+     */
+    private $interv;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digitI",   type="integer")
+     */
+    private $digitI;
+
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return GenDsrChilds
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set digit
+     *
+     * @param integer $digit
+     *
+     * @return GenDsrChilds
+     */
+    public function setDigit($digit)
+    {
+        $this->digit = $digit;
+
+        return $this;
+    }
+
+    /**
+     * Get digit
+     *
+     * @return integer
+     */
+    public function getDigit()
+    {
+        return $this->digit;
+    }
+
+    /**
+     * Set tone
+     *
+     * @param string $tone
+     *
+     * @return GenDsrChilds
+     */
+    public function setTone($tone)
+    {
+        $this->tone = $tone;
+
+        return $this;
+    }
+
+    /**
+     * Get tone
+     *
+     * @return string
+     */
+    public function getTone()
+    {
+        return $this->tone;
+    }
+
+    /**
+     * Set interv
+     *
+     * @param string $interv
+     *
+     * @return GenDsrChilds
+     */
+    public function setInterv($interv)
+    {
+        $this->interv = $interv;
+
+        return $this;
+    }
+
+    /**
+     * Get interv
+     *
+     * @return string
+     */
+    public function getInterv()
+    {
+        return $this->interv;
+    }
+
+    /**
+     * Set digitI
+     *
+     * @param integer $digitI
+     *
+     * @return GenDsrChilds
+     */
+    public function setDigitI($digitI)
+    {
+        $this->digitI = $digitI;
+
+        return $this;
+    }
+
+    /**
+     * Get digitI
+     *
+     * @return integer
+     */
+    public function getDigitI()
+    {
+        return $this->digitI;
+    }
+
+    /**
+     * Set fingeringId
+     *
+     * @param \ManagerBundle\Entity\GenDsr $fingeringId
+     *
+     * @return GenDsrChilds
+     */
+    public function setFingeringId(\ManagerBundle\Entity\GenDsr $fingeringId = null)
+    {
+        $this->fingeringId = $fingeringId;
+
+        return $this;
+    }
+
+    /**
+     * Get fingeringId
+     *
+     * @return \ManagerBundle\Entity\GenDsr
+     */
+    public function getFingeringId()
+    {
+        return $this->fingeringId;
+    }
+}

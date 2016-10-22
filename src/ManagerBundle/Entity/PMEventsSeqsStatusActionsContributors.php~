@@ -1,0 +1,91 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmevents_seqs_status_actions_contributors")
+ */
+class PMEventsSeqsStatusActionsContributors
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMEventsSeqsStatusActions", inversedBy="events_seqs_status_actions_contributors")
+     * @ORM\JoinColumn(name="event_seq_status_action", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $event_seq_status_action;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMContributor", inversedBy="events_seqs_status_actions_contributors")
+     * @ORM\JoinColumn(name="contributor", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $contributor;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set eventSeqStatusAction
+     *
+     * @param \ManagerBundle\Entity\PMEventsSeqsStatusActions $eventSeqStatusAction
+     *
+     * @return PMEventsSeqsStatusActionsContributors
+     */
+    public function setEventSeqStatusAction(\ManagerBundle\Entity\PMEventsSeqsStatusActions $eventSeqStatusAction)
+    {
+        $this->event_seq_status_action = $eventSeqStatusAction;
+
+        return $this;
+    }
+
+    /**
+     * Get eventSeqStatusAction
+     *
+     * @return \ManagerBundle\Entity\PMEventsSeqsStatusActions
+     */
+    public function getEventSeqStatusAction()
+    {
+        return $this->event_seq_status_action;
+    }
+
+    /**
+     * Set contributor
+     *
+     * @param \ManagerBundle\Entity\PMContributor $contributor
+     *
+     * @return PMEventsSeqsStatusActionsContributors
+     */
+    public function setContributor(\ManagerBundle\Entity\PMContributor $contributor)
+    {
+        $this->contributor = $contributor;
+
+        return $this;
+    }
+
+    /**
+     * Get contributor
+     *
+     * @return \ManagerBundle\Entity\PMContributor
+     */
+    public function getContributor()
+    {
+        return $this->contributor;
+    }
+}

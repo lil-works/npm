@@ -1,0 +1,68 @@
+
+
+{% set difference = date(breakdown.stop).diff(date(breakdown.start)) %}
+{% set leftDays = difference.days %}
+
+<table>
+    <th>breakdown #{{ breakdown.id }} {% if breakdown.closed > 0 %} (closed) {% endif %}</th>
+    <tr>
+        <th>param</th>
+        <th>value</th>
+    </tr>
+    <tr>
+        <td>Created</td>
+        <td>{{ breakdown.created|date("Y-m-d H:m") }}</td>
+    </tr>
+    <tr>
+        <td>Start</td>
+        <td>{{ breakdown.start|date("Y-m-d H:m") }}</td>
+    </tr>
+    <tr>
+        <td>Stop</td>
+        <td>{{ breakdown.stop|date("Y-m-d H:m") }}</td>
+    </tr>
+    <tr>
+        <td>Length</td>
+        <td>{{ breakdown.start|timeDiff(breakdown.stop) }}</td>
+    </tr>
+    <tr>
+        <td>Descriptors</td>
+        <td>
+            {% for descriptor in breakdown.descriptors %}
+                {% if descriptor.category.id == 1 %} {{ descriptor.label }}{% endif %}
+            {% endfor %}
+             |
+            {% for descriptor in breakdown.descriptors %}
+                {% if descriptor.category.id == 2 %} {{ descriptor.label }}{% endif %}
+            {% endfor %}
+             >
+            {% for descriptor in breakdown.descriptors %}
+                {% if descriptor.category.id == 3 %} {{ descriptor.label }}{% endif %}
+            {% endfor %}
+             ~
+            {% for descriptor in breakdown.descriptors %}
+                {% if descriptor.category.id == 4 %} {{ descriptor.label }}{% endif %}
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>Interfero:</td>
+        <td>
+            {% set on = 0 %}
+            {% set off = 0 %}
+
+            {% for interferoElement in breakdown.breakdownsInterferos %}
+                {#Antenna {{ interferoElement.interfero.antenna }} Band {{ interferoElement.interfero.band }}#}
+                {% if  interferoElement.status == true %} {% set on = 1 + on %}{% else %} {% set off = off+1 %}{% endif %}
+            {% endfor %}
+            {{ 100 * on // (on + off) }}% ON
+
+        </td>
+    </tr>
+    {% if breakdown.description is not null %}
+    <tr>
+        <td>Description</td>
+        <td>{{ breakdown.description|raw }}</td>
+    </tr>
+    {% endif %}
+</table>

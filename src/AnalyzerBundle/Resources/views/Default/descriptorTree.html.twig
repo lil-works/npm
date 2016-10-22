@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+
+
+    <div id="filterBox">
+        <h3>Filters:</h3>
+        <form method="get" action="" name="descriptorTree_filter" id="descriptorTree_filter">
+
+
+            <div class="filterBoxField">
+                {{ form_label(form.category) }}
+                {{ form_errors(form.category) }}
+                {{ form_widget(form.category) }}
+            </div>
+            <div class="filterBoxField" id="filterBoxField-start">
+                {{ form_label(form.start) }}
+                {{ form_errors(form.start) }}
+                {{ form_widget(form.start) }}
+            </div>
+            <div class="filterBoxField" id="filterBoxField-stop">
+                {{ form_label(form.stop) }}
+                {{ form_errors(form.stop) }}
+                {{ form_widget(form.stop) }}
+            </div>
+            <div class="filterBoxField" id="filterBoxField-duration">
+                {{ form_label(form.minDuration) }}
+                {{ form_errors(form.minDuration) }}
+                {{ form_widget(form.minDuration) }}
+
+                {{ form_label(form.maxDuration) }}
+                {{ form_errors(form.maxDuration) }}
+                {{ form_widget(form.maxDuration) }}
+            </div>
+            <div class="filterBoxField" id="filterBoxField-ponderation">
+                {{ form_label(form.timePonderation) }}
+                {{ form_errors(form.timePonderation) }}
+                {{ form_widget(form.timePonderation) }}
+            <br/>
+                {{ form_label(form.interferoPonderation) }}
+                {{ form_errors(form.interferoPonderation) }}
+                {{ form_widget(form.interferoPonderation) }}
+            </div>
+            {{ form_rest(form) }}
+            <input id="descriptorTree_filter_submit" type="submit" name="submit-filter" value="apply-filter" />
+        </form>
+    </div>
+
+
+    <div id="filterResults">
+        <h3>Found nodes in {{ breakdowns|length }} breakdowns</h3>
+        <ul>{% for breakdown in breakdowns %}<li><a href="{{ path('operator_breakdown_show', { 'id': breakdown }) }}">#{{ breakdown }}</a></li>{% endfor %}</ul>
+    </div>
+    <div id="mynetwork" ></div>
+
+    <script>/*
+        $('#descriptorTree_filter_dateRange').dateRangePicker(
+                {
+                    startOfWeek: 'monday',
+                    separator : ' ~ ',
+                    format: 'DD.MM.YYYY HH:mm',
+                    autoClose: false,
+                    time: {
+                        enabled: true
+                    },
+                    getValue: function()
+                    {
+                        return $(this).val();
+                    },
+                    setValue: function(s)
+                    {
+                        if(!$(this).attr('readonly') && !$(this).is(':disabled') && s != $(this).val())
+                        {
+                            $(this).val(s);
+                        }
+                    },
+                    startDate: false,
+                    endDate: false
+
+
+                });
+*/
+
+
+
+        {% if nodes is not null %}
+
+        JSONNodes = '{{ nodes }}';
+        JSONEdges = '{{ edges }}';
+
+        if($("#descriptorTree_filter_timePonderation option[selected=selected]").val() == 'on'){
+            nodes = JSON.parse(JSONNodes.replace(/&quot;/g, '\"').replace(/idField/g,'id').replace(/breakdownLengthRatio/g,'value').replace(/categoryField/g,'group').replace(/labelField/g,'label'));
+        }else{
+            nodes = JSON.parse(JSONNodes.replace(/&quot;/g, '\"').replace(/idField/g,'id').replace(/valueField/g,'value').replace(/categoryField/g,'group').replace(/labelField/g,'label'));
+        }
+
+
+        draw(
+                nodes,
+                JSON.parse(JSONEdges.replace(/&quot;/g, '\"').replace(/fromField/g,'from').replace(/toField/g,'to').replace(/valueField/g,'value'))
+        );
+        {% endif %}
+        setDateRangePicker('descriptorTree_filter','dateRange','descriptorTree_filter_start','descriptorTree_filter_stop');
+
+    </script>
+{% endblock %}

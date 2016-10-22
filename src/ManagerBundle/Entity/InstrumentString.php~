@@ -1,0 +1,158 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Instrument
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\InstrumentStringRepository")
+ */
+class InstrumentString
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Instrument", inversedBy="instrumentString")
+     * @ORM\JoinColumn(name="instrument", referencedColumnName="id")
+     */
+    private $instrument;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pos", type="integer")
+     */
+    private $pos;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digit0", type="integer")
+     */
+    private $digit0;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tone", type="string",length=5,nullable=true)
+     */
+    private $tone;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set pos
+     *
+     * @param integer $pos
+     *
+     * @return InstrumentString
+     */
+    public function setPos($pos)
+    {
+        $this->pos = $pos;
+
+        return $this;
+    }
+
+    /**
+     * Get pos
+     *
+     * @return integer
+     */
+    public function getPos()
+    {
+        return $this->pos;
+    }
+
+    /**
+     * Set digit0
+     *
+     * @param integer $digit0
+     *
+     * @return InstrumentString
+     */
+    public function setDigit0($digit0)
+    {
+        $this->digit0 = $digit0;
+
+        return $this;
+    }
+
+    /**
+     * Get digit0
+     *
+     * @return integer
+     */
+    public function getDigit0()
+    {
+        return $this->digit0;
+    }
+
+    /**
+     * Set instrument
+     *
+     * @param \ManagerBundle\Entity\Instrument $instrument
+     *
+     * @return InstrumentString
+     */
+    public function setInstrument(\ManagerBundle\Entity\Instrument $instrument = null)
+    {
+        $this->instrument = $instrument;
+
+        return $this;
+    }
+
+    /**
+     * Get instrument
+     *
+     * @return \ManagerBundle\Entity\Instrument
+     */
+    public function getInstrument()
+    {
+        return $this->instrument;
+    }
+
+ 
+
+    /**
+     * Set tone
+     *
+     * @param string $tone
+     *
+     * @return InstrumentString
+     */
+    public function setTone($tone)
+    {
+        $this->tone = $tone;
+
+        return $this;
+    }
+
+    /**
+     * Get tone
+     *
+     * @return string
+     */
+    public function getTone()
+    {
+        return $this->tone;
+    }
+}

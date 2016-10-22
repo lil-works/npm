@@ -1,0 +1,36 @@
+#mynetwork{
+    /*
+    width: 50%;
+    margin: 0 auto;
+    height:600px;
+
+    padding: 10px;
+
+    border:1px solid #dfdfdf;
+    border-radius: 5px;
+*/
+    height:100%;
+}
+
+
+#resultContainer {
+    clear-after: both;
+    height:600px;
+
+}
+#networkContainer {
+    float: left;
+    width: 600px;
+
+    height:600px;
+}
+#chartContainer {
+   float: left;
+
+    height:600px;
+    width: 600px;
+}
+#mychart {
+
+
+}

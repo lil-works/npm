@@ -1,0 +1,93 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ */
+class CurrentInterfero
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="string",length=5)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="ManagerBundle\LilClass\CurrentInterferoIdGenerator")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $antenna;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $band;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\InterferoScreenShotElement", mappedBy="element")
+     */
+    private $element;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set antenna
+     *
+     * @param integer $antenna
+     *
+     * @return CurrentInterfero
+     */
+    public function setAntenna($antenna)
+    {
+        $this->antenna = $antenna;
+
+        return $this;
+    }
+
+    /**
+     * Get antenna
+     *
+     * @return integer
+     */
+    public function getAntenna()
+    {
+        return $this->antenna;
+    }
+
+    /**
+     * Set band
+     *
+     * @param integer $band
+     *
+     * @return CurrentInterfero
+     */
+    public function setBand($band)
+    {
+        $this->band = $band;
+
+        return $this;
+    }
+
+    /**
+     * Get band
+     *
+     * @return integer
+     */
+    public function getBand()
+    {
+        return $this->band;
+    }
+}

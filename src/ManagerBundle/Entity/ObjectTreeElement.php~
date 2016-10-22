@@ -1,0 +1,223 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * @ORM\Entity
+ * @UniqueEntity("label")
+ */
+class ObjectTreeElement
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ObjectTreeElement", inversedBy="childs")
+     * @ORM\JoinColumn(name="parent", referencedColumnName="id",nullable=true)
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\ObjectTreeElement", mappedBy="parent")
+     */
+    protected $childs;
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ObjectTree", inversedBy="elements")
+     * @ORM\JoinColumn(name="object", referencedColumnName="id")
+     */
+    protected $object;
+
+    /**
+     * @ORM\Column(type="string",length=100,unique=true)
+     */
+    protected $label;
+
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $description;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set otId
+     *
+     * @param integer $otId
+     *
+     * @return ObjectTreeElement
+     */
+    public function setOtId($otId)
+    {
+        $this->ot_id = $otId;
+
+        return $this;
+    }
+
+    /**
+     * Get otId
+     *
+     * @return integer
+     */
+    public function getOtId()
+    {
+        return $this->ot_id;
+    }
+
+   
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return ObjectTreeElement
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set object
+     *
+     * @param \ManagerBundle\Entity\ObjectElement $object
+     *
+     * @return ObjectTreeElement
+     */
+    public function setObject(\ManagerBundle\Entity\ObjectTree $object = null)
+    {
+        $this->object = $object;
+
+        return $this;
+    }
+
+    /**
+     * Get object
+     *
+     * @return \ManagerBundle\Entity\ObjectTree
+     */
+    public function getObject()
+    {
+        return $this->object;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->childs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \ManagerBundle\Entity\ObjectTreeElement $parent
+     *
+     * @return ObjectTreeElement
+     */
+    public function setParent(\ManagerBundle\Entity\ObjectTreeElement $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \ManagerBundle\Entity\ObjectTreeElement
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add child
+     *
+     * @param \ManagerBundle\Entity\ObjectTreeElement $child
+     *
+     * @return ObjectTreeElement
+     */
+    public function addChild(\ManagerBundle\Entity\ObjectTreeElement $child)
+    {
+        $this->childs[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \ManagerBundle\Entity\ObjectTreeElement $child
+     */
+    public function removeChild(\ManagerBundle\Entity\ObjectTreeElement $child)
+    {
+        $this->childs->removeElement($child);
+    }
+
+    /**
+     * Get childs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChilds()
+    {
+        return $this->childs;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return ObjectTreeElement
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+}

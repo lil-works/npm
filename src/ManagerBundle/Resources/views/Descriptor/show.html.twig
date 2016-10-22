@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Descriptor</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ descriptor.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ descriptor.label }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td style="color:{{ descriptor.category.color }}; ">{{ descriptor.category.label }}</td>
+            </tr>
+            <tr>
+                <th>Synonyms</th>
+                <td><ul>{% for synonym in descriptor.synonyms  %}<li>{{ synonym.label }}</li>{% endfor %}</ul></td>
+            </tr>
+            <tr>
+                <th>Breakdowns</th>
+                <td><ul><strong>({{ descriptor.breakdowns|length }})</strong> {% for breakdown in descriptor.breakdowns  %}<li>#{{ breakdown.id }}</li>{% endfor %}</ul></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <h2>descriptor tree</h2>
+    <div style="position:absolute;top:200px;right:0;width:800px;height:600px;" id="mynetwork"></div>
+    <ul>
+        <li>
+            <a href="{{ path('manager_descriptor') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('manager_descriptor_edit', { 'id': descriptor.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+
+    <script>
+
+        {% if nodes is not null %}
+
+        JSONNodes = '{{ nodes }}';
+        JSONEdges = '{{ edges }}';
+
+
+
+        nodes = JSON.parse(JSONNodes.replace(/&quot;/g, '\"').replace(/idField/g,'id').replace(/valueField/g,'value').replace(/categoryField/g,'group').replace(/labelField/g,'label'));
+        console.log(nodes);
+
+        draw(
+                nodes,
+                JSON.parse(JSONEdges.replace(/&quot;/g, '\"').replace(/fromField/g,'from').replace(/toField/g,'to').replace(/valueField/g,'value'))
+        );
+        {% endif %}
+
+
+    </script>
+{% endblock %}

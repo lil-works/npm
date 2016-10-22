@@ -1,0 +1,37 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pmseqs_status")
+ */
+class PMSeqsStatus
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMSeq", inversedBy="seqs_status")
+     * @ORM\JoinColumn(name="seq", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $seq;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PMStatus", inversedBy="seqs_status")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $status;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="PMSeqsStatusActions", mappedBy="seqsstatus", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $seqs_status_actions;
+
+}

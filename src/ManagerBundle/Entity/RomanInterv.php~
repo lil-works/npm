@@ -1,0 +1,110 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GenDsr
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\RomanIntervRepository")
+ */
+class RomanInterv
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="roman",  type="string", length=5)
+     */
+    private $roman;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digitI",  type="integer")
+     */
+    private $digitI;
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return RomanInterv
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set roman
+     *
+     * @param string $roman
+     *
+     * @return RomanInterv
+     */
+    public function setRoman($roman)
+    {
+        $this->roman = $roman;
+
+        return $this;
+    }
+
+    /**
+     * Get roman
+     *
+     * @return string
+     */
+    public function getRoman()
+    {
+        return $this->roman;
+    }
+
+    /**
+     * Set digitI
+     *
+     * @param \interger $digitI
+     *
+     * @return RomanInterv
+     */
+    public function setDigitI(\interger $digitI)
+    {
+        $this->digitI = $digitI;
+
+        return $this;
+    }
+
+    /**
+     * Get digitI
+     *
+     * @return \interger
+     */
+    public function getDigitI()
+    {
+        return $this->digitI;
+    }
+}

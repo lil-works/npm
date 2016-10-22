@@ -1,0 +1,250 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
+/**
+ * @ORM\Entity
+ * @UniqueEntity("name")
+ */
+class ObjectTree
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ObjectTree", inversedBy="childs")
+     * @ORM\JoinColumn(name="parent", referencedColumnName="id",nullable=true)
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\ObjectTree", mappedBy="parent")
+     */
+    protected $childs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\ObjectTreeElement", mappedBy="object")
+     */
+    private $elements;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=100, unique=true)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="boolean",nullable=true)
+     */
+    protected $isNotReallyAnObject;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $description;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->childs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->elements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return ObjectTree
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return ObjectTree
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set isNotReallyAnObject
+     *
+     * @param boolean $isNotReallyAnObject
+     *
+     * @return ObjectTree
+     */
+    public function setIsNotReallyAnObject($isNotReallyAnObject)
+    {
+        $this->isNotReallyAnObject = $isNotReallyAnObject;
+
+        return $this;
+    }
+
+    /**
+     * Get isNotReallyAnObject
+     *
+     * @return boolean
+     */
+    public function getIsNotReallyAnObject()
+    {
+        return $this->isNotReallyAnObject;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return ObjectTree
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \ManagerBundle\Entity\ObjectTree $parent
+     *
+     * @return ObjectTree
+     */
+    public function setParent(\ManagerBundle\Entity\ObjectTree $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \ManagerBundle\Entity\ObjectTree
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add child
+     *
+     * @param \ManagerBundle\Entity\ObjectTree $child
+     *
+     * @return ObjectTree
+     */
+    public function addChild(\ManagerBundle\Entity\ObjectTree $child)
+    {
+        $this->childs[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \ManagerBundle\Entity\ObjectTree $child
+     */
+    public function removeChild(\ManagerBundle\Entity\ObjectTree $child)
+    {
+        $this->childs->removeElement($child);
+    }
+
+    /**
+     * Get childs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChilds()
+    {
+        return $this->childs;
+    }
+
+    /**
+     * Add element
+     *
+     * @param \ManagerBundle\Entity\ObjectTreeElement $element
+     *
+     * @return ObjectTree
+     */
+    public function addElement(\ManagerBundle\Entity\ObjectTreeElement $element)
+    {
+        $this->elements[] = $element;
+
+        return $this;
+    }
+
+    /**
+     * Remove element
+     *
+     * @param \ManagerBundle\Entity\ObjectTreeElement $element
+     */
+    public function removeElement(\ManagerBundle\Entity\ObjectTreeElement $element)
+    {
+        $this->elements->removeElement($element);
+    }
+
+    /**
+     * Get elements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getElements()
+    {
+        return $this->elements;
+    }
+}

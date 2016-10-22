@@ -1,0 +1,122 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="npmevents_currentarrays")
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\NPMEventsCurrentArraysRepository")
+ */
+class NPMEventsCurrentArrays
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NPMEvent", inversedBy="events_currentArrays")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NPMCurrentArray", inversedBy="events_currentArrays")
+     * @ORM\JoinColumn(name="currentArray", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $currentArray;
+
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    protected $status;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return NPMEventsCurrentArrays
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\NPMEvent $event
+     *
+     * @return NPMEventsCurrentArrays
+     */
+    public function setEvent(\ManagerBundle\Entity\NPMEvent $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\NPMEvent
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set currentArray
+     *
+     * @param \ManagerBundle\Entity\NPMCurrentArray $currentArray
+     *
+     * @return NPMEventsCurrentArrays
+     */
+    public function setCurrentArray(\ManagerBundle\Entity\NPMCurrentArray $currentArray)
+    {
+        $this->currentArray = $currentArray;
+
+        return $this;
+    }
+
+    /**
+     * Get currentArray
+     *
+     * @return \ManagerBundle\Entity\NPMCurrentArray
+     */
+    public function getCurrentArray()
+    {
+        return $this->currentArray;
+    }
+}

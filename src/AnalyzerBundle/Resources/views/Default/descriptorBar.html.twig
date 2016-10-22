@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <label for="categorySelector">choose descriptor category : </label>
+    <select id="categorySelector">
+        <option value="0">ALL</option>
+        <option value="1">element</option>
+        <option value="2">status</option>
+        <option value="3">action</option>
+        <option value="4">contributor</option>
+    </select>
+
+    <canvas id="myChart" width="200px" height="100px"></canvas>
+
+    <script>
+            $("#categorySelector").val({{ category }});
+            $("#categorySelector").on('change', function() {
+                var url = '{{ path("analyzer_descriptorBar", {'category': 'category'}) }}';
+                url = url.replace("category", this.value);
+                window.location.replace(url);
+            });
+        function drawBarChart() {
+
+            var jsonData = $.ajax({
+                url: '{{ path('analyzer_ajax_descriptors'  , {'category':category} ) }}',
+                dataType: 'json',
+            }).done(function (results) {
+                console.log(results);
+                var labels = [], data=[];
+                results.forEach(function(o) {
+                    labels.push(o.label);
+                    data.push(Math.round(100*o.percent_occurance));
+                    console.log(Math.round(100*o.percent_occurance));
+                });
+
+                var tempData = {
+                    labels : labels,
+                    datasets : [{
+                        fillColor             : "rgba(151,187,205,0.2)",
+                        strokeColor           : "rgba(151,187,205,1)",
+                        pointColor            : "rgba(151,187,205,1)",
+                        pointStrokeColor      : "#fff",
+                        pointHighlightFill    : "#fff",
+                        pointHighlightStroke  : "rgba(151,187,205,1)",
+                        data                  : data
+                    }]
+                };
+
+
+                var ctx = $("#myChart");
+
+                // Instantiate a new chart
+                var myBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: tempData,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'breakdown count for each descriptor'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+
+                                    min: 0,
+
+
+                                }
+                            }]
+                        }
+                    }
+
+                });
+            });
+        }
+
+        drawBarChart();
+    </script>
+{% endblock %}

@@ -1,0 +1,6 @@
+services:
+    oper.twig_extension:
+        class: OperatorBundle\Twig\TimeDiffExtension
+        public: false
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,32 @@
+analyzer_homepage:
+     path:     /analyzer
+     defaults: { _controller: AnalyzerBundle:Default:index }
+
+analyzer_descriptorBar:
+     path:     /analyzer/descriptor-bar/{category}
+     defaults: { _controller: AnalyzerBundle:Default:descriptorBar , category: 0 }
+
+analyzer_descriptorTree:
+    path:     /analyzer/descriptor-tree
+    defaults:
+        _controller: AnalyzerBundle:Default:descriptorTree
+
+analyzer_breakdownTimeline:
+    path:     /analyzer/breakdown-timeline
+    defaults: { _controller: AnalyzerBundle:Default:breakdownTimeline  }
+
+analyzer_ajax_descriptors:
+    path:     /analyzer/ajaxDescriptors/{category}
+    defaults: { _controller: AnalyzerBundle:Ajax:getDescriptors }
+
+analyzer_ajax_nodes:
+    path:     /analyzer/ajaxNodes/{category}
+    defaults: { _controller: AnalyzerBundle:Ajax:getNodes }
+
+analyzer_ajax_edges:
+    path:     /analyzer/ajaxEdges/{category}
+    defaults: { _controller: AnalyzerBundle:Ajax:getEdges }
+
+analyzer_ajax_breakdown_timeline:
+    path:     /analyzer/ajaxTimeline
+    defaults: { _controller: AnalyzerBundle:Ajax:getBreakdownTimeline }

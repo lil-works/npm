@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Synonym list</h1>
+    <ul>
+        <li>
+            <a href="{{ path('manager_synonym_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+    <table class="entityList">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descriptor</th>
+                <th>Label</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for synonym in synonyms %}
+            <tr>
+                <td><a href="{{ path('manager_synonym_show', { 'id': synonym.id }) }}">{{ synonym.id }}</a></td>
+                <td>{{ synonym.descriptor.label }}</td>
+                <td>{{ synonym.label }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('manager_synonym_show', { 'id': synonym.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('manager_synonym_edit', { 'id': synonym.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

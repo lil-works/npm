@@ -1,0 +1,262 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Finger
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\FingerRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(fields={"fingering","string"})
+ */
+class Finger
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Fingering", inversedBy="fingers")
+     * @ORM\JoinColumn(name="fingering", referencedColumnName="id")
+     */
+    private $fingering;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="stringNum",   type="string", length=5)
+     */
+    private $stringNum;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="caseNum",  type="integer", nullable=true)
+     */
+    private $caseNum;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interv",  type="string", length=5)
+     */
+    private $interv;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digit",  type="integer", nullable=true)
+     */
+    private $digit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="digitA",  type="integer", nullable=true)
+     */
+    private  $digitA;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tone", type="string", length=5)
+     */
+    private  $tone;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fingering
+     *
+     * @param integer $fingering
+     * @return Finger
+     */
+    public function setFingering($fingering)
+    {
+        $this->fingering = $fingering;
+
+        return $this;
+    }
+
+    /**
+     * Get fingering
+     *
+     * @return integer
+     */
+    public function getFingering()
+    {
+        return $this->fingering;
+    }
+
+
+
+
+
+    /**
+     * Set digit
+     *
+     * @param integer $digit
+     * @return Finger
+     */
+    public function setDigit($digit)
+    {
+        if(!is_int($digit))
+            $digit = null;
+        $this->digit = $digit;
+
+        return $this;
+    }
+
+    /**
+     * Get digit
+     *
+     * @return integer
+     */
+    public function getDigit()
+    {
+        return $this->digit;
+    }
+
+    /**
+     * Set digitA
+     *
+     * @param integer $digitA
+     * @return Finger
+     */
+    public function setDigitA($digitA)
+    {
+        if(!is_int($digitA))
+            $digitA = null;
+        $this->digitA = $digitA;
+
+        return $this;
+    }
+
+    /**
+     * Get digitA
+     *
+     * @return integer
+     */
+    public function getDigitA()
+    {
+        return $this->digitA;
+    }
+
+    /**
+     * Set tone
+     *
+     * @param string $tone
+     * @return Finger
+     */
+    public function setTone($tone)
+    {
+        $this->tone = $tone;
+
+        return $this;
+    }
+
+    /**
+     * Get tone
+     *
+     * @return string
+     */
+    public function getTone()
+    {
+        return $this->tone;
+    }
+
+    /**
+     * Set interv
+     *
+     * @param string $interv
+     * @return Finger
+     */
+    public function setInterv($interv)
+    {
+        $this->interv = $interv;
+
+        return $this;
+    }
+
+    /**
+     * Get interv
+     *
+     * @return string
+     */
+    public function getInterv()
+    {
+        return $this->interv;
+    }
+
+
+
+    /**
+     * Set strnum
+     *
+     * @param integer $strnum
+     * @return Finger
+     */
+    public function setStringNum($stringNum)
+    {
+        $this->stringNum = $stringNum;
+
+        return $this;
+    }
+
+    /**
+     * Get strnum
+     *
+     * @return integer
+     */
+    public function getStringNum()
+    {
+        return $this->stringNum;
+    }
+
+    /**
+     * Set casenum
+     *
+     * @param integer $casenum
+     * @return Finger
+     */
+    public function setCaseNum($caseNum)
+    {
+        if(!is_int($caseNum))
+            $caseNum = null;
+        $this->caseNum = $caseNum;
+
+        return $this;
+    }
+
+    /**
+     * Get casenum
+     *
+     * @return integer
+     */
+    public function getCaseNum()
+    {
+        return $this->caseNum;
+    }
+}

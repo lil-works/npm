@@ -1,0 +1,103 @@
+
+#filterBox{
+    font-size:12px;
+    border-bottom:1px solid #c0c0c0;
+    height: 130px;
+    text-shadow:1px 1px 0 #fff;
+}
+.filterBoxField{
+    margin:0px;
+    padding:12px;
+    float:left;
+    overflow: hidden;
+    height: 60px;
+    border-right: 1px solid  #c0c0c0;
+}
+.filterBoxField:last-child{
+    clear: both;
+}
+.filterPresets ul{
+    margin:0;
+    padding: 0;
+    display: inline;
+    font-size: .8em;
+}
+.filterPresets li{
+    margin:0;
+    padding: 0;
+    display: inline;
+    color: #843534;
+    font-size: .8em;
+}
+.filterPresets li:hover{
+    color: #843534;
+}
+.filterPresets li + li:before{
+    content: " | ";
+}
+
+#descriptorTree_filter_submit{
+    clear: both;
+    margin:10px;
+    padding:10px;
+}
+
+
+
+
+
+#filterResults ul{
+    margin:0;
+    padding: 0;
+    display: inline;
+    font-size: .8em;
+}
+#filterResults li{
+    margin:0;
+    padding: 0;
+    display: inline;
+    color: #843534;
+    font-size: .8em;
+}
+#filterResults li:hover{
+    color: #843534;
+}
+#filterResults li + li:before{
+    content: " | ";
+}
+#mynetwork{
+    /*
+    width: 50%;
+    margin: 0 auto;
+    height:600px;
+
+    padding: 10px;
+
+    border:1px solid #dfdfdf;
+    border-radius: 5px;
+*/
+    height:100%;
+}
+
+
+#resultContainer {
+    clear-after: both;
+    height:600px;
+
+}
+#networkContainer {
+    float: left;
+    width: 600px;
+
+    height:600px;
+}
+#chartContainer {
+   float: left;
+
+    height:600px;
+    width: 600px;
+}
+#mychart {
+
+
+}

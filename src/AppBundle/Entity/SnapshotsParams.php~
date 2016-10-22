@@ -1,0 +1,121 @@
+<?php
+// MyEntity.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\SnapshotsParamsRepository")
+ */
+class SnapshotsParams
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Snapshot", inversedBy="snapshots_params")
+     * @ORM\JoinColumn(name="snapshot", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $snapshot;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Param", inversedBy="snapshots_params")
+     * @ORM\JoinColumn(name="param", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $param;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $status;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     *
+     * @return SnapshotsParams
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set snapshot
+     *
+     * @param \AppBundle\Entity\Snapshot $snapshot
+     *
+     * @return SnapshotsParams
+     */
+    public function setSnapshot(\AppBundle\Entity\Snapshot $snapshot)
+    {
+        $this->snapshot = $snapshot;
+
+        return $this;
+    }
+
+    /**
+     * Get snapshot
+     *
+     * @return \AppBundle\Entity\Snapshot
+     */
+    public function getSnapshot()
+    {
+        return $this->snapshot;
+    }
+
+    /**
+     * Set param
+     *
+     * @param \AppBundle\Entity\Param $param
+     *
+     * @return SnapshotsParams
+     */
+    public function setParam(\AppBundle\Entity\Param $param)
+    {
+        $this->param = $param;
+
+        return $this;
+    }
+
+    /**
+     * Get param
+     *
+     * @return \AppBundle\Entity\Param
+     */
+    public function getParam()
+    {
+        return $this->param;
+    }
+}

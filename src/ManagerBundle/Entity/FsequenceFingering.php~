@@ -1,0 +1,142 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fsequence
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\FsequenceFingeringRepository")
+ */
+class FsequenceFingering
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Fsequence", inversedBy="fingerings")
+     * @ORM\JoinColumn(name="fsequence", referencedColumnName="id")
+     */
+    private $fsequence;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Fingering", inversedBy="fingeringInFsequences")
+     * @ORM\JoinColumn(name="fingering", referencedColumnName="id")
+     */
+    private $fingering;
+
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="position",   type="integer" )
+     */
+    private $position;
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return FsequenceFingering
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fingering
+     *
+     * @param integer $fingering
+     *
+     * @return FsequenceFingering
+     */
+    public function setFingering($fingering)
+    {
+        $this->fingering = $fingering;
+
+        return $this;
+    }
+
+    /**
+     * Get fingering
+     *
+     * @return integer
+     */
+    public function getFingering()
+    {
+        return $this->fingering;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return FsequenceFingering
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set fsequence
+     *
+     * @param integer $fsequence
+     *
+     * @return FsequenceFingering
+     */
+    public function setFsequence($fsequence)
+    {
+        $this->fsequence = $fsequence;
+
+        return $this;
+    }
+
+    /**
+     * Get fsequence
+     *
+     * @return integer
+     */
+    public function getFsequence()
+    {
+        return $this->fsequence;
+    }
+}

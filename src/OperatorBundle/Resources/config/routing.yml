@@ -1,0 +1,52 @@
+operator_homepage:
+    path:     /operator
+    defaults: { _controller: OperatorBundle:Default:index }
+
+operator_breakdown:
+    path:     /operator/breakdown
+    defaults: { _controller: OperatorBundle:Breakdown:index }
+
+operator_breakdown_timeline:
+    path:     /operator/breakdown/timeline
+    defaults: { _controller: OperatorBundle:Breakdown:timeline }
+
+operator_breakdown_new:
+    path:     /operator/breakdown/new
+    defaults: { _controller: OperatorBundle:Breakdown:new }
+
+operator_breakdown_show:
+    path:     /operator/breakdown/{id}/show
+    defaults: { _controller: OperatorBundle:Breakdown:show }
+
+operator_breakdown_edit:
+    path:     /operator/breakdown/{id}/edit
+    defaults: { _controller: OperatorBundle:Breakdown:edit }
+
+operator_breakdown_delete:
+    path:     /operator/breakdown/{id}/delete
+    defaults: { _controller: OperatorBundle:Breakdown:delete }
+
+
+
+
+operator_ajax_breakdown_show:
+    path:     /operator/ajax/breakdown/show/{id}
+    defaults: { _controller: OperatorBundle:Ajax:breakdownShow }
+operator_ajax_breakdown_timeline:
+    path:     /operator/ajax/breakdown/timeline
+    defaults: { _controller: OperatorBundle:Ajax:timeline }
+operator_ajax_descriptor_searchExact:
+    path:     /operator/ajax/descriptor/searchExact
+    defaults: { _controller: OperatorBundle:Ajax:searchExactByLabel }
+operator_ajax_sequence_searchMatching:
+    path:     /operator/ajax/descriptor/searchMatchingSequence
+    defaults: { _controller: OperatorBundle:Ajax:searchMatchingSequence }
+breakdown_ajax_searchAll:
+    path:     /breakdown_ajax_searchAll
+    defaults: { _controller: OperatorBundle:Ajax:searchAllByLabel }
+breakdown_ajax_searchExact:
+    path:     /breakdown_ajax_searchExact
+    defaults: { _controller: OperatorBundle:Ajax:searchExactByLabel }
+breakdown_ajax_addDescriptor:
+    path:     /breakdown_ajax_addDescriptor
+    defaults: { _controller: OperatorBundle:Ajax:addDescriptor }

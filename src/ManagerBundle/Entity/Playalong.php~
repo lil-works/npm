@@ -1,0 +1,163 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="playalong")
+ */
+class Playalong
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string" , name="name")
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="integer" , name="tempo", nullable=true)
+     */
+    protected $tempo;
+
+    /**
+     * @ORM\Column(type="string" , name="rsignature", length=5, nullable=true)
+     */
+    protected $rsignature;
+
+    /**
+     * @ORM\Column(type="string" , name="url",length=255, nullable=true)
+     */
+    protected $url;
+
+    
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlayalongsTags", mappedBy="playalong", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $playalongs_tags;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlayalongsScales", mappedBy="playalong", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $playalongs_scales;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->playalongs_tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->playalongs_scales = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Playalong
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add playalongsTag
+     *
+     * @param \ManagerBundle\Entity\PlayalongsTags $playalongsTag
+     *
+     * @return Playalong
+     */
+    public function addPlayalongsTag(\ManagerBundle\Entity\PlayalongsTags $playalongsTag)
+    {
+        $this->playalongs_tags[] = $playalongsTag;
+
+        return $this;
+    }
+
+    /**
+     * Remove playalongsTag
+     *
+     * @param \ManagerBundle\Entity\PlayalongsTags $playalongsTag
+     */
+    public function removePlayalongsTag(\ManagerBundle\Entity\PlayalongsTags $playalongsTag)
+    {
+        $this->playalongs_tags->removeElement($playalongsTag);
+    }
+
+    /**
+     * Get playalongsTags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayalongsTags()
+    {
+        return $this->playalongs_tags;
+    }
+
+    /**
+     * Add playalongsScale
+     *
+     * @param \ManagerBundle\Entity\PlayalongsScales $playalongsScale
+     *
+     * @return Playalong
+     */
+    public function addPlayalongsScale(\ManagerBundle\Entity\PlayalongsScales $playalongsScale)
+    {
+        $this->playalongs_scales[] = $playalongsScale;
+
+        return $this;
+    }
+
+    /**
+     * Remove playalongsScale
+     *
+     * @param \ManagerBundle\Entity\PlayalongsScales $playalongsScale
+     */
+    public function removePlayalongsScale(\ManagerBundle\Entity\PlayalongsScales $playalongsScale)
+    {
+        $this->playalongs_scales->removeElement($playalongsScale);
+    }
+
+    /**
+     * Get playalongsScales
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayalongsScales()
+    {
+        return $this->playalongs_scales;
+    }
+}

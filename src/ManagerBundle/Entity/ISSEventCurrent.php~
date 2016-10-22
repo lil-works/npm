@@ -1,0 +1,127 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * ISSEventCurrent
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\ISSEventCurrentRepository")
+ */
+class ISSEventCurrent
+{
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string",nullable=false,length=5)
+     */
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ISSCurrent", inversedBy="current")
+     * @ORM\JoinColumn(name="current", referencedColumnName="id")
+     */
+    protected $current;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ISSEvent", inversedBy="event")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id")
+     */
+    protected $event;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set current
+     *
+     * @param \ManagerBundle\Entity\ISSCurrent $current
+     *
+     * @return ISSEventCurrent
+     */
+    public function setCurrent(\ManagerBundle\Entity\ISSCurrent $current = null)
+    {
+        $this->current = $current;
+
+        return $this;
+    }
+
+    /**
+     * Get current
+     *
+     * @return \ManagerBundle\Entity\ISSCurrent
+     */
+    public function getCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \ManagerBundle\Entity\ISSEvent $event
+     *
+     * @return ISSEventCurrent
+     */
+    public function setEvent(\ManagerBundle\Entity\ISSEvent $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \ManagerBundle\Entity\ISSEvent
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return ISSEventCurrent
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}

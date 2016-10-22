@@ -1,0 +1,495 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Scale
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\ScaleRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(fields={"name"})
+ */
+class Scale
+{
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload() {
+        if(!is_null($this->filenameS))
+            unlink("graphical/scales/".$this->filenameS);
+        if(!is_null($this->filenameC))
+            unlink("graphical/scales/".$this->filenameC);
+    }
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\ScaleType", inversedBy="scales")
+     * @ORM\JoinColumn(name="stype", referencedColumnName="id")
+     */
+    protected $stype;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\Scale", inversedBy="childs")
+     * @ORM\JoinColumn(name="parent", referencedColumnName="id",nullable=true)
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\Scale", mappedBy="parent")
+     */
+    protected $childs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\GenDsr", mappedBy="scaleId")
+     */
+    protected $dsr;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\ScaleIntervs", mappedBy="scale",cascade={"persist", "remove"})
+     */
+    protected $interv;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\Fingering", mappedBy="scale",cascade={"persist", "remove"})
+     */
+    protected $fingering;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filenameC", type="string", length=100,nullable=true)
+     */
+    private $filenameC;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filenameS", type="string", length=100,nullable=true)
+     */
+    private $filenameS;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean",nullable=true)
+     */
+    private $published;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\SequenceDsr", mappedBy="scale")
+     */
+    private $sequences;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlayalongsScales", mappedBy="scale", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $playalongs_scales;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->interv = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fingering = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Scale
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set stype
+     *
+     * @param \ManagerBundle\Entity\ScaleType $stype
+     *
+     * @return Scale
+     */
+    public function setStype(\ManagerBundle\Entity\ScaleType $stype = null)
+    {
+        $this->stype = $stype;
+
+        return $this;
+    }
+
+    /**
+     * Get stype
+     *
+     * @return \ManagerBundle\Entity\ScaleType
+     */
+    public function getStype()
+    {
+        return $this->stype;
+    }
+
+    /**
+     * Add interv
+     *
+     * @param \ManagerBundle\Entity\ScaleIntervs $interv
+     *
+     * @return Scale
+     */
+    public function addInterv(\ManagerBundle\Entity\ScaleIntervs $interv)
+    {
+        $this->interv[] = $interv;
+
+        return $this;
+    }
+
+    /**
+     * Remove interv
+     *
+     * @param \ManagerBundle\Entity\ScaleIntervs $interv
+     */
+    public function removeInterv(\ManagerBundle\Entity\ScaleIntervs $interv)
+    {
+        $this->interv->removeElement($interv);
+    }
+
+    /**
+     * Get interv
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterv()
+    {
+        return $this->interv;
+    }
+
+    /**
+     * Add fingering
+     *
+     * @param \ManagerBundle\Entity\Fingering $fingering
+     *
+     * @return Scale
+     */
+    public function addFingering(\ManagerBundle\Entity\Fingering $fingering)
+    {
+        $this->fingering[] = $fingering;
+
+        return $this;
+    }
+
+    /**
+     * Remove fingering
+     *
+     * @param \ManagerBundle\Entity\Fingering $fingering
+     */
+    public function removeFingering(\ManagerBundle\Entity\Fingering $fingering)
+    {
+        $this->fingering->removeElement($fingering);
+    }
+
+    /**
+     * Get fingering
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFingering()
+    {
+        return $this->fingering;
+    }
+    public function getIntervInArray()
+    {
+        $o = array();
+        foreach($this->getInterv() as $interv){
+            array_push($o,$interv->getInterv());
+        }
+        return $o;
+    }
+    public function getContext()
+    {
+        if($this->getStype()->getName() == "scale" || $this->getStype()->getName() == "mode"){
+            return "scale";
+        }elseif($this->getStype()->getName() == "chord" || $this->getStype()->getName() == "triad"){
+            return "chord";
+        }
+    }
+
+
+    /**
+     * Set parent
+     *
+     * @param \ManagerBundle\Entity\Scale $parent
+     *
+     * @return Scale
+     */
+    public function setParent(\ManagerBundle\Entity\Scale $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \ManagerBundle\Entity\Scale
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add child
+     *
+     * @param \ManagerBundle\Entity\Scale $child
+     *
+     * @return Scale
+     */
+    public function addChild(\ManagerBundle\Entity\Scale $child)
+    {
+        $this->childs[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \ManagerBundle\Entity\Scale $child
+     */
+    public function removeChild(\ManagerBundle\Entity\Scale $child)
+    {
+        $this->childs->removeElement($child);
+    }
+
+    /**
+     * Get childs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChilds()
+    {
+        return $this->childs;
+    }
+
+
+
+    /**
+     * Set filenameC
+     *
+     * @param string $filenameC
+     *
+     * @return Scale
+     */
+    public function setFilenameC($filenameC)
+    {
+        $this->filenameC = $filenameC;
+
+        return $this;
+    }
+
+    /**
+     * Get filenameC
+     *
+     * @return string
+     */
+    public function getFilenameC()
+    {
+        return $this->filenameC;
+    }
+
+    /**
+     * Set filenameS
+     *
+     * @param string $filenameS
+     *
+     * @return Scale
+     */
+    public function setFilenameS($filenameS)
+    {
+        $this->filenameS = $filenameS;
+
+        return $this;
+    }
+
+    /**
+     * Get filenameS
+     *
+     * @return string
+     */
+    public function getFilenameS()
+    {
+        return $this->filenameS;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Scale
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Add dsr
+     *
+     * @param \ManagerBundle\Entity\GenDsr $dsr
+     *
+     * @return Scale
+     */
+    public function addDsr(\ManagerBundle\Entity\GenDsr $dsr)
+    {
+        $this->dsr[] = $dsr;
+
+        return $this;
+    }
+
+    /**
+     * Remove dsr
+     *
+     * @param \ManagerBundle\Entity\GenDsr $dsr
+     */
+    public function removeDsr(\ManagerBundle\Entity\GenDsr $dsr)
+    {
+        $this->dsr->removeElement($dsr);
+    }
+
+    /**
+     * Get dsr
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDsr()
+    {
+        return $this->dsr;
+    }
+
+    /**
+     * Add sequence
+     *
+     * @param \ManagerBundle\Entity\Sequence $sequence
+     *
+     * @return Scale
+     */
+    public function addSequence(\ManagerBundle\Entity\Sequence $sequence)
+    {
+        $this->sequences[] = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * Remove sequence
+     *
+     * @param \ManagerBundle\Entity\Sequence $sequence
+     */
+    public function removeSequence(\ManagerBundle\Entity\Sequence $sequence)
+    {
+        $this->sequences->removeElement($sequence);
+    }
+
+    /**
+     * Get sequences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSequences()
+    {
+        return $this->sequences;
+    }
+
+    /**
+     * Add playalongsScale
+     *
+     * @param \ManagerBundle\Entity\PlayalongsScales $playalongsScale
+     *
+     * @return Scale
+     */
+    public function addPlayalongsScale(\ManagerBundle\Entity\PlayalongsScales $playalongsScale)
+    {
+        $this->playalongs_scales[] = $playalongsScale;
+
+        return $this;
+    }
+
+    /**
+     * Remove playalongsScale
+     *
+     * @param \ManagerBundle\Entity\PlayalongsScales $playalongsScale
+     */
+    public function removePlayalongsScale(\ManagerBundle\Entity\PlayalongsScales $playalongsScale)
+    {
+        $this->playalongs_scales->removeElement($playalongsScale);
+    }
+
+    /**
+     * Get playalongsScales
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayalongsScales()
+    {
+        return $this->playalongs_scales;
+    }
+}

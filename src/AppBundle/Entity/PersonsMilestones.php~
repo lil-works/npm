@@ -1,0 +1,124 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Person
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\PersonsMilestonesRepository")
+ */
+class PersonsMilestones
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="persons_milestones")
+     * @ORM\JoinColumn(name="person", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $person;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Milestone", inversedBy="persons_milestones")
+     * @ORM\JoinColumn(name="milestone", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $milestone;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $archived;
+
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set archived
+     *
+     * @param boolean $archived
+     *
+     * @return PersonsMilestones
+     */
+    public function setArchived($archived)
+    {
+        $this->archived = $archived;
+
+        return $this;
+    }
+
+    /**
+     * Get archived
+     *
+     * @return boolean
+     */
+    public function getArchived()
+    {
+        return $this->archived;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \AppBundle\Entity\Person $person
+     *
+     * @return PersonsMilestones
+     */
+    public function setPerson(\AppBundle\Entity\Person $person)
+    {
+        $this->person = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \AppBundle\Entity\Person
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+
+    /**
+     * Set milestone
+     *
+     * @param \AppBundle\Entity\Milestone $milestone
+     *
+     * @return PersonsMilestones
+     */
+    public function setMilestone(\AppBundle\Entity\Milestone $milestone)
+    {
+        $this->milestone = $milestone;
+
+        return $this;
+    }
+
+    /**
+     * Get milestone
+     *
+     * @return \AppBundle\Entity\Milestone
+     */
+    public function getMilestone()
+    {
+        return $this->milestone;
+    }
+}

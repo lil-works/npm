@@ -1,0 +1,133 @@
+<?php
+// MyEntity.php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ */
+class InterferoScreenShot
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     */
+    protected $start;
+
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     */
+    protected $stop;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\InterferoScreenShotElement", mappedBy="interfero")
+     */
+    protected $interferoElements;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->interferoElements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set start
+     *
+     * @param \DateTime $start
+     *
+     * @return InterferoScreenShot
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    /**
+     * Get start
+     *
+     * @return \DateTime
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * Set stop
+     *
+     * @param \DateTime $stop
+     *
+     * @return InterferoScreenShot
+     */
+    public function setStop($stop)
+    {
+        $this->stop = $stop;
+
+        return $this;
+    }
+
+    /**
+     * Get stop
+     *
+     * @return \DateTime
+     */
+    public function getStop()
+    {
+        return $this->stop;
+    }
+
+    /**
+     * Add interferoElement
+     *
+     * @param \ManagerBundle\Entity\InterferoScreenShotElement $interferoElement
+     *
+     * @return InterferoScreenShot
+     */
+    public function addInterferoElement(\ManagerBundle\Entity\InterferoScreenShotElement $interferoElement)
+    {
+        $this->interferoElements[] = $interferoElement;
+
+        return $this;
+    }
+
+    /**
+     * Remove interferoElement
+     *
+     * @param \ManagerBundle\Entity\InterferoScreenShotElement $interferoElement
+     */
+    public function removeInterferoElement(\ManagerBundle\Entity\InterferoScreenShotElement $interferoElement)
+    {
+        $this->interferoElements->removeElement($interferoElement);
+    }
+
+    /**
+     * Get interferoElements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterferoElements()
+    {
+        return $this->interferoElements;
+    }
+}

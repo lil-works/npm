@@ -1,0 +1,4 @@
+services:
+   ldap.user_hydrator:
+        class: ManagerBundle\Ldap\UserHydrator
+#        arguments: [@service_id, "plain_value", %parameter%]

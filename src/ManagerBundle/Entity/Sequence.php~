@@ -1,0 +1,208 @@
+<?php
+
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fsequence
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ManagerBundle\Entity\SequenceRepository")
+ */
+class Sequence
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name",   type="string" ,length=255,nullable=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ManagerBundle\Entity\SequenceType", inversedBy="sequences")
+     * @ORM\JoinColumn(name="stype", referencedColumnName="id")
+     */
+    private $stype;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published",   type="boolean" )
+     */
+    private $published;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description",   type="text" , nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ManagerBundle\Entity\SequenceDsr", mappedBy="sequence",cascade={"persist", "remove"})
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    private $dsrs;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->dsrs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Sequence
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Sequence
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Sequence
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set stype
+     *
+     * @param \ManagerBundle\Entity\SequenceType $stype
+     *
+     * @return Sequence
+     */
+    public function setStype(\ManagerBundle\Entity\SequenceType $stype = null)
+    {
+        $this->stype = $stype;
+
+        return $this;
+    }
+
+    /**
+     * Get stype
+     *
+     * @return \ManagerBundle\Entity\SequenceType
+     */
+    public function getStype()
+    {
+        return $this->stype;
+    }
+
+    /**
+     * Add dsr
+     *
+     * @param \ManagerBundle\Entity\SequenceDsr $dsr
+     *
+     * @return Sequence
+     */
+    public function addDsr(\ManagerBundle\Entity\SequenceDsr $dsr)
+    {
+        $this->dsrs[] = $dsr;
+
+        return $this;
+    }
+
+    /**
+     * Remove dsr
+     *
+     * @param \ManagerBundle\Entity\SequenceDsr $dsr
+     */
+    public function removeDsr(\ManagerBundle\Entity\SequenceDsr $dsr)
+    {
+        $this->dsrs->removeElement($dsr);
+    }
+
+    /**
+     * Get dsrs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDsrs()
+    {
+        return $this->dsrs;
+    }
+}

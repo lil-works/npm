@@ -1,0 +1,120 @@
+<?php
+namespace ManagerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="playalongs_dsrs")
+ */
+class PlayalongsDsrs
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Playalong", inversedBy="playalongs_dsrs")
+     * @ORM\JoinColumn(name="playalong_id", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $playalong;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GenDsr", inversedBy="playalongs_dsrs")
+     * @ORM\JoinColumn(name="dsr_id", referencedColumnName="id", nullable=FALSE)
+     */
+    protected $dsr;
+
+    /**
+     * @ORM\Column(type="float", name="pos")
+     */
+    protected $pos;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set pos
+     *
+     * @param \pos $pos
+     *
+     * @return Grille
+     */
+    public function setPos(\pos $pos)
+    {
+        $this->pos = $pos;
+
+        return $this;
+    }
+
+    /**
+     * Get pos
+     *
+     * @return \pos
+     */
+    public function getPos()
+    {
+        return $this->pos;
+    }
+
+    /**
+     * Set playalong
+     *
+     * @param \ManagerBundle\Entity\Playalong $playalong
+     *
+     * @return Grille
+     */
+    public function setPlayalong(\ManagerBundle\Entity\Playalong $playalong)
+    {
+        $this->playalong = $playalong;
+
+        return $this;
+    }
+
+    /**
+     * Get playalong
+     *
+     * @return \ManagerBundle\Entity\Playalong
+     */
+    public function getPlayalong()
+    {
+        return $this->playalong;
+    }
+
+    /**
+     * Set dsr
+     *
+     * @param \ManagerBundle\Entity\GenDsr $dsr
+     *
+     * @return Grille
+     */
+    public function setDsr(\ManagerBundle\Entity\GenDsr $dsr)
+    {
+        $this->dsr = $dsr;
+
+        return $this;
+    }
+
+    /**
+     * Get dsr
+     *
+     * @return \ManagerBundle\Entity\GenDsr
+     */
+    public function getDsr()
+    {
+        return $this->dsr;
+    }
+}
