@@ -2,6 +2,7 @@
 
 namespace OperatorBundle\Controller;
 
+use AppBundle\Entity\BoringMachine;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -119,6 +120,9 @@ class BreakdownController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if($user = $this->getUser()) {
+                $breakdown->setCreatedBy($user);
+            }
             $em->persist($breakdown);
             $em->flush();
 
@@ -170,6 +174,12 @@ class BreakdownController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if($user = $this->getUser()){
+                $boringMachine = new BoringMachine();
+                $boringMachine->setCreatedBy($user);
+                $boringMachine->setBreakdown($breakdown);
+                $em->persist($boringMachine);
+            }
             $em->persist($breakdown);
             $em->flush();
 

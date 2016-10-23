@@ -58,6 +58,13 @@ class BoringMachine
      */
     private $breakdownAfter;
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+    /**
      * Get id
      *
      * @return integer
