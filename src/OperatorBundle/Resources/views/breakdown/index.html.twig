@@ -36,8 +36,8 @@
                     {{ knp_pagination_sortable(pagination, 'id', 'a.id') }}
                 </th>
 
-                <th{% if pagination.isSorted('a.created') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'created', 'a.created') }}
+                <th{% if pagination.isSorted('a.createdAt') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'createdAt', 'a.createdAt') }}
                 </th>
                 <th{% if pagination.isSorted('a.start') %} class="sorted {{ direction }}"{% endif %}>
                     {{ knp_pagination_sortable(pagination, 'start', 'a.start') }}
@@ -79,7 +79,7 @@
                 </td>
                 <td>#{{ breakdown.id }}</td>
 
-                <td>{% if breakdown.created %}{{ breakdown.created|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if breakdown.createdAt %}{{ breakdown.createdAt|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>{% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>{% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>{% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}</td>

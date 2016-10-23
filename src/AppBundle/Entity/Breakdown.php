@@ -31,10 +31,15 @@ class Breakdown
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(name="creator", referencedColumnName="id")
+     * @ORM\JoinColumn(name="createdBy", referencedColumnName="id")
      */
-    private $creator;
-
+    private $createdBy;
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="createdAt", type="datetime",nullable=true)
+     */
+    private $createdAt;
     /**
      * @var datetime
      *
@@ -91,7 +96,7 @@ class Breakdown
      */
     public function __construct()
     {
-        $this->created = new \DateTime();
+        $this->createdAt = new \DateTime();
         $this->descriptors = new \Doctrine\Common\Collections\ArrayCollection();
         $this->breakdowns_interferos = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -363,5 +368,77 @@ class Breakdown
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * Set createdAy
+     *
+     * @param \DateTime $createdAy
+     *
+     * @return Breakdown
+     */
+    public function setCreatedAy($createdAy)
+    {
+        $this->createdAy = $createdAy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAy
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAy()
+    {
+        return $this->createdAy;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param \AppBundle\Entity\User $createdBy
+     *
+     * @return Breakdown
+     */
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Breakdown
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

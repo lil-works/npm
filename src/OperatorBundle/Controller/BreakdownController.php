@@ -28,7 +28,7 @@ class BreakdownController extends Controller
         $em    = $this->get('doctrine.orm.entity_manager');
         $dql   = "SELECT
                 a.id ,
-                a.created ,
+                a.createdAt ,
                 TIME_TO_SEC ( TIMEDIFF( a.stop, a.start )) as breakdown_length,
                 a.start,
                 a.stop,
