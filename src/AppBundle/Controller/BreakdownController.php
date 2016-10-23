@@ -43,12 +43,15 @@ class BreakdownController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $breakdown = new Breakdown();
         $form = $this->createForm('AppBundle\Form\BreakdownType', $breakdown);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $breakdown->setCreatedBy($user);
             $em->persist($breakdown);
             $em->flush();
 

@@ -71,7 +71,7 @@ class Breakdown
 
 
     /**
-     * @var datetime
+     * @var string
      *
      * @ORM\Column(name="description", type="text",nullable=true)
      */
@@ -87,7 +87,7 @@ class Breakdown
 
 
     /**
-     * @ORM\OneToMany(targetEntity="BreakdownsInterferos", mappedBy="breakdown")
+     * @ORM\OneToMany(targetEntity="BreakdownsInterferos", mappedBy="breakdown" ,cascade={"persist"})
      */
     protected $breakdowns_interferos;
 
@@ -102,7 +102,6 @@ class Breakdown
     }
 
 
-
     /**
      * Get id
      *
@@ -111,6 +110,30 @@ class Breakdown
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Breakdown
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 
     /**
@@ -242,7 +265,7 @@ class Breakdown
      */
     public function addBoringMachine(\AppBundle\Entity\BoringMachine $boringMachine)
     {
-        $this->boringMachine[] = $boringMachine;
+        $this->boringMachines[] = $boringMachine;
 
         return $this;
     }
@@ -254,19 +277,42 @@ class Breakdown
      */
     public function removeBoringMachine(\AppBundle\Entity\BoringMachine $boringMachine)
     {
-        $this->boringMachine->removeElement($boringMachine);
+        $this->boringMachines->removeElement($boringMachine);
     }
 
     /**
-     * Get boringMachine
+     * Get boringMachines
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getBoringMachine()
+    public function getBoringMachines()
     {
-        return $this->boringMachine;
+        return $this->boringMachines;
     }
 
+    /**
+     * Set createdBy
+     *
+     * @param \AppBundle\Entity\User $createdBy
+     *
+     * @return Breakdown
+     */
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
 
     /**
      * Add descriptor
@@ -334,111 +380,5 @@ class Breakdown
     public function getBreakdownsInterferos()
     {
         return $this->breakdowns_interferos;
-    }
-
-    /**
-     * Get boringMachines
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBoringMachines()
-    {
-        return $this->boringMachines;
-    }
-
-    /**
-     * Set creator
-     *
-     * @param \AppBundle\Entity\User $creator
-     *
-     * @return Breakdown
-     */
-    public function setCreator(\AppBundle\Entity\User $creator = null)
-    {
-        $this->creator = $creator;
-
-        return $this;
-    }
-
-    /**
-     * Get creator
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * Set createdAy
-     *
-     * @param \DateTime $createdAy
-     *
-     * @return Breakdown
-     */
-    public function setCreatedAy($createdAy)
-    {
-        $this->createdAy = $createdAy;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAy
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAy()
-    {
-        return $this->createdAy;
-    }
-
-    /**
-     * Set createdBy
-     *
-     * @param \AppBundle\Entity\User $createdBy
-     *
-     * @return Breakdown
-     */
-    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
-
-    /**
-     * Get createdBy
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Breakdown
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 }
