@@ -3,5 +3,111 @@
 {%  set bundle_title = "operator" %}
 
 {% block body %}
+<style>
+    .error{
+        color: red;
+        font-style: italic;
+    }
+    .important{
+        font-weight: bold;
+    }
+</style>
 
+    <h1>Noema Pareto Manager</h1>
+
+
+    <div>
+        <h2>Objectifs:</h2>
+        <p>
+            Le but de ce logiciel est d'enregistrer les arrets de l'interfero et de quantifier les facteurs les plus determinants.
+        </p>
+
+
+    </div>
+    <div>
+        <h2>"Descriptor"</h2>
+        <ul>
+            <li><a href="{{ path('manager_descriptor') }}">Lister les descriptors</a><span class="error">Les fonctions de tri en haut des tableaux ne fonctionne pas encore</span></li>
+        </ul>
+        Les "descriptors" sont des mot-clefs. Ils sont repartis dans 4 categories: element,status,action,contributor
+        <ul>
+            <li>element: Ce sont des éléments physique comme le "centralhub" ou "antenna 3"</li>
+            <li>status: Ce sont des états de ces élément par exemple "stuck","iced","break"</li>
+            <li>action: Ce sont des actions effectuées par exemple "reboot","changed"</li>
+            <li>contributor: Ce sont les personnes concernées par exemple "oper","sog","masnada"</li>
+        </ul>
+        <p>
+            L'interferometre est composé d'une grande variété d'éléments de natures differentes. La saisie de "descriptor" est completement libre.
+            <span class="important">Le choix est d'entrer les mots clef en anglais</span>
+        </p>
+
+
+
+    </div>
+
+
+    <div>
+        <h2>"Breakdown"</h2>
+        <ul>
+            <li><a href="{{ path('operator_breakdown') }}">Lister les breakdown</a> <span class="error">Les fonctions de tri en haut des tableaux ne fonctionne pas encore</span></li>
+            <li><a href="{{ path('operator_breakdown_timeline') }}">Lister les breakdown sur une barre de temps</a></li>
+            <li><a href="{{ path('operator_breakdown_new') }}">Ajouter les breakdown</a></li>
+        </ul>
+        <p>
+            L'enregistrement d'un "breakdown" permet d'associer des "descriptors" à une panne.
+        Il comporte les attributs suivants:
+        </p>
+        <ul>
+            <li>start: début de la panne. Obligatoire</li>
+            <li>stop: fin de la panne. Facultatis (il est possible d'entrer un "breakdown" avant qu'il soit terminé)</li>
+            <li>closed: seul les "breakdowns" marqués "closed" sont prit en compte dans l'analyze. </li>
+            <li>notFinished: Cela ne fonctionne pas encore... c'est pour dire que l'evenement n'est pas terminé</li>
+            <li>descriptor: Les 4 categories de "descriptor" Obligatoire</li>
+            <li>status interfero: l'etat de l'interferometre (antenne bande ON/OFF) à ce moment.  Facultatif</li>
+            <li>description: Un champs texte pour ajouter d'eventuelle commentaire.  Facultatif</li>
+        </ul>
+        <p>
+            Les "descriptors" qui n'existent pas sont crées au moment de l'enregistrement du "breakdown".
+            Tout l'enjeu est que nous réussissions à appeler les mêmes choses par les mêmes noms! Une aide à la saisie permet retrouver facilement les "descriptors" déjà utilisés pour caracteriser un événement.
+        </p>
+        <p class="error">
+            Un système de synonymes permet d'eviter de faux nouveaux "descriptor" comme par exemple oper et operateur.
+            Cependant il n'est pas encore très évolué et contient peu d'entrée. Il est pour l'instant inefficasse.
+
+
+        </p>
+        <h3>status interfero</h3>
+        <p>
+            Cet attribut permet d'enregistrer l'etat de l'interferometre au moment du "breakdown".
+            Il est possible grace à ce parametre de ponderer l'influence du breakdown.
+        </p>
+        <p class="important">
+            Il me semble (mais c'est encore à definir avec Roberto et Ian) qu'il faut saisir ici l'état des observations.
+            Par exemple si le capteur sun de l'antenne 6 arrete les observations et qu'il faut sortir et stopper le projet.
+            Dans ce cas, c'est tout l'interfero qui est OFF même si c'est seulement l'antenne 6 qui est en defaut.
+        </p>
+
+    </div>
+
+    <div>
+        <h2>"Analyzer"</h2>
+        <li><a href="{{ path('analyzer_descriptorBar') }}">afficher la page</a></li>
+        <p>Cette partie permet d'analyser les "Breakdowns" est de mettre en evidences les facteurs les plus influents</p>
+
+    </div>
+
+
+    <div>
+        <h2>Avancement du projet</h2>
+        <p>
+            Le projet et encore au stade de développement et de nombreuses fonctionnalités manquent encore.
+            Vous rencontrerez de nombreux bugs.
+        </p>
+        <p class="error">
+            Le gestion des droits utilisateurs n'est pas encore implementée.
+            Vous pouvez cependant vous logger avec votre compte iram ou le compte oper.
+            Ceci permet d'enregistrer le createur du "breakdown".
+        </p>
+
+    </div>
 {% endblock %}
