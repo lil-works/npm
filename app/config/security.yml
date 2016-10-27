@@ -4,7 +4,6 @@ security:
     erase_credentials: false
 
     encoders:
-        #FOS\UserBundle\Model\UserInterface: bcrypt
         AppBundle\Entity\LdapUser: plaintext
 
     role_hierarchy:
