@@ -110,7 +110,7 @@ class BreakdownController extends Controller
 
         $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
 
-        return $this->render('OperatorBundle:Breakdown:timeline.html.twig', array(
+        return $this->render('OperatorBundle:breakdown:timeline.html.twig', array(
             'breakdowns' => $breakdowns,
         ));
     }

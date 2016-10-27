@@ -4,3 +4,10 @@ df984f,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_fo
 2fa79c,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DManagerBundle%253ADefault%253Amenu,1477536127,0d4e8d,200
 0d4e8d,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/operator/breakdown,1477536128,,200
 ac296a,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/js/routing?callback=fos.Router.setData,1477536132,,200
+03bb8d,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DFOSUserBundle%253ASecurity%253Alogin,1477537048,4c628d,200
+7e2c75,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DOperatorBundle%253ADefault%253Amenu,1477537048,4c628d,200
+db7191,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DAnalyzerBundle%253ADefault%253Amenu,1477537048,4c628d,200
+ff4984,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DManagerBundle%253ADefault%253Amenu,1477537048,4c628d,200
+4c628d,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/operator/breakdown/timeline,1477537048,,200
+6ab43d,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/js/routing?callback=fos.Router.setData,1477537049,,200
+f87889,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/operator/ajax/breakdown/timeline,1477537051,,200
