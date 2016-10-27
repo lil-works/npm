@@ -87,7 +87,7 @@ class Breakdown
 
 
     /**
-     * @ORM\OneToMany(targetEntity="BreakdownsInterferos", mappedBy="breakdown" ,cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="BreakdownsInterferos", mappedBy="breakdown" ,cascade={"remove","persist"})
      */
     protected $breakdowns_interferos;
 
