@@ -58,11 +58,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30567685" vertical-offset="45" max-vertical-offset="1440">
+            <state vertical-scroll-proportion="-8.75" vertical-offset="45" max-vertical-offset="1440">
               <caret line="17" column="77" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/edit.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1020">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,16 +108,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.954545" vertical-offset="780" max-vertical-offset="2505">
-              <caret line="90" column="100" selection-start-line="90" selection-start-column="87" selection-end-line="90" selection-end-column="100" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -128,14 +128,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BreakdownController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BreakdownController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/BreakdownController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.625" vertical-offset="3108" max-vertical-offset="3810">
-              <caret line="229" column="60" selection-start-line="229" selection-start-column="60" selection-end-line="229" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.6325301" vertical-offset="2505" max-vertical-offset="3810">
+              <caret line="195" column="18" selection-start-line="195" selection-start-column="18" selection-end-line="195" selection-end-column="18" />
               <folding>
                 <element signature="e#45#80#0#PHP" expanded="true" />
-                <marker date="1477214066000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
+                <marker date="1477533035000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
               </folding>
             </state>
           </provider>
@@ -195,13 +195,13 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/BreakdownsInterferos.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/BreakdownController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/BoringMachine.php" />
-        <option value="$PROJECT_DIR$/src/OperatorBundle/Controller/BreakdownController.php" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Breakdown.php" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/OperatorBundle/Controller/BreakdownController.php" />
       </list>
     </option>
   </component>
@@ -785,14 +785,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Interfero.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2685">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="47" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="795">
@@ -823,7 +815,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#45#80#0#PHP" expanded="true" />
-            <marker date="1477214066000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
+            <marker date="1477533035000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
           </folding>
         </state>
       </provider>
@@ -906,7 +898,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#45#80#0#PHP" expanded="true" />
-            <marker date="1477214066000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
+            <marker date="1477533035000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
           </folding>
         </state>
       </provider>
@@ -1148,17 +1140,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/BreakdownController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.625" vertical-offset="3108" max-vertical-offset="3810">
-          <caret line="229" column="60" selection-start-line="229" selection-start-column="60" selection-end-line="229" selection-end-column="60" />
-          <folding>
-            <element signature="e#45#80#0#PHP" expanded="true" />
-            <marker date="1477214066000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/BoringMachine.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.0" vertical-offset="417" max-vertical-offset="3390">
@@ -1177,9 +1158,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30567685" vertical-offset="45" max-vertical-offset="1440">
+        <state vertical-scroll-proportion="-8.75" vertical-offset="45" max-vertical-offset="1440">
           <caret line="17" column="77" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/BreakdownController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6325301" vertical-offset="2505" max-vertical-offset="3810">
+          <caret line="195" column="18" selection-start-line="195" selection-start-column="18" selection-end-line="195" selection-end-column="18" />
+          <folding>
+            <element signature="e#45#80#0#PHP" expanded="true" />
+            <marker date="1477533035000" expanded="true" signature="968:1999" placeholder="SELECT a.id ..AppBundle..." />
+          </folding>
         </state>
       </provider>
     </entry>

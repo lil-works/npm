@@ -189,11 +189,11 @@ class BreakdownController extends Controller
                 $boringMachine->setCreatedBy($user);
                 $boringMachine->setBreakdown($breakdown);
 
-                $encoders = array(new XmlEncoder(), new JsonEncoder());
-                $normalizers = array(new ObjectNormalizer());
-                $serializer = new Serializer($normalizers, $encoders);
+                //$encoders = array(new XmlEncoder(), new JsonEncoder());
+                //$normalizers = array(new ObjectNormalizer());
+                //$serializer = new Serializer($normalizers, $encoders);
                 //$boringMachine->setBreakdownBefore($serializer->serialize($oldBreakdown, 'json'));
-                $boringMachine->setBreakdownAfter($serializer->serialize($breakdown, 'json'));
+                //$boringMachine->setBreakdownAfter($serializer->serialize($breakdown, 'json'));
 
                 $em->persist($boringMachine);
             }

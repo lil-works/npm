@@ -85,3 +85,15 @@ e2dd8f,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_fo
 49079f,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DManagerBundle%253ADefault%253Amenu,1477532738,b406a2,200
 b406a2,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/operator/breakdown/1/show,1477532738,,200
 7312a4,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/js/routing?callback=fos.Router.setData,1477532739,,200
+f9aa9c,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DFOSUserBundle%253ASecurity%253Alogin,1477532950,d71c26,200
+a38c07,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DOperatorBundle%253ADefault%253Amenu,1477532950,d71c26,200
+4255ca,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DAnalyzerBundle%253ADefault%253Amenu,1477532950,d71c26,200
+787f1c,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DManagerBundle%253ADefault%253Amenu,1477532950,d71c26,200
+d71c26,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/operator/breakdown/1/edit,1477532951,,200
+8b7f9a,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/js/routing?callback=fos.Router.setData,1477532954,,200
+74bd76,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DFOSUserBundle%253ASecurity%253Alogin,1477533043,790a1e,200
+4d5625,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DOperatorBundle%253ADefault%253Amenu,1477533043,790a1e,200
+29467b,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DAnalyzerBundle%253ADefault%253Amenu,1477533043,790a1e,200
+6884d1,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DManagerBundle%253ADefault%253Amenu,1477533043,790a1e,200
+790a1e,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/operator/breakdown/1/edit,1477533045,,200
+1670ea,127.0.0.1,GET,http://noema-pareto-manager/app_dev.php/js/routing?callback=fos.Router.setData,1477533047,,200
