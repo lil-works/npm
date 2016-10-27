@@ -72,9 +72,11 @@
                         <li>
                             <a href="{{ path('manager_descriptor_edit', { 'id': descriptor.id }) }}">edit</a>
                         </li>
+                        {%  if descriptor.breakdown_count == 0 %}
                         <li>
                             <a href="{{ path('manager_descriptor_delete', { 'id': descriptor.id }) }}">delete</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </td>
 

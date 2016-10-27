@@ -36,6 +36,7 @@ class BreakdownController extends Controller
         $dql   = "SELECT
                 a.id ,
                 a.createdAt ,
+                u.name as createdBy ,
                 TIME_TO_SEC ( TIMEDIFF( a.stop, a.start )) as breakdown_length,
                 a.start,
                 a.stop,
@@ -50,7 +51,7 @@ class BreakdownController extends Controller
                 GROUP_CONCAT( DISTINCT f.label) as descriptors_list
 
                  FROM AppBundle:Breakdown a
-
+                 LEFT JOIN AppBundle:User u WITH u.id = a.createdBy
                  LEFT JOIN a.descriptors b WITH b.category = 1
                  LEFT JOIN a.descriptors c WITH c.category = 2
                  LEFT JOIN a.descriptors d WITH d.category = 3

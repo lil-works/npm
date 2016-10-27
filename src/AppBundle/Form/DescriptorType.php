@@ -16,8 +16,8 @@ class DescriptorType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('category')
-            ->add('breakdowns')
+            //->add('category')
+            //->add('breakdowns')
         ;
     }
     
