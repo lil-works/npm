@@ -12,6 +12,10 @@ use AppBundle\Entity\Breakdown;
 use OperatorBundle\Form\BreakdownType;
 use OperatorBundle\Filter\BreakdownFilter;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+
 /**
  * Breakdown controller.
  */
@@ -24,9 +28,11 @@ class BreakdownController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->get('form.factory')->create(BreakdownFilter::class);
-
         $em    = $this->get('doctrine.orm.entity_manager');
+
+
+
+        $form = $this->get('form.factory')->create(BreakdownFilter::class);
         $dql   = "SELECT
                 a.id ,
                 a.createdAt ,
@@ -171,13 +177,24 @@ class BreakdownController extends Controller
         $deleteForm = $this->createDeleteForm($breakdown);
         $editForm = $this->createForm('OperatorBundle\Form\BreakdownType', $breakdown);
         $editForm->handleRequest($request);
-
+/*
+        $oldBreakdown  = $this->getDoctrine()
+            ->getRepository('AppBundle:Breakdown')
+            ->find($breakdown->getId());
+*/
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if($user = $this->getUser()){
                 $boringMachine = new BoringMachine();
                 $boringMachine->setCreatedBy($user);
                 $boringMachine->setBreakdown($breakdown);
+
+                $encoders = array(new XmlEncoder(), new JsonEncoder());
+                $normalizers = array(new ObjectNormalizer());
+                $serializer = new Serializer($normalizers, $encoders);
+                //$boringMachine->setBreakdownBefore($serializer->serialize($oldBreakdown, 'json'));
+                $boringMachine->setBreakdownAfter($serializer->serialize($breakdown, 'json'));
+
                 $em->persist($boringMachine);
             }
             $em->persist($breakdown);

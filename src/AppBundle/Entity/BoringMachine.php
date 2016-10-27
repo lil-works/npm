@@ -48,13 +48,13 @@ class BoringMachine
     /**
      * @var json_array
      *
-     * @ORM\Column(name="breakdownBefore", type="json_array")
+     * @ORM\Column(name="breakdownBefore", type="json_array", nullable=true)
      */
     private $breakdownBefore;
     /**
      * @var json_array
      *
-     * @ORM\Column(name="breakdownAfter", type="json_array")
+     * @ORM\Column(name="breakdownAfter", type="json_array" , nullable=true)
      */
     private $breakdownAfter;
     /**
