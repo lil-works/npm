@@ -14,6 +14,10 @@
                 <td>{% if breakdown.createdAt %}{{ breakdown.createdAt|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
             <tr>
+                <th>Created by</th>
+                <td>{% if breakdown.createdBy %}{{ breakdown.createdBy.name   }}{% endif %}</td>
+            </tr>
+            <tr>
                 <th>Start</th>
                 <td>{% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
