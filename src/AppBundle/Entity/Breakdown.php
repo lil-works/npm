@@ -25,7 +25,7 @@ class Breakdown
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\BoringMachine", mappedBy="breakdown")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\BoringMachine", mappedBy="breakdown" , cascade={"remove","persist"})
      */
     private $boringMachines;
 
