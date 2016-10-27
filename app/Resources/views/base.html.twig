@@ -55,6 +55,11 @@
             <a href="#" id="decfont" class="button buttonfont">A-</a>
         </div>
         <div class="menu">
+            <ul>
+                <a class="menuTitle" href="{{ path("fos_user_profile_show") }}">User</a>
+                <li><a href="{{ path("fos_user_security_login") }}">login</a></li>
+                <li><a href="{{ path("fos_user_security_logout") }}">logout</a></li>
+            </ul>
             {{ render(controller("OperatorBundle:Default:menu")) }}
             {{ render(controller("AnalyzerBundle:Default:menu")) }}
             {{ render(controller("ManagerBundle:Default:menu")) }}
