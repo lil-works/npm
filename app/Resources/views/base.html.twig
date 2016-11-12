@@ -135,6 +135,9 @@
                             {{ render(controller("ManagerBundle:Default:menu")) }}
                         </ul>
                     </li>
+                    <li>
+                        {% include "FOSUserBundle::navbar.html.twig" %}
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

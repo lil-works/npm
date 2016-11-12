@@ -1,29 +1,34 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<h2 class="form-signin-heading">{% trans %}sign in{% endtrans %}</h2>
 
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-4">
+    <h2 class="form-signin-heading">{% trans %}sign in{% endtrans %}</h2>
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"  />
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <label  for="username" class="sr-only" >{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"  class="form-control" placeholder="Email address" required autofocus>
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"  />
+        {% endif %}
 
-    <label for="password" class="sr-only" >{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required"   class="form-control" />
+        <label  for="username" class="sr-only" >{{ 'security.login.username'|trans }}</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"  class="form-control" placeholder="Iram username" required autofocus>
+
+        <label for="password" class="sr-only" >{{ 'security.login.password'|trans }}</label>
+        <input type="password" id="password" name="_password" required="required"   class="form-control" />
 
 
-    <div class="checkbox" >
-        <label>
-            <input type="checkbox" value="on" id="remember_me" name="_remember_me" value="on" > {{ 'security.login.remember_me'|trans }}
-        </label>
+        <div class="checkbox" >
+            <label>
+                <input type="checkbox" value="on" id="remember_me" name="_remember_me" value="on" > {{ 'security.login.remember_me'|trans }}
+            </label>
+        </div>
+
+
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"   class="btn btn-lg btn-primary btn-block" />
+    </form>
     </div>
-
-
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"   class="btn btn-lg btn-primary btn-block" />
-</form>
+</div>

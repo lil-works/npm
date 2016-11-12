@@ -1,0 +1,9 @@
+{% extends home == false
+? 'FOSUserBundle::layout.html.twig'
+: 'FOSUserBundle::nolayout.html.twig' %}
+
+
+
+{% block fos_user_content %}
+    {{ include('FOSUserBundle:Security:login_content.html.twig') }}
+{% endblock fos_user_content %}
