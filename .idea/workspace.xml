@@ -133,8 +133,8 @@
       <file leaf-file-name="navbar.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/navbar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06338028" vertical-offset="0" max-vertical-offset="710">
-              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.02112676" vertical-offset="0" max-vertical-offset="710">
+              <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -1182,8 +1182,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/navbar.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06338028" vertical-offset="0" max-vertical-offset="710">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.02112676" vertical-offset="0" max-vertical-offset="710">
+          <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
           <folding />
         </state>
       </provider>
