@@ -66,7 +66,8 @@ class AjaxController extends Controller
         foreach ($elements as $element) {
             $json[] = array(
                 'id' => $element["id"],
-                'label' =>$element["label"]
+                'label' =>$element["label"],
+                'color' =>$element["color"]
             );
             $i++;
         }

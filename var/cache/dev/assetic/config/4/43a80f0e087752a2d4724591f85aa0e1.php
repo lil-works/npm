@@ -84,46 +84,6 @@ return array (
       ),
     ),
   ),
-  'bb54fd1' => 
-  array (
-    0 => 
-    array (
-      0 => '@AppBundle/Resources/public/js/*',
-    ),
-    1 => 
-    array (
-    ),
-    2 => 
-    array (
-      'output' => 'js/bb54fd1.js',
-      'name' => 'bb54fd1',
-      'debug' => NULL,
-      'combine' => NULL,
-      'vars' => 
-      array (
-      ),
-    ),
-  ),
-  '5bc80bb' => 
-  array (
-    0 => 
-    array (
-      0 => '@AnalyzerBundle/Resources/public/js/*',
-    ),
-    1 => 
-    array (
-    ),
-    2 => 
-    array (
-      'output' => 'js/5bc80bb.js',
-      'name' => '5bc80bb',
-      'debug' => NULL,
-      'combine' => NULL,
-      'vars' => 
-      array (
-      ),
-    ),
-  ),
   'dd6d7fe' => 
   array (
     0 => 

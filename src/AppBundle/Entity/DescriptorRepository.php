@@ -14,15 +14,17 @@ class DescriptorRepository extends \Doctrine\ORM\EntityRepository
     public function findByLabelAndCategoryWithSynonym($label, $category)
     {
 
-        $sql = "SELECT
-                *
-                FROM descriptor
-            WHERE label LIKE :label AND category = $category
 
-            ";
 
         $sql = "
-       SELECT DISTINCT(id),label,category,count(DISTINCT(bd.breakdown_id)) as breakdownCount FROM (
+
+       SELECT
+       DISTINCT(id),
+       label,
+       (SELECT color from descriptor_category WHERE id = category) as color,
+       category,count(DISTINCT(bd.breakdown_id)) as breakdownCount
+
+        FROM (
                 SELECT d.id as id , d.label as label , d.category as category , NULL as syn FROM descriptor d WHERE d.label LIKE :label
                 UNION ALL
                 SELECT s.descriptor as id, (SELECT label FROM descriptor WHERE id=s.descriptor) as label , (SELECT category FROM descriptor WHERE id=s.descriptor) as category , s.label as syn   FROM synonym s WHERE s.label LIKE :label
@@ -39,6 +41,7 @@ class DescriptorRepository extends \Doctrine\ORM\EntityRepository
         $rsm = new ResultSetMapping;
         $rsm->addScalarResult('id', 'id');
         $rsm->addScalarResult('label', 'label');
+        $rsm->addScalarResult('color', 'color');
         $query = $em->createNativeQuery($sql, $rsm);
         $query->setParameter('label', "$label");
         $query->setParameter('category', $category);
@@ -88,6 +91,7 @@ class DescriptorRepository extends \Doctrine\ORM\EntityRepository
         $rsm = new ResultSetMapping;
         $rsm->addScalarResult('id', 'id');
         $rsm->addScalarResult('label', 'label');
+        $rsm->addScalarResult('color', 'color');
         $query = $em->createNativeQuery($sql, $rsm);
         $query->setParameter('label', "$label");
         $query->setParameter('category', $category);

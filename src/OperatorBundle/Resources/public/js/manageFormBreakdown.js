@@ -1,7 +1,7 @@
 function initTinymce(){
         tinymce.init({
         selector: 'textarea',
-        height: 100,
+        height: 250,
         plugins: [
             'advlist autolink lists link image charmap print preview anchor',
             'searchreplace visualblocks code fullscreen',
@@ -14,6 +14,8 @@ function initTinymce(){
 
 function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll,breakdown_ajax_addDescriptor,breakdown_ajax_getSequences){
 
+    this.colors = {1:"#BB7777",2:'#77BB77',3:'#7777BB',4:'#BBBB77'}
+
     $("#breakdown_descriptors").hide();
     $("label[for=breakdown_descriptors]").hide();
     $("#start").hide();
@@ -23,18 +25,6 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
     oMnageFormBreakdown = this;
     newDescriptors = [];
 
-    this.getFormDate = function(startStop){
-
-            year = $("#breakdown_"+startStop+"_date_year option[selected=selected]").val();
-            month = $("#breakdown_"+startStop+"_date_month option[selected=selected]").val();
-            day = $("#breakdown_"+startStop+"_date_day option[selected=selected]").val();
-            hour = $("#breakdown_"+startStop+"_time_hour [selected=selected]").val();
-            minute = $("#breakdown_"+startStop+"_time_minute option[selected=selected]").val();
-
-            myDate =  moment(year + "," + month + "," + day + "," + hour + "," + minute , 'YYYY,M,D,H,m');
-            return moment(myDate).format('DD.MM.YYYY HH:mm');
-
-    };
 
     this.getFormDateValue = function(startStop){
 
@@ -58,94 +48,7 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
     $('<div id="dateTimePicker"><label for="date_timepicker_start">start:</label><input class="form-control" target="start" id="date_timepicker_start" value="'+this.getFormDateValue('start')+'" size="40"></div>').insertBefore($("#start"));
     $('<div id="dateTimePicker"><label for="date_timepicker_end">stop:</label><input class="form-control" target="stop" id="date_timepicker_end" value="'+this.getFormDateValue('stop')+'" size="40"></div>').insertBefore($("#stop"));
-    /*
-    $('#date-range1').dateRangePicker(
-        {
-            startOfWeek: 'monday',
-            separator : ' ~ ',
-            format: 'DD.MM.YYYY HH:mm',
-            autoClose: false,
-            time: {
-                enabled: true
-            },
-            getValue: function()
-            {
-                return $(this).val();
-            },
-            setValue: function(s)
-            {
-                if(!$(this).attr('readonly') && !$(this).is(':disabled') && s != $(this).val())
-                {
-                    $(this).val(s);
-                }
-            },
-            startDate: false,
-            endDate: false,
 
-
-        }).bind('datepicker-apply', function(event, obj)
-        {
-
-            startYear =  moment(obj.date1).format("YYYY");
-            startMonth = moment(obj.date1).format("M");
-            startDay = moment(obj.date1).format("D");
-            startHour = moment(obj.date1).format("H");
-            startMinute = moment(obj.date1).format("m");
-
-
-            $("#breakdown_start_date_year option[selected=selected]").attr('selected',false);
-            $("#breakdown_start_date_year option[value="+startYear+"]").attr('selected',true);
-            $("#breakdown_start_date_year").val(startYear);
-
-            $("#breakdown_start_date_month option[selected=selected]").attr('selected',false);
-            $("#breakdown_start_date_month option[value="+startMonth+"]").attr('selected',true);
-            $("#breakdown_start_date_month").val(startMonth);
-
-            $("#breakdown_start_date_day option[selected=selected]").attr('selected',false);
-            $("#breakdown_start_date_day option[value="+startDay+"]").attr('selected',true);
-            $("#breakdown_start_date_day").val(startDay);
-
-
-            $("#breakdown_start_time_hour option[selected=selected]").attr('selected',false);
-            $("#breakdown_start_time_hour option[value="+startHour+"]").attr('selected',true);
-            $("#breakdown_start_time_hour").val(startHour);
-
-            $("#breakdown_start_time_minute option[selected=selected]").attr('selected',false);
-            $("#breakdown_start_time_minute option[value="+startMinute+"]").attr('selected',true);
-            $("#breakdown_start_time_minute").val(startMinute);
-
-            stopYear =  moment(obj.date2).format("YYYY");
-            stopMonth = moment(obj.date2).format("M");
-            stopDay = moment(obj.date2).format("D");
-            stopHour = moment(obj.date2).format("H");
-            stopMinute = moment(obj.date2).format("m");
-
-
-            $("#breakdown_stop_date_year option[selected=selected]").attr('selected',false);
-            $("#breakdown_stop_date_year option[value="+stopYear+"]").attr('selected',true);
-            $("#breakdown_stop_date_year").val(stopYear);
-
-            $("#breakdown_stop_date_month option[selected=selected]").attr('selected',false);
-            $("#breakdown_stop_date_month option[value="+stopMonth+"]").attr('selected',true);
-            $("#breakdown_stop_date_month").val(stopMonth);
-
-            $("#breakdown_stop_date_day option[selected=selected]").attr('selected',false);
-            $("#breakdown_stop_date_day option[value="+stopDay+"]").attr('selected',true);
-            $("#breakdown_stop_date_day").val(stopDay);
-
-
-            $("#breakdown_stop_time_hour option[selected=selected]").attr('selected',false);
-            $("#breakdown_stop_time_hour option[value="+stopHour+"]").attr('selected',true);
-            $("#breakdown_stop_time_hour").val(stopHour);
-
-            $("#breakdown_stop_time_minute option[selected=selected]").attr('selected',false);
-            $("#breakdown_stop_time_minute option[value="+stopMinute+"]").attr('selected',true);
-            $("#breakdown_stop_time_minute").val(stopMinute);
-
-        });
-
-    $('#date-range1').val(oMnageFormBreakdown.getFormDate("start")+" ~ "+oMnageFormBreakdown.getFormDate("stop"));
-*/
     var datetimepickerOptions = {
 
         step: 5,
@@ -201,8 +104,6 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
     $( 'form[name=breakdown]' ).submit(function( e ) {
 
-
-
         e.preventDefault();
         e.returnValue = false;
         var $form = $(this);
@@ -250,10 +151,10 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
         $("#descriptorBox_"+category).empty();
 
-        htmlDescriptor = '<li id="descriptorInputs-'+category+'">' +
-        '<label for="add_'+category+'">add '+catName+' descriptor : </label>' +
-        '<input class="form-control" type="text" id="add_'+category+'" />' +
-        '</li>' ;
+        htmlDescriptor = '<div  class="panel panel-default" id="descriptorInputs-'+category+'">' +
+        '<div class="panel-heading" style="background-color:'+oMnageFormBreakdown.colors[category]+' ;" >add '+catName+' descriptor :</div>' +
+        '<div class="panel-body"><input class="form-control" type="text" id="add_'+category+'" /></div>' +
+        '</div>' ;
         $('#descriptorInputs').append(htmlDescriptor);
 
         htmlDescriptorBoxes = '<div class="descriptorBox"  id="descriptorBox_'+category+'" ></div>';
@@ -302,6 +203,7 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
             request.done( function( msg ) {
                 var r = jQuery.parseJSON( msg );
                 $('#searchResult-'+category).remove();
+
                 if(r.length == 0){
                     $("#add_"+category).after('<ul class="list-inline" style="color:#884444;" id="searchResult-'+category+'">No Matching descriptors found for "<strong>'+$( "#add_"+category ).val()+'</strong>" : </ul>');
                 }else{
@@ -309,7 +211,7 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
                 }
                 htmlText = "";
                 for(i=0;i<r.length;i++){
-                    htmlText+= '<li class="searchResult-'+category+'" '+category+'_id="'+r[i].id+'">'+r[i].label+'</li>';
+                    htmlText+= '<li class="searchResult-'+category+'" '+category+'_id="'+r[i].id+'"><button type="button" style="background-color:'+r[i].color+'" class="btn btn-default" ><i class="glyphicon glyphicon-plus"></i>'+r[i].label+'</button></li>';
                 }
                 $('#searchResult-'+category).append(htmlText);
                 $('.searchResult-'+category).each(
@@ -341,13 +243,13 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
         });
         request.done( function( msg ) {
             var r = jQuery.parseJSON( msg );
-            $("#sequenceMatching").empty();
+            $("#matchingBreakdown").empty();
             if(r.length > 0){
 
-                $("#sequenceMatching").append('<ul id="matchingSequenceListContainer">Matching sequences in breakdowns</ul>');
+                $("#matchingBreakdown").append('<ul id="matchingSequenceListContainer">Matching sequences in breakdowns</ul>');
                 $.each( r, function(i, n){
 
-                    $("#matchingSequenceListContainer").append('<li id="sequence_'+i+'" style="font-weight:'+parseInt(parseFloat(n.score)*900)+';">'+ n.sequence+'</li>');
+                    $("#matchingSequenceListContainer").append('<button type="button" id="sequence_'+i+'" style="font-weight:'+parseInt(parseFloat(n.score)*900)+';"><i class="glyphicon glyphicon-plus"></i>'+ n.sequence+'</button>');
 
                     $("#sequence_"+i).click(function(){
 
@@ -385,13 +287,14 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
             if( $.inArray( label , newDescriptors ) == -1){
                 newDescriptors.push(label);
                 newId = $.inArray( label , newDescriptors );
-                console.log("NON PRESENT DANS newDescriptors",newId);
-                html = '<div class="newDescriptor"  selected="selected" category="'+category+'" id="new_'+newId+'">'+label+'</div>';
+
+                html = '<button type="button" class="btn btn-default newDescriptor"  selected="selected" category="'+category+'" id="new_'+newId+'"><i class="glyphicon glyphicon-trash"></i>'+label+'</button>';
                 $("#descriptorBox_"+category).append(html);
+
                 html = '<option selected="selected" state="new" category="'+category+'" value="new_'+newId+'">'+label+'</option>';
                 $("#breakdown_descriptors").append(html);
 
-                $("#descriptorBox_"+category+" div[id=new_"+newId+"]").click(
+                $("#descriptorBox_"+category+" button[id=new_"+newId+"]").click(
                     function(){
 
 
@@ -421,7 +324,7 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
     }
     this.rewriteBoxes = function (category){
 
-        $("#descriptorBox_"+category+" div").remove();
+        $("#descriptorBox_"+category+" button").remove();
         $('#breakdown_descriptors option:selected[category='+category+']').each(
             function(){
 
@@ -433,8 +336,9 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
                 }
 
 
-                $("#descriptorBox_"+category+" option[value="+$(this).val()+"]").replaceWith('<div class="'+className+'" id="'+$(this).val()+'">' + $("#descriptorBox_"+category+" option[value="+$(this).val()+"]").html() + "</div>");
-                $("#descriptorBox_"+category+" div[id="+$(this).val()+"]").click(
+                $("#descriptorBox_"+category+" option[value="+$(this).val()+"]").replaceWith('<button style="background-color: '+oMnageFormBreakdown.colors[category]+';" id="'+$(this).val()+'" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-trash"></i>'+$("#descriptorBox_"+category+" option[value="+$(this).val()+"]").html()+'</button');
+
+                $("#descriptorBox_"+category+" button[id="+$(this).val()+"]").click(
                     function(){
                         $(this).remove();
                         $("#breakdown_descriptors option[value="+this.id+"]").attr('selected',false);
@@ -472,13 +376,14 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
             }
         });
     }
+
     manageFormInterfero();
 
 
     htmlDescriptor = '<ul id="descriptorInputs"></ul>';
     htmlDescriptorBoxes = '<div id="descriptorBoxes"></div>';
 
-    //$('form[name=breakdown]').append('<div id="descriptorRewrited">'+htmlDescriptor+htmlDescriptorBoxes+'</div>');
+
     $('<div id="descriptorRewrited">'+htmlDescriptor+htmlDescriptorBoxes+'</div>').insertAfter($("#descriptors"))
 
 
@@ -490,19 +395,6 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
 
     $("#descriptorInputs").before('<div id="sequenceMatching"></div>')
-
-
-
-    if($("#breakdown_closed").checked){
-        $('#breakdown_stop').find('*').attr('disabled', true);
-    }
-
-    $("#breakdown_closed").change(
-        function(){
-
-        }
-    );
-
 
 
     initTinymce();

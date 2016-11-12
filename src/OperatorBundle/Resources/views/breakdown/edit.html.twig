@@ -9,50 +9,99 @@
         }
     }
 </script>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Update matchinbreakdown #{{ breakdown.id }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
 
-    {{ form_start(form, {'attr': {'id': 'breakdown'}}) }}
+            {{ form_start(form, {'attr': {'id': 'breakdown','class': 'form'}}) }}
+            <div class="row">
+                <div class="col-lg-12">
+                    <input class="btn btn-default" type="submit" value="update breakdown" />
 
-    <input type="submit" value="update breakdown" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <div id="closed">
+                        {{ form_label(form.closed) }}
+                        {{ form_errors(form.closed) }}
+                        {{ form_widget(form.closed) }}
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div id="start">
+                        {{ form_label(form.start) }}
+                        {{ form_errors(form.start) }}
+                        {{ form_widget(form.start) }}
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div id="stop">
+                        {{ form_label(form.stop) }}
+                        {{ form_errors(form.stop) }}
+                        {{ form_widget(form.stop) }}
+                    </div>
+                </div>
 
-    <div id="start">
-        {{ form_label(form.start) }}
-        {{ form_errors(form.start) }}
-        {{ form_widget(form.start) }}
+            </div>
+
+            <div class="row">
+                <h3>Breakdown descriptors</h3>
+                <div class="col-lg-6">
+
+                    <div id="descriptors">
+                        {{ form_label(form.descriptors) }}
+                        {{ form_errors(form.descriptors) }}
+                        {{ form_widget(form.descriptors) }}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="matchingBreakdown">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul id="breakdowns_interferos-list"
+                        data-prototype="{{ form_widget(form.breakdowns_interferos.vars.prototype)|e }}">
+                        {% for interferoField in form.breakdowns_interferos %}
+                            <li>
+                                {{ form_errors(interferoField) }}
+                                {{ form_widget(interferoField) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <div id="description">
+                        {{ form_label(form.description) }}
+                        {{ form_errors(form.description) }}
+                        {{ form_widget(form.description) }}
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            {{ form_end(form) }}
+        </div>
     </div>
 
-    <div id="stop">
-        {{ form_label(form.stop) }}
-        {{ form_errors(form.stop) }}
-        {{ form_widget(form.stop) }}
-    </div>
-
-
-    <div id="closed">
-        {{ form_label(form.closed) }}
-        {{ form_errors(form.closed) }}
-        {{ form_widget(form.closed) }}
-    </div>
-    <div id="descriptors">
-        {{ form_label(form.descriptors) }}
-        {{ form_errors(form.descriptors) }}
-        {{ form_widget(form.descriptors) }}
-    </div>
-    <ul id="breakdowns_interferos-list"
-        data-prototype="{{ form_widget(form.breakdowns_interferos.vars.prototype)|e }}">
-        {% for interferoField in form.breakdowns_interferos %}
-            <li>
-                {{ form_errors(interferoField) }}
-                {{ form_widget(interferoField) }}
-            </li>
-        {% endfor %}
-    </ul>
-
-    <div id="description">
-        {{ form_label(form.description) }}
-        {{ form_errors(form.description) }}
-        {{ form_widget(form.description) }}
-    </div>
-
-
-    {{ form_end(form) }}
 {% endblock %}

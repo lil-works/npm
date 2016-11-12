@@ -29,18 +29,18 @@ function manageFormInterfero(){
 
     htmlForArray = '<table id="interfero">'+
     '<tr>'+
-    '<td id="interfero-reverseSelection">reverse selection</td>'+
+    '<td id="interfero-reverseSelection"><button type="button" class="btn btn-default">reverse selection</button></td>'+
     '</tr>'+
     '<tr>'+
-    '<td id="interfero-toggleAll">Antenna</td>';
-    for(col=1;col<=nbrBand;col++) { htmlForArray+='<td class="interfero-toggleBand" id="interfero-toggleBand['+col+']">band '+col+'</td>'; }
+    '<td id="interfero-toggleAll"><button type="button" class="btn btn-default">Antenna</button></td>';
+    for(col=1;col<=nbrBand;col++) { htmlForArray+='<td class="interfero-toggleBand" id="interfero-toggleBand['+col+']"><button type="button" class="btn btn-default">band '+col+'</button></td>'; }
     htmlForArray+='</tr>';
 
 
 
     for(line=1;line<=nbrAntenna;line++){
         htmlForArray+='<tr id="interfero-'+line+'">'+
-        '<td class="interfero-toggleAntenna"  id="interfero-toggleAntenna['+line+']">'+line+'</td>';
+        '<td class="interfero-toggleAntenna"  id="interfero-toggleAntenna['+line+']"><button type="button" class="btn btn-default">'+line+'</button></td>';
         for(col=1;col<=nbrBand;col++){
             htmlForArray+='<td id="interfero-'+line+'_'+col+'"></td>';
         }
