@@ -16,8 +16,8 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
     this.colors = {1:"#BB7777",2:'#77BB77',3:'#7777BB',4:'#BBBB77'}
 
-    //$("#breakdown_descriptors").hide();
-    //$("label[for=breakdown_descriptors]").hide();
+    $("#breakdown_descriptors").hide();
+    $("label[for=breakdown_descriptors]").hide();
     $("#start").hide();
     $("#stop").hide();
 
