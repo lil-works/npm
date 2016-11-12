@@ -36,14 +36,29 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
     };
 
+    this.getFormDateValue = function(startStop){
 
 
+        year = $("#breakdown_"+startStop+"_date_year option[selected=selected]").val();
+        month = $("#breakdown_"+startStop+"_date_month option[selected=selected]").val();
+        day = $("#breakdown_"+startStop+"_date_day option[selected=selected]").val();
+        hour = $("#breakdown_"+startStop+"_time_hour [selected=selected]").val();
+        minute = $("#breakdown_"+startStop+"_time_minute option[selected=selected]").val();
+
+        myDate =  moment(year + "," + month + "," + day + "," + hour + "," + minute , 'YYYY,M,D,H,m');
+
+        if(year == undefined){
+            return "";
+        }
+
+        return moment(myDate).format('YYYY/MM/DD HH:mm');
+
+    };
 
 
-
-
- $('<div id="dateTimePicker"><label for="date-range1">Breakdown start/stop:</label><input id="date-range1" value="" size="40"></div>').insertBefore($("#start"));
-
+    $('<div id="dateTimePicker"><label for="date_timepicker_start">start:</label><input class="form-control" target="start" id="date_timepicker_start" value="'+this.getFormDateValue('start')+'" size="40"></div>').insertBefore($("#start"));
+    $('<div id="dateTimePicker"><label for="date_timepicker_end">stop:</label><input class="form-control" target="stop" id="date_timepicker_end" value="'+this.getFormDateValue('stop')+'" size="40"></div>').insertBefore($("#stop"));
+    /*
     $('#date-range1').dateRangePicker(
         {
             startOfWeek: 'monday',
@@ -130,6 +145,48 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
         });
 
     $('#date-range1').val(oMnageFormBreakdown.getFormDate("start")+" ~ "+oMnageFormBreakdown.getFormDate("stop"));
+*/
+    var datetimepickerOptions = {
+
+        step: 5,
+        dayOfWeekStart: 1,      //week begins with monday
+        onChangeDateTime: function(current,$input) {
+
+            year =  moment(current).format("YYYY");
+            month = moment(current).format("M");
+            day = moment(current).format("D");
+            hour = moment(current).format("H");
+            minute = moment(current).format("m");
+
+            var target =$input.attr('target');
+
+            $("#breakdown_"+target+"_date_year option[selected=selected]").attr('selected',false);
+            $("#breakdown_"+target+"_date_year option[value="+year+"]").attr('selected',true);
+            $("#breakdown_"+target+"_date_year").val(year);
+
+            $("#breakdown_"+target+"_date_month option[selected=selected]").attr('selected',false);
+            $("#breakdown_"+target+"_date_month option[value="+month+"]").attr('selected',true);
+            $("#breakdown_"+target+"_date_month").val(month);
+
+            $("#breakdown_"+target+"_date_day option[selected=selected]").attr('selected',false);
+            $("#breakdown_"+target+"_date_day option[value="+day+"]").attr('selected',true);
+            $("#breakdown_"+target+"_date_day").val(day);
+
+
+            $("#breakdown_"+target+"_time_hour option[selected=selected]").attr('selected',false);
+            $("#breakdown_"+target+"_time_hour option[value="+hour+"]").attr('selected',true);
+            $("#breakdown_"+target+"_time_hour").val(hour);
+
+            $("#breakdown_"+target+"_time_minute option[selected=selected]").attr('selected',false);
+            $("#breakdown_"+target+"_time_minute option[value="+minute+"]").attr('selected',true);
+            $("#breakdown_"+target+"_time_minute").val(minute);
+        }
+    };
+
+
+    jQuery('#date_timepicker_start').datetimepicker(datetimepickerOptions);
+    jQuery('#date_timepicker_end').datetimepicker(datetimepickerOptions);
+
 
     /*
      * Rewrite submit
@@ -195,7 +252,7 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
         htmlDescriptor = '<li id="descriptorInputs-'+category+'">' +
         '<label for="add_'+category+'">add '+catName+' descriptor : </label>' +
-        '<input type="text" id="add_'+category+'" />' +
+        '<input class="form-control" type="text" id="add_'+category+'" />' +
         '</li>' ;
         $('#descriptorInputs').append(htmlDescriptor);
 
@@ -246,9 +303,9 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
                 var r = jQuery.parseJSON( msg );
                 $('#searchResult-'+category).remove();
                 if(r.length == 0){
-                    $("#add_"+category).after('<ul style="color:#884444;" id="searchResult-'+category+'">No Matching descriptors found for "<strong>'+$( "#add_"+category ).val()+'</strong>" : </ul>');
+                    $("#add_"+category).after('<ul class="list-inline" style="color:#884444;" id="searchResult-'+category+'">No Matching descriptors found for "<strong>'+$( "#add_"+category ).val()+'</strong>" : </ul>');
                 }else{
-                    $("#add_"+category).after('<ul id="searchResult-'+category+'">Matching descriptors for "<strong>'+$( "#add_"+category ).val()+'</strong>" : </ul>');
+                    $("#add_"+category).after('<ul class="list-inline" id="searchResult-'+category+'">Matching descriptors for "<strong>'+$( "#add_"+category ).val()+'</strong>" : </ul>');
                 }
                 htmlText = "";
                 for(i=0;i<r.length;i++){
@@ -436,42 +493,17 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
 
 
-    if($("#breakdown_notFinished").checked){
-        $('#breakdown_stop').find('*').attr('disabled', true);
-        $('#breakdown_closed').attr('disabled', true);
-    }else{
-        $('#breakdown_stop').find('*').attr('disabled', false);
-        $('#breakdown_closed').attr('disabled', false);
-    }
     if($("#breakdown_closed").checked){
         $('#breakdown_stop').find('*').attr('disabled', true);
-        $("#breakdown_notFinished").attr('disabled', true);
     }
 
     $("#breakdown_closed").change(
         function(){
-            if(this.checked){
-                $("#breakdown_notFinished").attr('disabled', true);
-            }else{
-                $("#breakdown_notFinished").attr('disabled', false);
-            }
+
         }
     );
 
-    $("#breakdown_notFinished").change(
-        function(){
-            if(this.checked){
-                $('#breakdown_stop').find('*').attr('disabled', true);
-                $('#breakdown_closed').attr('checked', false);
-                $('#breakdown_closed').attr('disabled', true);
-                $('#date-range1').val(oMnageFormBreakdown.getFormDate("start")+" ~ ");
-            }else{
-                $('#breakdown_stop').find('*').attr('disabled', false);
-                $('#breakdown_closed').attr('disabled', false);
-                $('#date-range1').val(oMnageFormBreakdown.getFormDate("start")+" ~ "+oMnageFormBreakdown.getFormDate("stop"));
-            }
-        }
-    );
+
 
     initTinymce();
 }

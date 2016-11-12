@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new FR3D\LdapBundle\FR3DLdapBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(),
             new ManagerBundle\ManagerBundle(),
             new OperatorBundle\OperatorBundle(),
             new AnalyzerBundle\AnalyzerBundle(),

@@ -351,6 +351,10 @@ function draw(nodes,edges) {
         edges: edges
     };
     var options = {
+        autoResize: true,
+        height: '500px',
+        width: '100%',
+
         nodes : {
             shape: 'dot',
             size: 10

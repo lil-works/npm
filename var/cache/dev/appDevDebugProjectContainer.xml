@@ -23,6 +23,7 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="JMSTranslationBundle">JMS\TranslationBundle\JMSTranslationBundle</parameter>
       <parameter key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</parameter>
+      <parameter key="SonataSeoBundle">Sonata\SeoBundle\SonataSeoBundle</parameter>
       <parameter key="ManagerBundle">ManagerBundle\ManagerBundle</parameter>
       <parameter key="OperatorBundle">OperatorBundle\OperatorBundle</parameter>
       <parameter key="AnalyzerBundle">AnalyzerBundle\AnalyzerBundle</parameter>
@@ -393,10 +394,10 @@
     <parameter key="lexik_form_filter.where_method">null</parameter>
     <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
     <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
-    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig</parameter>
     <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
     <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
-    <parameter key="knp_paginator.page_range">5</parameter>
+    <parameter key="knp_paginator.page_range">10</parameter>
     <parameter key="assetic.asset_factory.class">Symfony\Bundle\AsseticBundle\Factory\AssetFactory</parameter>
     <parameter key="assetic.asset_manager.class">Assetic\Factory\LazyAssetManager</parameter>
     <parameter key="assetic.asset_manager_cache_warmer.class">Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer</parameter>
@@ -433,7 +434,7 @@
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
     <parameter key="assetic.node.bin">/usr/bin/node</parameter>
-    <parameter key="assetic.ruby.bin">/Users/lil-works1/.rvm/rubies/ruby-2.2.0/bin/ruby</parameter>
+    <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.reactjsx.bin">/usr/bin/jsx</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -499,6 +500,11 @@
       </parameter>
       <parameter key="usernameAttribute">uid</parameter>
     </parameter>
+    <parameter key="sonata.seo.exporter.database_source_iterator.class">Exporter\Source\DoctrineDBALConnectionSourceIterator</parameter>
+    <parameter key="sonata.seo.exporter.sitemap_source_iterator.class">Exporter\Source\SymfonySitemapSourceIterator</parameter>
+    <parameter key="sonata.seo.page.default.class">Sonata\SeoBundle\Seo\SeoPage</parameter>
+    <parameter key="sonata.seo.twig.extension.class">Sonata\SeoBundle\Twig\Extension\SeoExtension</parameter>
+    <parameter key="sonata.seo.sitemap.manager.class">Sonata\SeoBundle\Sitemap\SourceManager</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -868,6 +874,7 @@
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/lexik/form-filter-bundle/Resources/translations/LexikFormFilterBundle.de.yml</argument>
+            <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle/Resources/translations/SonataSeoBundle.de.xliff</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
@@ -884,6 +891,7 @@
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/lexik/form-filter-bundle/Resources/translations/LexikFormFilterBundle.en.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/fr3d/ldap-bundle/Resources/translations/validators.en.yml</argument>
+            <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle/Resources/translations/SonataSeoBundle.en.xliff</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
@@ -924,6 +932,7 @@
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/lexik/form-filter-bundle/Resources/translations/LexikFormFilterBundle.fr.yml</argument>
+            <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle/Resources/translations/SonataSeoBundle.fr.xliff</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/src/ManagerBundle/Resources/translations/messages.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
@@ -1002,6 +1011,7 @@
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/lexik/form-filter-bundle/Resources/translations/LexikFormFilterBundle.nl.yml</argument>
+            <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle/Resources/translations/SonataSeoBundle.nl.xliff</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nn.xlf</argument>
@@ -1992,6 +2002,14 @@
         </argument>
         <argument>0</argument>
       </call>
+      <call method="addListenerService">
+        <argument>sonata.block.event.breadcrumb</argument>
+        <argument type="collection">
+          <argument>sonata.seo.event.breadcrumb</argument>
+          <argument>onBlock</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
       <call method="addSubscriberService">
         <argument>response_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ResponseListener</argument>
@@ -2189,7 +2207,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>58119a33db1864.25079957</argument>
+            <argument>58262aeec86553.41521719</argument>
           </service>
         </argument>
       </argument>
@@ -2565,7 +2583,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>58119a33db1864.25079957</argument>
+            <argument>58262aeec86553.41521719</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2683,6 +2701,13 @@
           <argument key="thousands_separator">,</argument>
         </argument>
       </argument>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="AppBundle\Twig\AppExtension" public="false">
+            <tag name="twig.extension"/>
+          </service>
+        </argument>
+      </call>
       <call method="addExtension">
         <argument type="service">
           <service class="OperatorBundle\Twig\TimeDiffExtension" public="false">
@@ -2853,6 +2878,15 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="jms_translation.twig_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Sonata\SeoBundle\Twig\Extension\SeoExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="sonata.seo.page.default"/>
+            <argument>UTF-8</argument>
+          </service>
+        </argument>
       </call>
       <call method="addExtension">
         <argument type="service">
@@ -3267,6 +3301,7 @@
         <argument key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</argument>
         <argument key="JMSTranslationBundle">JMS\TranslationBundle\JMSTranslationBundle</argument>
         <argument key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</argument>
+        <argument key="SonataSeoBundle">Sonata\SeoBundle\SonataSeoBundle</argument>
         <argument key="ManagerBundle">ManagerBundle\ManagerBundle</argument>
         <argument key="OperatorBundle">OperatorBundle\OperatorBundle</argument>
         <argument key="AnalyzerBundle">AnalyzerBundle\AnalyzerBundle</argument>
@@ -3492,10 +3527,10 @@
       <tag name="knp_paginator.subscriber"/>
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
       <argument type="collection">
-        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:sliding.html.twig</argument>
+        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig</argument>
         <argument key="defaultSortableTemplate">KnpPaginatorBundle:Pagination:sortable_link.html.twig</argument>
         <argument key="defaultFiltrationTemplate">KnpPaginatorBundle:Pagination:filtration.html.twig</argument>
-        <argument key="defaultPageRange">5</argument>
+        <argument key="defaultPageRange">10</argument>
       </argument>
     </service>
     <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
@@ -4057,6 +4092,43 @@
       </argument>
       <argument type="service" id="monolog.logger.ldap_driver"/>
     </service>
+    <service id="sonata.seo.event.breadcrumb" class="Sonata\SeoBundle\Event\BreadcrumbListener">
+      <tag name="kernel.event_listener" event="sonata.block.event.breadcrumb" method="onBlock"/>
+    </service>
+    <service id="sonata.seo.page.default" class="Sonata\SeoBundle\Seo\SeoPage">
+      <call method="setTitle">
+        <argument>Noema Pareto Manager</argument>
+      </call>
+      <call method="setMetas">
+        <argument type="collection">
+          <argument key="name" type="collection">
+            <argument key="keywords">harmony,scale,chord,visualization,guitar,bass,ukulele,violin</argument>
+            <argument key="description">Designed to track breakdown</argument>
+            <argument key="robots">index, follow</argument>
+          </argument>
+          <argument key="property" type="collection">
+            <argument key="og:site_name">iram</argument>
+            <argument key="og:description">Noema pareto manager</argument>
+          </argument>
+          <argument key="http-equiv" type="collection">
+            <argument key="Content-Type">text/html; charset=utf-8</argument>
+          </argument>
+          <argument key="charset" type="collection">
+            <argument key="UTF-8"></argument>
+          </argument>
+        </argument>
+      </call>
+      <call method="setHtmlAttributes">
+        <argument type="collection">
+          <argument key="xmlns">http://www.w3.org/1999/xhtml</argument>
+          <argument key="xmlns:og">http://opengraphprotocol.org/schema/</argument>
+        </argument>
+      </call>
+      <call method="setSeparator">
+        <argument> - </argument>
+      </call>
+    </service>
+    <service id="sonata.seo.sitemap.manager" class="Sonata\SeoBundle\Sitemap\SourceManager" shared="false"/>
     <service id="ldap.user_hydrator" class="ManagerBundle\Ldap\UserHydrator"/>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
@@ -4420,12 +4492,20 @@
         <argument>LexikFormFilter</argument>
       </call>
       <call method="addPath">
+        <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/app/Resources/KnpPaginatorBundle/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
         <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/knplabs/knp-paginator-bundle/Resources/views</argument>
         <argument>KnpPaginator</argument>
       </call>
       <call method="addPath">
         <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/jms/translation-bundle/JMS/TranslationBundle/Resources/views</argument>
         <argument>JMSTranslation</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle/Resources/views</argument>
+        <argument>SonataSeo</argument>
       </call>
       <call method="addPath">
         <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/src/ManagerBundle/Resources/views</argument>
@@ -4583,6 +4663,7 @@
     <service id="fr3d_ldap.user_hydrator" alias="fr3d_ldap.user_hydrator.default"/>
     <service id="fr3d_ldap.ldap_manager" alias="fr3d_ldap.ldap_manager.default"/>
     <service id="fr3d_ldap.ldap_driver" alias="fr3d_ldap.ldap_driver.zend"/>
+    <service id="sonata.seo.page" alias="sonata.seo.page.default"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
   </services>
 </container>

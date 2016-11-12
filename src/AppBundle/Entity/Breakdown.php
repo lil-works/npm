@@ -54,12 +54,7 @@ class Breakdown
      */
     private $stop;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="notFinished", type="boolean",nullable=true)
-     */
-    private $notFinished;
+
 
     /**
      * @var boolean
@@ -184,29 +179,7 @@ class Breakdown
         return $this->stop;
     }
 
-    /**
-     * Set notFinished
-     *
-     * @param boolean $notFinished
-     *
-     * @return Breakdown
-     */
-    public function setNotFinished($notFinished)
-    {
-        $this->notFinished = $notFinished;
 
-        return $this;
-    }
-
-    /**
-     * Get notFinished
-     *
-     * @return boolean
-     */
-    public function getNotFinished()
-    {
-        return $this->notFinished;
-    }
 
     /**
      * Set closed

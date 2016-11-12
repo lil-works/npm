@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>
+                Synonym for Descriptor #{{ descriptor.id }}: {{ descriptor.label }}
+            </h1>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8 col-sm-6">
+            <ul class="list-inline">
+                <li>
+                    <a href="{{ path('manager_synonym') }}">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        Back to the list
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-4  col-sm-6">
+            <div class="col-sm-offset-3 col-sm-6">
+                {{ form_start(form, { 'attr': {'class': 'form'} }) }}
+                {{ form_label(form.synonymList) }}
+                {{ form_widget(form.synonymList, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_errors(form.synonymList) }}
+                <input class="btn btn-default" type="submit" value="create" />
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>
+                Synonym list
+            </h2>
+            {% if descriptor.synonyms|length > 0%}
+            <p>
+                <span class="label label-info">synonyms found</span> {{ descriptor.synonyms|length }}
+            </p>
+        </div>
+
+        <table class="table myPaginator">
+            <thead>
+            <tr>
+                <th>
+                    Select
+                </th>
+
+                <th>
+                    <input type="checkbox" name="select" onclick="toggleInPaginator();">
+                    <input id="myPaginatorDelete" class="btn btn-default" type="submit" value="deleteSelection" onclick="deleteSelection('ajax_synonym_delete');" />
+                </th>
+
+                <th>Label</th>
+
+            </tr>
+            </thead>
+            <tbody  class="text-center">
+            {% for synonym in descriptor.synonyms %}
+                <tr>
+                    <td>
+                        <div class="checkbox myPaginatorRow">
+                            <input id="paginator_{{ synonym.id }}" type="checkbox" name="select">
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="{{ path('manager_synonym_show', { 'id': synonym.id }) }}">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    show
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('manager_synonym_edit', { 'id': synonym.id }) }}">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    edit
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('manager_synonym_delete', { 'id': synonym.id }) }}">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    edit
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        {{ synonym.label }}
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>
+                <span class="label label-warning">
+                    No synonym for this descriptor
+                </span>
+            </p>
+        {% endif %}
+    </div>
+
+
+<script>
+    initMyPaginator();
+</script>
+{% endblock %}

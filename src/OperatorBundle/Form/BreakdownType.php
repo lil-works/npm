@@ -56,7 +56,7 @@ class BreakdownType extends AbstractType
         $builder
             ->add('start', DateTimeType::class,array('required' => true))
             ->add('stop', DateTimeType::class,array('required' => false))
-            ->add('notFinished')
+
             ->add('closed')
             ->add('description')
 

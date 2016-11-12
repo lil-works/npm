@@ -14,6 +14,10 @@ manager_synonym_show:
     path:     /manager/synonym/{id}/show
     defaults: { _controller: ManagerBundle:Synonym:show }
 
+manager_synonym_show_descriptor:
+    path:     /manager/synonym/descriptor/{id}/show
+    defaults: { _controller: ManagerBundle:Synonym:descriptor }
+
 manager_synonym_edit:
     path:     /manager/synonym/{id}/edit
     defaults: { _controller: ManagerBundle:Synonym:edit }
@@ -43,10 +47,19 @@ manager_descriptor_delete:
     path:     /manager/descriptor/{id}/delete
     defaults: { _controller: ManagerBundle:Descriptor:delete }
 
-
-
-
 manager_interfero:
     path:     /manager/interfero
     defaults: { _controller: ManagerBundle:Interfero:index }
+
+ajax_synonym_delete:
+    path:     /ajaxSynonymDelete
+    defaults: { _controller: ManagerBundle:Ajax:deleteSynonym }
+    options:
+        expose: true
+
+ajax_descriptor_delete:
+    path:     /ajaxDescriptorDelete
+    defaults: { _controller: ManagerBundle:Ajax:deleteDescriptor }
+    options:
+        expose: true
 

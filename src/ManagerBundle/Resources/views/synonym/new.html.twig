@@ -1,16 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Synonym creation</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Create new synonym</h1>
+        </div>
+        <ul class="list-inline">
+            <li>
+                <a href="{{ path('manager_synonym') }}">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+    </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+                {{ form_start(form, { 'attr': {'class': 'form'} }) }}
+                {{ form_label(form.label) }}
+                {{ form_widget(form.label, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_errors(form.label) }}
+                {{ form_label(form.descriptor) }}
+                {{ form_widget(form.descriptor, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_errors(form.descriptor) }}
+                <input class="btn btn-default" type="submit" value="create" />
+                {{ form_end(form) }}
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('synonym_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

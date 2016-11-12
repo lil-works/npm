@@ -86,4 +86,8 @@
   85 => 'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\ConfigurationAnnotation',
   86 => 'Symfony\\Bundle\\AsseticBundle\\DefaultValueSupplier',
   87 => 'Symfony\\Bundle\\AsseticBundle\\Factory\\AssetFactory',
+  88 => 'Sonata\\SeoBundle\\Seo\\SeoPage',
+  89 => 'Sonata\\SeoBundle\\Seo\\SeoPageInterface',
+  90 => 'Sonata\\SeoBundle\\Sitemap\\SourceManager',
+  91 => 'Sonata\\SeoBundle\\Twig\\Extension\\SeoExtension',
 );

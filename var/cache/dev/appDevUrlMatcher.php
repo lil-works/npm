@@ -276,6 +276,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'manager_synonym_show')), array (  '_controller' => 'ManagerBundle\\Controller\\SynonymController::showAction',));
                 }
 
+                // manager_synonym_show_descriptor
+                if (0 === strpos($pathinfo, '/manager/synonym/descriptor') && preg_match('#^/manager/synonym/descriptor/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'manager_synonym_show_descriptor')), array (  '_controller' => 'ManagerBundle\\Controller\\SynonymController::descriptorAction',));
+                }
+
                 // manager_synonym_edit
                 if (preg_match('#^/manager/synonym/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'manager_synonym_edit')), array (  '_controller' => 'ManagerBundle\\Controller\\SynonymController::editAction',));
@@ -319,6 +324,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // manager_interfero
             if ($pathinfo === '/manager/interfero') {
                 return array (  '_controller' => 'ManagerBundle:Interfero:index',  '_route' => 'manager_interfero',);
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/ajax')) {
+            // ajax_synonym_delete
+            if ($pathinfo === '/ajaxSynonymDelete') {
+                return array (  '_controller' => 'ManagerBundle\\Controller\\AjaxController::deleteSynonymAction',  '_route' => 'ajax_synonym_delete',);
+            }
+
+            // ajax_descriptor_delete
+            if ($pathinfo === '/ajaxDescriptorDelete') {
+                return array (  '_controller' => 'ManagerBundle\\Controller\\AjaxController::deleteDescriptorAction',  '_route' => 'ajax_descriptor_delete',);
             }
 
         }

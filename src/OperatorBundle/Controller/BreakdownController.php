@@ -36,12 +36,12 @@ class BreakdownController extends Controller
         $dql   = "SELECT
                 a.id ,
                 a.createdAt ,
+
                 u.name as createdBy ,
                 TIME_TO_SEC ( TIMEDIFF( a.stop, a.start )) as breakdown_length,
                 a.start,
                 a.stop,
                 a.closed ,
-                a.notFinished ,
                 a.description,
 
                 GROUP_CONCAT( DISTINCT b.label) as descriptors_element_list,
@@ -91,9 +91,9 @@ class BreakdownController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            100
+            10
         );
-        return $this->render('OperatorBundle:breakdown:index.html.twig', array(
+        return $this->render('OperatorBundle:Breakdown:index.html.twig', array(
             'pagination' => $pagination,
             'form' => $form->createView()
         ));
@@ -110,7 +110,7 @@ class BreakdownController extends Controller
 
         $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
 
-        return $this->render('OperatorBundle:breakdown:timeline.html.twig', array(
+        return $this->render('OperatorBundle:Breakdown:timeline.html.twig', array(
             'breakdowns' => $breakdowns,
         ));
     }
@@ -136,7 +136,7 @@ class BreakdownController extends Controller
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
 
-        return $this->render('OperatorBundle:breakdown:new.html.twig', array(
+        return $this->render('OperatorBundle:Breakdown:new.html.twig', array(
             'breakdown' => $breakdown,
             'form' => $form->createView(),
         ));
@@ -161,7 +161,7 @@ class BreakdownController extends Controller
 
 
 
-        return $this->render('OperatorBundle:breakdown:show.html.twig', array(
+        return $this->render('OperatorBundle:Breakdown:show.html.twig', array(
             'breakdown' => $breakdown,
             'nodes'=>$nodes,
             'delete_form' => $deleteForm->createView(),
@@ -204,7 +204,7 @@ class BreakdownController extends Controller
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
 
-        return $this->render('OperatorBundle:breakdown:edit.html.twig', array(
+        return $this->render('OperatorBundle:Breakdown:edit.html.twig', array(
             'breakdown' => $breakdown,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

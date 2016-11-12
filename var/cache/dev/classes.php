@@ -7794,3 +7794,380 @@ return parent::getFilter($name);
 }
 }
 }
+namespace Sonata\SeoBundle\Seo
+{
+interface SeoPageInterface
+{
+public function setTitle($title);
+public function addTitle($title);
+public function getTitle();
+public function addMeta($type, $name, $value, array $extras = array());
+public function hasMeta($type, $name);
+public function getMetas();
+public function setMetas(array $metas);
+public function setHtmlAttributes(array $attributes);
+public function addHtmlAttributes($name, $value);
+public function getHtmlAttributes();
+public function setHeadAttributes(array $attributes);
+public function addHeadAttribute($name, $value);
+public function getHeadAttributes();
+public function setLinkCanonical($link);
+public function getLinkCanonical();
+public function setSeparator($separator);
+public function setLangAlternates(array $langAlternates);
+public function addLangAlternate($href, $hrefLang);
+public function getLangAlternates();
+public function addOEmbedLink($title, $link);
+public function getOEmbedLinks();
+}
+}
+namespace Sonata\SeoBundle\Seo
+{
+class SeoPage implements SeoPageInterface
+{
+protected $title;
+protected $metas;
+protected $htmlAttributes;
+protected $linkCanonical;
+protected $separator;
+protected $headAttributes;
+protected $langAlternates;
+protected $oembedLinks;
+public function __construct($title ='')
+{
+$this->title = $title;
+$this->metas = array('http-equiv'=> array(),'name'=> array(),'schema'=> array(),'charset'=> array(),'property'=> array(),
+);
+$this->headAttributes = array();
+$this->linkCanonical ='';
+$this->separator =' ';
+$this->langAlternates = array();
+$this->oembedLinks = array();
+}
+public function setTitle($title)
+{
+$this->title = $title;
+return $this;
+}
+public function addTitle($title)
+{
+$this->title = $title.$this->separator.$this->title;
+return $this;
+}
+public function getTitle()
+{
+return $this->title;
+}
+public function getMetas()
+{
+return $this->metas;
+}
+public function addMeta($type, $name, $content, array $extras = array())
+{
+if (!isset($this->metas[$type])) {
+$this->metas[$type] = array();
+}
+$this->metas[$type][$name] = array($content, $extras);
+return $this;
+}
+public function hasMeta($type, $name)
+{
+return isset($this->metas[$type][$name]);
+}
+public function removeMeta($type, $name)
+{
+unset($this->metas[$type][$name]);
+return $this;
+}
+public function setMetas(array $metadatas)
+{
+$this->metas = array();
+foreach ($metadatas as $type => $metas) {
+if (!is_array($metas)) {
+throw new \RuntimeException('$metas must be an array');
+}
+foreach ($metas as $name => $meta) {
+list($content, $extras) = $this->normalize($meta);
+$this->addMeta($type, $name, $content, $extras);
+}
+}
+return $this;
+}
+public function setHtmlAttributes(array $attributes)
+{
+$this->htmlAttributes = $attributes;
+return $this;
+}
+public function addHtmlAttributes($name, $value)
+{
+$this->htmlAttributes[$name] = $value;
+return $this;
+}
+public function removeHtmlAttributes($name)
+{
+unset($this->htmlAttributes[$name]);
+return $this;
+}
+public function getHtmlAttributes()
+{
+return $this->htmlAttributes;
+}
+public function hasHtmlAttribute($name)
+{
+return isset($this->htmlAttributes[$name]);
+}
+public function setHeadAttributes(array $attributes)
+{
+$this->headAttributes = $attributes;
+return $this;
+}
+public function addHeadAttribute($name, $value)
+{
+$this->headAttributes[$name] = $value;
+return $this;
+}
+public function removeHeadAttribute($name)
+{
+unset($this->headAttributes[$name]);
+return $this;
+}
+public function getHeadAttributes()
+{
+return $this->headAttributes;
+}
+public function hasHeadAttribute($name)
+{
+return isset($this->headAttributes[$name]);
+}
+public function setLinkCanonical($link)
+{
+$this->linkCanonical = $link;
+return $this;
+}
+public function getLinkCanonical()
+{
+return $this->linkCanonical;
+}
+public function removeLinkCanonical()
+{
+$this->linkCanonical ='';
+}
+public function setSeparator($separator)
+{
+$this->separator = $separator;
+return $this;
+}
+public function setLangAlternates(array $langAlternates)
+{
+$this->langAlternates = $langAlternates;
+return $this;
+}
+public function addLangAlternate($href, $hrefLang)
+{
+$this->langAlternates[$href] = $hrefLang;
+return $this;
+}
+public function removeLangAlternate($href)
+{
+unset($this->langAlternates[$href]);
+return $this;
+}
+public function hasLangAlternate($href)
+{
+return isset($this->langAlternates[$href]);
+}
+public function getLangAlternates()
+{
+return $this->langAlternates;
+}
+public function addOEmbedLink($title, $link)
+{
+$this->oembedLinks[$title] = $link;
+return $this;
+}
+public function getOEmbedLinks()
+{
+return $this->oembedLinks;
+}
+private function normalize($meta)
+{
+if (is_string($meta)) {
+return array($meta, array());
+}
+return $meta;
+}
+}
+}
+namespace Exporter\Source
+{
+interface SourceIteratorInterface extends \Iterator
+{
+}
+}
+namespace Sonata\SeoBundle\Sitemap
+{
+use Exporter\Source\ChainSourceIterator;
+use Exporter\Source\SourceIteratorInterface;
+class SourceManager implements SourceIteratorInterface
+{
+protected $sources;
+public function __construct()
+{
+$this->sources = new \ArrayIterator();
+}
+public function addSource($group, SourceIteratorInterface $source, array $types = array())
+{
+if (!isset($this->sources[$group])) {
+$this->sources[$group] = new \stdClass();
+$this->sources[$group]->sources = new ChainSourceIterator();
+$this->sources[$group]->types = array();
+}
+$this->sources[$group]->sources->addSource($source);
+if ($types) {
+$this->sources[$group]->types += array_diff($types, $this->sources[$group]->types);
+}
+}
+public function current()
+{
+return $this->sources->current();
+}
+public function next()
+{
+$this->sources->next();
+}
+public function key()
+{
+return $this->sources->key();
+}
+public function valid()
+{
+return $this->sources->valid();
+}
+public function rewind()
+{
+$this->sources->rewind();
+}
+}
+}
+namespace Sonata\SeoBundle\Twig\Extension
+{
+use Sonata\SeoBundle\Seo\SeoPageInterface;
+class SeoExtension extends \Twig_Extension
+{
+protected $page;
+protected $encoding;
+public function __construct(SeoPageInterface $page, $encoding)
+{
+$this->page = $page;
+$this->encoding = $encoding;
+}
+public function getFunctions()
+{
+return array(
+new \Twig_SimpleFunction('sonata_seo_title', array($this,'getTitle'), array('is_safe'=> array('html'))),
+new \Twig_SimpleFunction('sonata_seo_metadatas', array($this,'getMetadatas'), array('is_safe'=> array('html'))),
+new \Twig_SimpleFunction('sonata_seo_html_attributes', array($this,'getHtmlAttributes'), array('is_safe'=> array('html'))),
+new \Twig_SimpleFunction('sonata_seo_head_attributes', array($this,'getHeadAttributes'), array('is_safe'=> array('html'))),
+new \Twig_SimpleFunction('sonata_seo_link_canonical', array($this,'getLinkCanonical'), array('is_safe'=> array('html'))),
+new \Twig_SimpleFunction('sonata_seo_lang_alternates', array($this,'getLangAlternates'), array('is_safe'=> array('html'))),
+new \Twig_SimpleFunction('sonata_seo_oembed_links', array($this,'getOembedLinks'), array('is_safe'=> array('html'))),
+);
+}
+public function getName()
+{
+return'sonata_seo';
+}
+public function renderTitle()
+{
+echo $this->getTitle();
+}
+public function getTitle()
+{
+return sprintf('<title>%s</title>', strip_tags($this->page->getTitle()));
+}
+public function renderMetadatas()
+{
+echo $this->getMetadatas();
+}
+public function getMetadatas()
+{
+$html ='';
+foreach ($this->page->getMetas() as $type => $metas) {
+foreach ((array) $metas as $name => $meta) {
+list($content, $extras) = $meta;
+if (!empty($content)) {
+$html .= sprintf("<meta %s=\"%s\" content=\"%s\" />\n",
+$type,
+$this->normalize($name),
+$this->normalize($content)
+);
+} else {
+$html .= sprintf("<meta %s=\"%s\" />\n",
+$type,
+$this->normalize($name)
+);
+}
+}
+}
+return $html;
+}
+public function renderHtmlAttributes()
+{
+echo $this->getHtmlAttributes();
+}
+public function getHtmlAttributes()
+{
+$attributes ='';
+foreach ($this->page->getHtmlAttributes() as $name => $value) {
+$attributes .= sprintf('%s="%s" ', $name, $value);
+}
+return rtrim($attributes);
+}
+public function renderHeadAttributes()
+{
+echo $this->getHeadAttributes();
+}
+public function getHeadAttributes()
+{
+$attributes ='';
+foreach ($this->page->getHeadAttributes() as $name => $value) {
+$attributes .= sprintf('%s="%s" ', $name, $value);
+}
+return rtrim($attributes);
+}
+public function renderLinkCanonical()
+{
+echo $this->getLinkCanonical();
+}
+public function getLinkCanonical()
+{
+if ($this->page->getLinkCanonical()) {
+return sprintf("<link rel=\"canonical\" href=\"%s\"/>\n", $this->page->getLinkCanonical());
+}
+}
+public function renderLangAlternates()
+{
+echo $this->getLangAlternates();
+}
+public function getLangAlternates()
+{
+$html ='';
+foreach ($this->page->getLangAlternates() as $href => $hrefLang) {
+$html .= sprintf("<link rel=\"alternate\" href=\"%s\" hreflang=\"%s\"/>\n", $href, $hrefLang);
+}
+return $html;
+}
+public function getOembedLinks()
+{
+$html ='';
+foreach ($this->page->getOEmbedLinks() as $title => $link) {
+$html .= sprintf("<link rel=\"alternate\" type=\"application/json+oembed\" href=\"%s\" title=\"%s\" />\n", $link, $title);
+}
+return $html;
+}
+private function normalize($string)
+{
+return htmlentities(strip_tags($string), ENT_COMPAT, $this->encoding);
+}
+}
+}

@@ -32,7 +32,7 @@ class DescriptorRepository extends \Doctrine\ORM\EntityRepository
 
 
             GROUP BY tot.id
-            HAVING breakdownCount > 0 AND category = :category
+            HAVING breakdownCount >= 0 AND category = :category
             ORDER BY breakdownCount DESC
         ";
         $em = $this->getEntityManager();

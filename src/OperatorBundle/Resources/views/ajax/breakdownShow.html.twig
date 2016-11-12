@@ -1,68 +1,76 @@
-
-
 {% set difference = date(breakdown.stop).diff(date(breakdown.start)) %}
 {% set leftDays = difference.days %}
 
-<table>
-    <th>breakdown #{{ breakdown.id }} {% if breakdown.closed > 0 %} (closed) {% endif %}</th>
-    <tr>
-        <th>param</th>
-        <th>value</th>
-    </tr>
-    <tr>
-        <td>Created</td>
-        <td>{{ breakdown.created|date("Y-m-d H:m") }}</td>
-    </tr>
-    <tr>
-        <td>Start</td>
-        <td>{{ breakdown.start|date("Y-m-d H:m") }}</td>
-    </tr>
-    <tr>
-        <td>Stop</td>
-        <td>{{ breakdown.stop|date("Y-m-d H:m") }}</td>
-    </tr>
-    <tr>
-        <td>Length</td>
-        <td>{{ breakdown.start|timeDiff(breakdown.stop) }}</td>
-    </tr>
-    <tr>
-        <td>Descriptors</td>
-        <td>
-            {% for descriptor in breakdown.descriptors %}
-                {% if descriptor.category.id == 1 %} {{ descriptor.label }}{% endif %}
-            {% endfor %}
-             |
-            {% for descriptor in breakdown.descriptors %}
-                {% if descriptor.category.id == 2 %} {{ descriptor.label }}{% endif %}
-            {% endfor %}
-             >
-            {% for descriptor in breakdown.descriptors %}
-                {% if descriptor.category.id == 3 %} {{ descriptor.label }}{% endif %}
-            {% endfor %}
-             ~
-            {% for descriptor in breakdown.descriptors %}
-                {% if descriptor.category.id == 4 %} {{ descriptor.label }}{% endif %}
-            {% endfor %}
-        </td>
-    </tr>
-    <tr>
-        <td>Interfero:</td>
-        <td>
-            {% set on = 0 %}
-            {% set off = 0 %}
+<div class="row" style="font-size:2em;">
+    <div class="col-lg-12">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Created</th>
+                <td>{% if breakdown.createdAt %}{{ breakdown.createdAt|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Created by</th>
+                <td>{% if breakdown.createdBy %}{{ breakdown.createdBy.name   }}{% endif %}</td>
+            </tr>
+            {% if breakdown.boringMachines|length>0 %}
+                <tr>
+                    <th>Updated by</th>
+                    <td>
+                        <ul>
+                            {% for boringMachine in breakdown.boringMachines  %}
+                                <li>{{ boringMachine.createdAt|date('Y-m-d H:i') }} by {{ boringMachine.createdBy.name }} </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <th>Start</th>
+                <td>{% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Stop</th>
+                <td>{% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Length</th>
+                <td>{% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}</td>
+            </tr>
 
-            {% for interferoElement in breakdown.breakdownsInterferos %}
-                {#Antenna {{ interferoElement.interfero.antenna }} Band {{ interferoElement.interfero.band }}#}
-                {% if  interferoElement.status == true %} {% set on = 1 + on %}{% else %} {% set off = off+1 %}{% endif %}
-            {% endfor %}
-            {{ 100 * on // (on + off) }}% ON
+            <tr>
+                <th>Closed</th>
+                <td>
+                    {% if breakdown.closed %}
+                        <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Descriptors</th>
+                <td>
+                    <ul class="list-inline">
+                        {% for element in breakdown.descriptors|descriptor() %}
+                            <li>
+                            <span class="label label-default" style="background-color: {{ element.category.color }}">
+                                {{ element.label }}
+                            </span>
 
-        </td>
-    </tr>
-    {% if breakdown.description is not null %}
-    <tr>
-        <td>Description</td>
-        <td>{{ breakdown.description|raw }}</td>
-    </tr>
-    {% endif %}
-</table>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% if breakdown.description is not null %}
+                <tr>
+                    <th>Description</th>
+                    <td>{{ breakdown.description|raw }}</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</div>

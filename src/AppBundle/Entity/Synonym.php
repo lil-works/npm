@@ -4,19 +4,26 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use ManagerBundle\Entity\PMElement;
-use Symfony\Component\Validator\Constraints as Assert;
-use ManagerBundle\Validator\Constraints as AcmeAssert;
+
 
 /**
  * Synonym
  *
- * @ORM\Table()
+ * @ORM\Table(name="synonym",uniqueConstraints={@ORM\UniqueConstraint(name="tag", columns={"tag"})})
  * @ORM\Entity(repositoryClass="AppBundle\Entity\SynonymRepository")
- *
+ * @ORM\HasLifecycleCallbacks
  */
 class Synonym
 {
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preTag()
+    {
+        $this->tag = strtolower( preg_replace("/[^A-Za-z0-9]/", "", $this->label) );
+    }
 
 
     /**
@@ -33,7 +40,6 @@ class Synonym
      * @var string
      *
      * @ORM\Column(name="label", type="string", length=100,unique=true)
-     * @AcmeAssert\SynonymElement
      */
     private $label;
 
@@ -42,6 +48,13 @@ class Synonym
      * @ORM\JoinColumn(name="descriptor", referencedColumnName="id")
      */
     private $descriptor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tag", type="string" , length=50 , nullable=true)
+     */
+    private $tag;
 
 
     /**
@@ -78,6 +91,7 @@ class Synonym
         return $this->label;
     }
 
+
     /**
      * Set descriptor
      *
@@ -100,5 +114,29 @@ class Synonym
     public function getDescriptor()
     {
         return $this->descriptor;
+    }
+
+    /**
+     * Set tag
+     *
+     * @param string $tag
+     *
+     * @return Synonym
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Get tag
+     *
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->tag;
     }
 }

@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use AppBundle\Entity\Synonym;
-use AppBundle\Form\SynonymType;
+use AppBundle\Entity\Descriptor;
+use ManagerBundle\Filter\SynonymFilter;
 
 /**
  * Synonym controller.
@@ -15,18 +16,63 @@ use AppBundle\Form\SynonymType;
  */
 class SynonymController extends Controller
 {
+
+
     /**
      * Lists all Synonym entities.
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Manager • Synonym")
+            ->addMeta('name', 'description', "List of synonym")
+        ;
+
         $em = $this->getDoctrine()->getManager();
 
-        $synonyms = $em->getRepository('AppBundle:Synonym')->findAll();
+        $form = $this->get('form.factory')->create(SynonymFilter::class);
 
-        return $this->render('ManagerBundle:synonym:index.html.twig', array(
-            'synonyms' => $synonyms,
+        $dql = "
+            SELECT
+                s,
+                s.id as id,
+                s.label as label ,
+                d.id as descriptorId,
+                d.label as descriptorLabel
+
+            FROM AppBundle:Synonym s
+
+            LEFT JOIN AppBundle:Descriptor d WITH d.id = s.descriptor
+            WHERE s.label LIKE :label
+            GROUP BY s.id
+            HAVING descriptorLabel LIKE :descriptor OR :descriptor IS NULL
+              ";
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('label', '%%');
+        $query->setParameter('descriptor', '%%');
+
+        if ($request->query->has($form->getName())) {
+            $form->submit($request->query->get($form->getName()));
+            $data = $form->getData();
+            $query->setParameter('label',"%" . $data['label'] . "%");
+            $query->setParameter('descriptor', $data['descriptor']);
+        }
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10,
+            array('wrap-queries'=>true)
+        );
+
+        return $this->render('ManagerBundle:Synonym:index.html.twig', array(
+            'pagination'=>$pagination,
+            'form' => $form->createView(),
         ));
     }
 
@@ -36,21 +82,85 @@ class SynonymController extends Controller
      */
     public function newAction(Request $request)
     {
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " • Create synonym")
+            ->addMeta('name', 'description', "Create a synonym")
+        ;
+
         $synonym = new Synonym();
-        $form = $this->createForm('AppBundle\Form\SynonymType', $synonym);
+
+        $form = $this->createForm('ManagerBundle\Form\SynonymType', $synonym);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($synonym);
+
+            if(strstr($synonym->getLabel(),",")){
+                foreach(explode(",",$synonym->getLabel()) as $newLabel){
+                    $newSynonym = new Synonym();
+                    $newSynonym->setLabel($newLabel);
+                    $newSynonym->setDescriptor($synonym->getDescriptor());
+                    $em->persist($newSynonym);
+                }
+                $r = $this->redirectToRoute('manager_synonym_show_descriptor', array('id' => $synonym->getDescriptor()->getId()));
+            }else{
+                $em->persist($synonym);
+                $r = $this->redirectToRoute('manager_synonym_show', array('id' => $synonym->getId()));
+            }
+
+
             $em->flush();
 
-            return $this->redirectToRoute('manager_synonym_show', array('id' => $synonym->getId()));
+            return $r;
         }
 
-        return $this->render('ManagerBundle:synonym:new.html.twig', array(
+        return $this->render('ManagerBundle:Synonym:new.html.twig', array(
             'synonym' => $synonym,
             'form' => $form->createView(),
+        ));
+    }
+    /**
+     * Finds and displays a Synonym from Descriptor entity.
+     * @ParamConverter("descriptor", class="AppBundle\Entity\Descriptor",options={"mapping": {"id": "id"  }})
+     * @Method("GET")
+     */
+    public function descriptorAction(Request $request, Descriptor $descriptor)
+    {
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " • synonym for descriptor: ".$descriptor->getLabel())
+            ->addMeta('name', 'description', "All synonyms for ".$descriptor->getLabel())
+        ;
+
+
+        $form = $this->createForm('ManagerBundle\Form\DescriptorSynonymType', $descriptor);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            if(strstr($form["synonymList"]->getData(),",")){
+                foreach(explode(",",$form["synonymList"]->getData()) as $newLabel){
+                    $newSynonym = new Synonym();
+                    $newSynonym->setLabel($newLabel);
+                    $newSynonym->setDescriptor($descriptor);
+                    $em->persist($newSynonym);
+                }
+
+            }else{
+                $newSynonym = new Synonym();
+                $newSynonym->setLabel($form["synonymList"]->getData());
+                $newSynonym->setDescriptor($descriptor);
+                $em->persist($newSynonym);
+
+            }
+            $em->flush();
+        }
+        return $this->render('ManagerBundle:Synonym:descriptor.html.twig', array(
+            'descriptor' => $descriptor,
+            'form' => $form->createView()
+
         ));
     }
 
@@ -61,9 +171,15 @@ class SynonymController extends Controller
      */
     public function showAction(Synonym $synonym)
     {
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " • synonym: ".$synonym->getLabel())
+            ->addMeta('name', 'description', "Details for ".$synonym->getLabel())
+        ;
+
         $deleteForm = $this->createDeleteForm($synonym);
 
-        return $this->render('ManagerBundle:synonym:show.html.twig', array(
+        return $this->render('ManagerBundle:Synonym:show.html.twig', array(
             'synonym' => $synonym,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -76,8 +192,14 @@ class SynonymController extends Controller
      */
     public function editAction(Request $request, Synonym $synonym)
     {
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " • Edit synonym: ".$synonym->getLabel())
+            ->addMeta('name', 'description', "Edit ".$synonym->getLabel())
+        ;
+
         $deleteForm = $this->createDeleteForm($synonym);
-        $editForm = $this->createForm('AppBundle\Form\SynonymType', $synonym);
+        $editForm = $this->createForm('ManagerBundle\Form\SynonymType', $synonym);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -88,9 +210,9 @@ class SynonymController extends Controller
             return $this->redirectToRoute('manager_synonym_edit', array('id' => $synonym->getId()));
         }
 
-        return $this->render('ManagerBundle:synonym:edit.html.twig', array(
+        return $this->render('ManagerBundle:Synonym:edit.html.twig', array(
             'synonym' => $synonym,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -98,20 +220,20 @@ class SynonymController extends Controller
     /**
      * Deletes a Synonym entity.
      * @ParamConverter("synonym", class="AppBundle\Entity\Synonym",options={"mapping": {"id": "id"  }})
-     * @Method("DELETE")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, Synonym $synonym)
     {
         $form = $this->createDeleteForm($synonym);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($synonym);
             $em->flush();
-        }
+        //}
 
-        return $this->redirectToRoute('manager_synonym_index');
+        return $this->redirectToRoute('manager_synonym');
     }
 
     /**

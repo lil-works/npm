@@ -63,7 +63,7 @@ class DefaultController extends Controller
             $descriptors = json_encode($descriptors);
         }
 
-        return $this->render('AnalyzerBundle:Default:descriptorBar2.html.twig',
+        return $this->render('AnalyzerBundle:Default:descriptorBar.html.twig',
             array(
                 'breakdowns'=>$breakdowns,
                 'descriptors'=>$descriptors,
@@ -115,6 +115,7 @@ class DefaultController extends Controller
             )
         );
     }
+
     public function breakdownTimelineAction()
     {
         return $this->render('AnalyzerBundle:Default:breakdownTimeline.html.twig');

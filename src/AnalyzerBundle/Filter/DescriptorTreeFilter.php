@@ -27,7 +27,7 @@ class DescriptorTreeFilter extends AbstractType
         'choice_label' => function ($obj) { return   $obj->getLabel() ; },
         'required' => true ,
         'mapped'=> true,
-        'expanded' => false ,
+        'expanded' => true ,
         'multiple' => true
         ))
             ->add('start', DateTimeType::class,array('required' => false ))

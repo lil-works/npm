@@ -7,6 +7,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AjaxController extends Controller
 {
+
+    public function deleteSynonymAction(Request $request){
+        $response = new Response();
+        $em = $this->getDoctrine()->getManager();
+        foreach( $request->get('ids') as $id ){
+            $synonym = $em->getRepository('AppBundle:Synonym')->find($id);
+            $em->remove($synonym);
+        }
+        $em->flush();
+
+        return $response;
+    }
     /*
     public function searchOneByLabelRoute(Request $request,$repository){
         $em = $this->getDoctrine()->getManager();

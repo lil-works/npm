@@ -34,9 +34,6 @@ class DescriptorFilter extends AbstractType
         ))->add('label', TextType::class, array(
             'required' => false ,
             'mapped'=> true
-        ))->add('orderLabel', RadioType::class, array(
-            'required' => false ,
-            'mapped'=> true
         ))
 
 

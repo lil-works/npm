@@ -23,10 +23,18 @@ class DescriptorController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Manager • Descriptor")
+            ->addMeta('name', 'description', "List of descriptorx")
+        ;
+
+
         $form = $this->get('form.factory')->create(DescriptorFilter::class);
 
         $em    = $this->get('doctrine.orm.entity_manager');
         $dql   = "SELECT
+                a,
                 a.id,
                 a.label,
                 b.label as category_label ,
@@ -40,7 +48,9 @@ class DescriptorController extends Controller
                  LEFT JOIN AppBundle:DescriptorCategory b WITH b.id = a.category
                  LEFT JOIN AppBundle:Synonym c WITH c.descriptor = a.id
                   WHERE a.category IN (:categories) AND a.label LIKE :label
-                  GROUP BY  a.id";
+                  GROUP BY  a.id
+
+                  ";
         $query = $em->createQuery($dql);
 
         $query->setParameter('categories', '1,2,3,4');
@@ -53,6 +63,9 @@ class DescriptorController extends Controller
             foreach($data["category"]->toArray() as $category){
                 array_push($categories,$category->getId());
             }
+            if(count($categories) == 0){
+                $categories = array(1,2,3,4);
+            }
 
             $query->setParameter('categories', $categories);
             $query->setParameter('label', "%".$data["label"]."%");
@@ -62,8 +75,10 @@ class DescriptorController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            20
+            10,
+            array('wrap-queries'=>true)
         );
+
         return $this->render('ManagerBundle:Descriptor:index.html.twig', array(
             'pagination' => $pagination,
             'form' => $form->createView()

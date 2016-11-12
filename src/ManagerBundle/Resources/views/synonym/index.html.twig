@@ -1,41 +1,134 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Synonym list</h1>
-    <ul>
-        <li>
-            <a href="{{ path('manager_synonym_new') }}">Create a new entry</a>
-        </li>
-    </ul>
-    <table class="entityList">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Descriptor</th>
-                <th>Label</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for synonym in synonyms %}
-            <tr>
-                <td><a href="{{ path('manager_synonym_show', { 'id': synonym.id }) }}">{{ synonym.id }}</a></td>
-                <td>{{ synonym.descriptor.label }}</td>
-                <td>{{ synonym.label }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('manager_synonym_show', { 'id': synonym.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('manager_synonym_edit', { 'id': synonym.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Synonym list</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-sm-6">
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+            <div>
+                <a href="{{ path('manager_synonym_new') }}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Create a new entry
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-4  col-sm-6">
+            <form method="get" action="" name="synonym_filter" class="form">
+                {{ form_start(form) }}
+                {{ form_label(form.label) }}
+                {{ form_widget(form.label, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_label(form.descriptor) }}
+                {{ form_widget(form.descriptor, { 'attr': {'class': 'form-control'} }) }}
+                <input class="btn btn-default" type="submit" value="search" />
+                {{ form_end(form) }}
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>{% trans %}Synonym list{% endtrans %}</h2>
+            {% if pagination|length > 0%}
+            <p>
+                <span class="label label-info">synonyms found</span> {{ pagination.getTotalItemCount }}
+            </p>
+        </div>
+
+        <table class="table myPaginator">
+            <thead>
+            <tr>
+
+                <th>
+                    Select
+                    <input type="checkbox" name="select" onclick="toggleInPaginator();">
+                    <input id="myPaginatorDelete" class="btn btn-default" type="submit" value="deleteSelection" onclick="deleteSelection('ajax_synonym_delete');" />
+                </th>
+
+                <th>
+
+                </th>
+
+                {% set direction = pagination.getDirection() %}
+                <th{% if pagination.isSorted('d.label') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'descriptor', 'd.label') }}
+                </th>
+                {% set direction = pagination.getDirection() %}
+                <th{% if pagination.isSorted('s.label') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'label', 's.label') }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for synonym in pagination %}
+                <tr>
+                    <td>
+                        <div class="checkbox myPaginatorRow">
+                            <input id="paginator_{{ synonym.id }}" type="checkbox" name="select">
+                        </div>
+                    </td>
+                    <td>
+
+
+                        <ul class="list-inline">
+                            <li>
+                                <a href="{{ path('manager_synonym_show', { 'id': synonym.id }) }}">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    show
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('manager_synonym_edit', { 'id': synonym.id }) }}">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    edit
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('manager_synonym_delete', { 'id': synonym.id }) }}">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    delete
+                                </a>
+                            </li>
+
+                        </ul>
+                    </td>
+
+                    <td>
+                        <a href="{{ path('manager_synonym_show_descriptor', { 'id': synonym.descriptorId  }) }}">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            {{ synonym.descriptorLabel }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ synonym.label }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>
+                    <span class="label label-warning">
+                       synonym not found... sorry
+                    </span>
+            </p>
+        {% endif %}
+    </div>
+
+
+
+    <script>
+        initMyPaginator();
+    </script>
 
 {% endblock %}
