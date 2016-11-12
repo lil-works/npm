@@ -1,8 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 
-<div class="row">
-    <div class="col-lg-4 col-lg-offset-4">
+
     <h2 class="form-signin-heading">{% trans %}sign in{% endtrans %}</h2>
 
     {% if error %}
@@ -30,5 +29,3 @@
 
         <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"   class="btn btn-lg btn-primary btn-block" />
     </form>
-    </div>
-</div>
