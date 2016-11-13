@@ -106,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DescriptorRepository.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DescriptorRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/DescriptorRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28947368" vertical-offset="6357" max-vertical-offset="9705">
+            <state vertical-scroll-proportion="-3.96" vertical-offset="6357" max-vertical-offset="9705">
               <caret line="438" column="32" selection-start-line="438" selection-start-column="32" selection-end-line="438" selection-end-column="32" />
               <folding>
                 <marker date="1478996739000" expanded="true" signature="409:1250" placeholder="SELECT DISTI..id..." />
@@ -166,6 +166,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AppKernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="1020">
+              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoringMachine.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/BoringMachine.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6760563" vertical-offset="2565" max-vertical-offset="3390">
+              <caret line="203" column="38" selection-start-line="203" selection-start-column="38" selection-end-line="203" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="filterBox.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/public/js/filterBox.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -186,26 +206,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manageFormBreakdown.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/public/js/manageFormBreakdown.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="6090">
-              <caret line="89" column="73" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Breakdown/new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.541668" vertical-offset="143" max-vertical-offset="1665">
-              <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -216,7 +216,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ManagerBundle/Form/SynonymType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Descriptor.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Synonym.php" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Form/DescriptorSynonymType.php" />
@@ -267,6 +266,7 @@
         <option value="$PROJECT_DIR$/src/AnalyzerBundle/Resources/public/js/filterBox.js" />
         <option value="$PROJECT_DIR$/src/AnalyzerBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/DescriptorRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/BoringMachine.php" />
       </list>
     </option>
   </component>
@@ -1437,13 +1437,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="345">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/breakdownTimeline.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06760564" vertical-offset="117" max-vertical-offset="1005">
@@ -1559,17 +1552,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/UserBundle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="285">
           <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1827,7 +1814,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/DescriptorRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28947368" vertical-offset="6357" max-vertical-offset="9705">
+        <state vertical-scroll-proportion="-3.96" vertical-offset="6357" max-vertical-offset="9705">
           <caret line="438" column="32" selection-start-line="438" selection-start-column="32" selection-end-line="438" selection-end-column="32" />
           <folding>
             <marker date="1478996739000" expanded="true" signature="409:1250" placeholder="SELECT DISTI..id..." />
@@ -1880,6 +1867,22 @@
             <marker date="1478996739000" expanded="true" signature="24403:24643" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
             <marker date="1478996739000" expanded="true" signature="24678:24812" placeholder="SELECT d1.id..descriptor..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/BoringMachine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6760563" vertical-offset="2565" max-vertical-offset="3390">
+          <caret line="203" column="38" selection-start-line="203" selection-start-column="38" selection-end-line="203" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

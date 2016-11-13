@@ -46,15 +46,15 @@ class BoringMachine
     private $breakdown;
 
     /**
-     * @var json_array
+     * @var text
      *
-     * @ORM\Column(name="breakdownBefore", type="json_array", nullable=true)
+     * @ORM\Column(name="breakdownBefore", type="text", nullable=true)
      */
     private $breakdownBefore;
     /**
-     * @var json_array
+     * @var text
      *
-     * @ORM\Column(name="breakdownAfter", type="json_array" , nullable=true)
+     * @ORM\Column(name="breakdownAfter", type="text" , nullable=true)
      */
     private $breakdownAfter;
     /**
@@ -177,7 +177,7 @@ class BoringMachine
      *
      * @return BoringMachine
      */
-    public function setBreakdownBefore(\json $breakdownBefore)
+    public function setBreakdownBefore($breakdownBefore)
     {
         $this->breakdownBefore = $breakdownBefore;
 
@@ -201,7 +201,7 @@ class BoringMachine
      *
      * @return BoringMachine
      */
-    public function setBreakdownAfter(\json $breakdownAfter)
+    public function setBreakdownAfter( $breakdownAfter)
     {
         $this->breakdownAfter = $breakdownAfter;
 
