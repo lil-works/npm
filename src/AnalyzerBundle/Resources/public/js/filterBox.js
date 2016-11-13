@@ -44,7 +44,7 @@ function durationPreset(way,value,unity){
     $("#duration-unity").val(unity)
     if(way == ">"){
         $("#duration-min").val("1");
-        $("#duration-max").val("0");
+        $("#duration-max").val(null);
     }else{
         $("#duration-min").val("0");
         $("#duration-max").val("1");
@@ -198,17 +198,7 @@ function setDateRangePicker(formId,dpId,d1Id,d2Id){
     $("#filterBoxField-stop").hide();
     $("#filterBoxField-duration").hide();
 
-    /*
-     * Rewrite submit
 
-    $('#'+formId).on('keyup keypress', function(e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) {
-            e.preventDefault();
-            return false;
-        }
-    });
-     */
     $('#'+formId).submit(function( e ) {
 
 
@@ -221,48 +211,51 @@ function setDateRangePicker(formId,dpId,d1Id,d2Id){
     });
 
     //create picker field
-    $('<div class="filterBoxField"><label for="'+dpId+'">date picker</label><input id="'+dpId+'" value="" size="40"></div>').insertBefore($("#filterBoxField-start"));
+    $('<div class="filterBoxField"><label for="'+dpId+'">date picker</label><input class="form-control" id="'+dpId+'" value="" size="40"></div>').insertBefore($("#filterBoxField-start"));
 
-    pickerPresetHtml = '<ul class="filterPresets">' +
-    '<li id="dpPreset-forever" onclick="dpPreset(\''+dpId+'\',\'forever\')">forever</li>' +
-    '<li id="dpPreset-pastYear" onclick="dpPreset(\''+dpId+'\',\'pastYear\')">past year</li>' +
-    '<li id="dpPreset-pastMonth" onclick="dpPreset(\''+dpId+'\',\'pastMonth\')">past month</li>' +
-    '<li id="dpPreset-pastWeek" onclick="dpPreset(\''+dpId+'\',\'pastWeek\')">past week</li>' +
-    '<li id="dpPreset-pastDay" onclick="dpPreset(\''+dpId+'\',\'pastDay\')">past day</li>' +
+    pickerPresetHtml = '<ul class="filterPresets list list-inline">' +
+    '<li id="dpPreset-forever" onclick="dpPreset(\''+dpId+'\',\'forever\')"><button type="button" class="btn btn-outline-secondary">forever</button></li>' +
+    '<li id="dpPreset-pastYear" onclick="dpPreset(\''+dpId+'\',\'pastYear\')"><button type="button" class="btn btn-outline-secondary">past year</button></li>' +
+    '<li id="dpPreset-pastMonth" onclick="dpPreset(\''+dpId+'\',\'pastMonth\')"><button type="button" class="btn btn-outline-secondary">past month</button></li>' +
+    '<li id="dpPreset-pastWeek" onclick="dpPreset(\''+dpId+'\',\'pastWeek\')"><button type="button" class="btn btn-outline-secondary">past week</button></li>' +
+    '<li id="dpPreset-pastDay" onclick="dpPreset(\''+dpId+'\',\'pastDay\')"><button type="button" class="btn btn-outline-secondary">past day</button></li>' +
     '</ul>';
 
     $(pickerPresetHtml).insertAfter($("#"+dpId));
 
     //create duration field
-    $('<div class="filterBoxField" id="filterBoxField-duration-rewrited">' +
-    '<label for="duration-unity">select time unity</label>' +
-    '<select name="duration-unity" id="duration-unity"> '+
+    $('<div class="row filterBoxField form-group" id="filterBoxField-duration-rewrited">' +
+    '<div class="col-lg-4">'+
+    '<label for="duration-unity">time unity</label>' +
+    '<select class="form-control" name="duration-unity" id="duration-unity"> '+
     '<option value="second" selected="selected">second</option>'+
     '<option value="minute">minute</option>'+
     '<option value="hour">hour</option>'+
     '<option value="day">day</option>'+
     '<option value="week">week</option>'+
     '</select>'+
+    '</div>'+
+    '<div class="col-lg-4">'+
     '<label for="duration-min">min duration</label>' +
-    '<input id="duration-min" value="" size="10">' +
+    '<input class="form-control" id="duration-min" value="" size="10">' +
+    '</div>'+
+    '<div class="col-lg-4">'+
     '<label for="duration-max">max duration</label>' +
-    '<input id="duration-max" value="" size="10">' +
-
+    '<input class="form-control" id="duration-max" value="" size="10">' +
+    '</div>'+
 
     '</div>').insertBefore($("#filterBoxField-duration"));
 
 
     formToDuration();
 
-    pickerPresetHtml = '<ul class="filterPresets">' +
-    '<li onclick="durationPreset(\'<\',1,\'minute\')"> < 1 minute </li>' +
-    '<li onclick="durationPreset(\'<\',1,\'day\')"> < 1 day </li>' +
-    '<li onclick="durationPreset(\'<\',1,\'hour\')"> < 1 hour </li>' +
-    '<li onclick="durationPreset(\'<\',1,\'week\')"> < 1 week </li>' +
-    '<li onclick="durationPreset(\'>\',1,\'minute\')"> > 1 minute </li>' +
-    '<li onclick="durationPreset(\'>\',1,\'day\')"> > 1 day </li>' +
-    '<li onclick="durationPreset(\'>\',1,\'hour\')"> > 1 hour </li>' +
-    '<li onclick="durationPreset(\'>\',1,\'week\')"> > 1 week </li>' +
+    pickerPresetHtml = '<hr><ul class="filterPresets list list-inline">' +
+    '<li onclick="durationPreset(\'<\',1,\'hour\')"><button type="button" class="btn btn-outline-secondary">< 1 hour</button></li>' +
+    '<li onclick="durationPreset(\'<\',1,\'day\')"><button type="button" class="btn btn-outline-secondary">< 1 day</button></li>' +
+    '<li onclick="durationPreset(\'<\',1,\'week\')"><button type="button" class="btn btn-outline-secondary">< 1 week</button></li>' +
+    '<li onclick="durationPreset(\'>\',1,\'day\')"><button type="button" class="btn btn-outline-secondary">> 1 day</button></li>' +
+    '<li onclick="durationPreset(\'>\',1,\'hour\')"><button type="button" class="btn btn-outline-secondary">> 1 hour</button></li>' +
+    '<li onclick="durationPreset(\'>\',1,\'week\')"><button type="button" class="btn btn-outline-secondary">> 1 week</button></li>' +
     '</ul>';
 
     $(pickerPresetHtml).appendTo($("#filterBoxField-duration-rewrited"));
@@ -337,6 +330,25 @@ function draw(nodes,edges) {
         edges: edges
     };
     var options = {
+        interaction:{
+            dragNodes:true,
+            dragView: true,
+            hideEdgesOnDrag: false,
+            hideNodesOnDrag: false,
+            hover: false,
+            hoverConnectedEdges: true,
+            keyboard: {
+                enabled: true,
+                speed: {x: 10, y: 10, zoom: 0.02},
+                bindToWindow: true
+            },
+            multiselect: false,
+            navigationButtons: true,
+            selectable: true,
+            selectConnectedEdges: true,
+            tooltipDelay: 300,
+            zoomView: true
+        },
         autoResize: true,
         height: '500px',
         width: '100%',

@@ -15,11 +15,11 @@
         {% for breakdown in lastBreakdowns %}
            <li>
                 #{{ breakdown.id }}
-                {% if breakdown.created %}{{ breakdown.created|date('Y-m-d H:i') }}{% endif %}
+                {% if breakdown.createdAt %}{{ breakdown.createdAt|date('Y-m-d H:i') }}{% endif %}
                 {% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}
                 {% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}
                 {% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}
-                {% if breakdown.notFinished %}Yes{% else %}No{% endif %}
+
                 {% if breakdown.closed %}Yes{% else %}No{% endif %}
                 {% for element in breakdown.descriptors %}
                 {{ element.label }}

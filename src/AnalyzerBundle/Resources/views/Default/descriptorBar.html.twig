@@ -16,6 +16,7 @@
                 Filters
             </h3>
             <form class="form" method="get" action="" name="descriptorTree_filter" id="descriptorTree_filter">
+
                 <div id="formErrors">
                     {{ form_errors(form.category) }}
                     {{ form_errors(form.start) }}
@@ -26,35 +27,52 @@
                     {{ form_errors(form.timePonderation) }}
                     {{ form_errors(form.interferoPonderation) }}
                 </div>
-                <div class="filterBoxField">
-                    {{ form_label(form.category) }}
-                    {{ form_widget(form.category) }}
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="filterBoxField">
+                            {{ form_label(form.category) }}
+                            {{ form_widget(form.category) }}
+                        </div>
+                        <div class="filterBoxField" id="filterBoxField-ponderation">
+                            {{ form_label(form.timePonderation) }}
+                            {{ form_widget(form.timePonderation) }}
+                            <br/>
+                            {{ form_label(form.interferoPonderation) }}
+                            {{ form_widget(form.interferoPonderation) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="filterBoxField" id="filterBoxField-start">
+                            {{ form_label(form.start) }}
+                            {{ form_widget(form.start) }}
+                        </div>
+                        <div class="filterBoxField" id="filterBoxField-stop">
+                            {{ form_label(form.stop) }}
+                            {{ form_widget(form.stop) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="filterBoxField" id="filterBoxField-duration">
+                            {{ form_label(form.durationUnity) }}
+                            {{ form_widget(form.durationUnity) }}
+                            {{ form_label(form.minDuration) }}
+                            {{ form_widget(form.minDuration) }}
+                            {{ form_label(form.maxDuration) }}
+                            {{ form_widget(form.maxDuration) }}
+                        </div>
+                    </div>
                 </div>
-                <div class="filterBoxField" id="filterBoxField-start">
-                    {{ form_label(form.start) }}
-                    {{ form_widget(form.start) }}
-                </div>
-                <div class="filterBoxField" id="filterBoxField-stop">
-                    {{ form_label(form.stop) }}
-                    {{ form_widget(form.stop) }}
-                </div>
-                <div class="filterBoxField" id="filterBoxField-duration">
-                    {{ form_label(form.durationUnity) }}
-                    {{ form_widget(form.durationUnity) }}
-                    {{ form_label(form.minDuration) }}
-                    {{ form_widget(form.minDuration) }}
-                    {{ form_label(form.maxDuration) }}
-                    {{ form_widget(form.maxDuration) }}
-                </div>
-                <div class="filterBoxField" id="filterBoxField-ponderation">
-                    {{ form_label(form.timePonderation) }}
-                    {{ form_widget(form.timePonderation) }}
-                    <br/>
-                    {{ form_label(form.interferoPonderation) }}
-                    {{ form_widget(form.interferoPonderation) }}
-                </div>
+
+
+
+
+
                 {{ form_rest(form) }}
-                <input id="descriptorTree_filter_submit" type="submit" name="submit-filter" value="apply-filter" />
+                <button class="btn btn-default" id="descriptorTree_filter_submit" type="submit" name="submit-filter" value="apply-filter" >
+                    <i class="glyphicon glyphicon-search"></i>search breakdowns
+                </button>
             </form>
         </div>
     </div>

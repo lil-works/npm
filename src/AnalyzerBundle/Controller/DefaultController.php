@@ -29,6 +29,7 @@ class DefaultController extends Controller
 
     public function descriptorBarAction(Request $request)
     {
+
         $form = $this->get('form.factory')->create(DescriptorTreeFilter::class);
         $nodes = $edges = $descriptors  = null;
         $breakdowns = array();
@@ -48,6 +49,7 @@ class DefaultController extends Controller
                     }
                 }
             }
+
             $nodes = json_encode($nodes);
             $edges = json_encode($edges);
             $descriptors = $this->get('doctrine.orm.entity_manager')

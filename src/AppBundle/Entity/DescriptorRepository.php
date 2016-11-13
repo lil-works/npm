@@ -435,7 +435,9 @@ ORDER BY id1;";
 
     public function AnalyzerFindAll2($category, $start = null, $stop = null, $minDuration = null, $maxDuration = null)
     {
-
+        if($maxDuration == 0){
+            $maxDuration = null;
+        }
         $categoryIn = array();
         foreach ($category as $cat) {
             array_push($categoryIn, $cat->getId());

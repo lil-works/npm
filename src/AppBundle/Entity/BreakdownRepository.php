@@ -13,7 +13,7 @@ class BreakdownRepository extends \Doctrine\ORM\EntityRepository
 
     public function findLast($n = 10){
         return $this->createQueryBuilder('e')->
-        orderBy('e.created', 'DESC')->
+        orderBy('e.createdAt', 'DESC')->
         setMaxResults($n)->
         getQuery()->
         getResult();
