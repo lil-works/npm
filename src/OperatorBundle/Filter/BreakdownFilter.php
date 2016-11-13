@@ -31,12 +31,22 @@ class BreakdownFilter extends AbstractType
             },
             'class'    => 'AppBundle:Descriptor' ,
             'choice_label' => function ($obj) { return   $obj->getLabel() ; },
-            'required' => true ,
+            'required' => false ,
             'mapped'=> true,
             'expanded' => false ,
             'multiple' => true
         ))
-
+            ->add('createdBy', EntityType::class, array(
+                'choice_attr' => function($obj) {
+                    return ['user' => $obj->getUsername()];
+                },
+                'class'    => 'AppBundle:User' ,
+                'choice_label' => function ($obj) { return   $obj->getUsername() ; },
+                'required' => false ,
+                'mapped'=> true,
+                'expanded' => true ,
+                'multiple' => true
+            ))
 
         ;
     }

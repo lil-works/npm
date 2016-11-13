@@ -58,10 +58,11 @@ class BreakdownController extends Controller
                   GROUP BY a.id
                   HAVING
                   IF(:closed IS NOT NULL,:closed,'%') = a.closed
-                  AND REGEXP(GROUP_CONCAT( DISTINCT d.id SEPARATOR '####'), :descriptors) = true
+                  AND REGEXP(GROUP_CONCAT( DISTINCT d.id SEPARATOR '##'), :descriptors) = true
+                  AND ( a.createdAt IN (:createdBy) OR IF(:haveCreatedBy IS NULL , 'yes' ,'no') = 'yes' )
                  ";
         $query = $em->createQuery($dql);
-        //$query->setParameter('test', 100);
+
        // $query->setParameter('dcreated1', '2010-09-10');
        // $query->setParameter('dcreated2', '2020-09-11');
         //$query->setParameter('dstart1', '2010-08-01');
@@ -72,7 +73,8 @@ class BreakdownController extends Controller
         $query->setParameter('closed', null);
         $query->setParameter('descriptors', "#");
 
-        //$query->setParameter('notFinished', '0');
+        $query->setParameter('createdBy', null);
+        $query->setParameter('haveCreatedBy', null);
 
 
 
@@ -80,14 +82,21 @@ class BreakdownController extends Controller
         if ($request->query->has($form->getName())) {
             $form->submit($request->query->get($form->getName()));
             $data = $form->getData();
-            $categories = array();
-            /*foreach($data["category"]->toArray() as $category){
-                array_push($categories,$category->getId());
+
+            if(count($data["createdBy"])>0) {
+                $query->setParameter('createdBy', $data["createdBy"]);
+                $query->setParameter('haveCreatedBy', 1);
             }
 
-            $query->setParameter('categories', $categories);
-            $query->setParameter('label', "%".$data["label"]."%");*/
             $query->setParameter('closed', $data["closed"]);
+            if(count($data["descriptors"])>0){
+                $aDescriptor = array();
+                foreach($data["descriptors"] as $descriptor){
+                    array_push($aDescriptor,$descriptor->getId());
+                }
+var_dump('#'.implode("#|#",$aDescriptor).'#');
+                $query->setParameter('descriptors', '#'.implode("#|#",$aDescriptor).'#');
+            }
         }
 
         $paginator  = $this->get('knp_paginator');
