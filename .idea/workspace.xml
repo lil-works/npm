@@ -38,28 +38,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Breakdown/edit.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="1680">
-              <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BreakdownController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/BreakdownController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75" vertical-offset="315" max-vertical-offset="3840">
-              <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
-              <folding>
-                <marker date="1479063483000" expanded="true" signature="968:2107" placeholder="SELECT a, a...AppBundle..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="baseHome.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/baseHome.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -110,11 +88,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeDiffExtension.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TimeDiffExtension.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Twig/TimeDiffExtension.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4366812" vertical-offset="0" max-vertical-offset="687">
+            <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="600">
               <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/DefaultController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="360">
+              <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8227848" vertical-offset="0" max-vertical-offset="711">
+              <caret line="39" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -150,12 +148,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/AnalyzerBundle/Filter/DescriptorTreeFilter.php" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/show.html.twig" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/index.html.twig" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Resources/views/breakdown/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/OperatorBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Breakdown.php" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Form/BreakdownType.php" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Resources/views/Ajax/breakdownShow.html.twig" />
@@ -201,6 +197,8 @@
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/menu.html.twig" />
         <option value="$PROJECT_DIR$/src/OperatorBundle/Twig/TimeDiffExtension.php" />
+        <option value="$PROJECT_DIR$/src/OperatorBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/config/security.yml" />
       </list>
     </option>
   </component>
@@ -1229,20 +1227,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="734">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="734">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="734">
@@ -1625,7 +1609,7 @@
         <state vertical-scroll-proportion="-3.75" vertical-offset="315" max-vertical-offset="3840">
           <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
           <folding>
-            <marker date="1479063483000" expanded="true" signature="968:2107" placeholder="SELECT a, a...AppBundle..." />
+            <marker date="1479063483000" expanded="true" signature="-1:-1" placeholder="SELECT a, a...AppBundle..." />
           </folding>
         </state>
       </provider>
@@ -1688,8 +1672,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Twig/TimeDiffExtension.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4366812" vertical-offset="0" max-vertical-offset="687">
+        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="600">
           <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="360">
+          <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8227848" vertical-offset="0" max-vertical-offset="711">
+          <caret line="39" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="47" />
           <folding />
         </state>
       </provider>
