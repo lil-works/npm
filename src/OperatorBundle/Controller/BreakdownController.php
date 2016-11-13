@@ -37,7 +37,7 @@ class BreakdownController extends Controller
                 a,
                 a.id ,
                 a.createdAt ,
-                u.id,
+                u.id as userId,
                 u.name as createdBy ,
                 TIME_TO_SEC ( TIMEDIFF( a.stop, a.start )) as breakdown_length,
                 a.start,
