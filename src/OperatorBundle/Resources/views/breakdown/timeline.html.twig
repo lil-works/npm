@@ -45,9 +45,22 @@
         var items = new vis.DataSet(getTimelineData());
         console.log(items);
         // Configuration for the Timeline
-        var options = {};
+        var options = {
+
+
+        };
+
 
         // Create a Timeline
         var timeline = new vis.Timeline(container, items, options);
+        function onSelect (properties) {
+            if(properties.items > 0){
+                var route = "{{ path('operator_breakdown_edit',{id:'myId'}) }}";
+                window.location.replace(route.replace("myId",properties.items ));
+            }
+        }
+
+        timeline.on('select', onSelect);
+
     </script>
 {% endblock %}
