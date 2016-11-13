@@ -25,12 +25,16 @@ class BreakdownFilter extends AbstractType
         $builder->add('closed', CheckboxType::class, array(
             'required' => false ,
             'mapped'=> true
-        ))->add('isFinished', CheckboxType::class, array(
-            'required' => false ,
-            'mapped'=> true
-        ))->add('descriptor', TextType::class, array(
-            'required' => false ,
-            'mapped'=> true
+        ))->add('descriptors', EntityType::class, array(
+            'choice_attr' => function($obj) {
+                return ['category' => $obj->getCategory()->getId()];
+            },
+            'class'    => 'AppBundle:Descriptor' ,
+            'choice_label' => function ($obj) { return   $obj->getLabel() ; },
+            'required' => true ,
+            'mapped'=> true,
+            'expanded' => false ,
+            'multiple' => true
         ))
 
 

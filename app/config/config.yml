@@ -81,6 +81,8 @@ doctrine:
                 REPLACE: AppBundle\DQL\ReplaceFunction
                 GROUP_CONCAT: AppBundle\DQL\GroupConcatFunction
                 IF: AppBundle\DQL\IfFunction
+                #REGEXP: AppBundle\DQL\RegexpFunction
+                REGEXP: DoctrineExtensions\Query\Mysql\Regexp
 
 
 

@@ -34,6 +34,7 @@ class BreakdownController extends Controller
 
         $form = $this->get('form.factory')->create(BreakdownFilter::class);
         $dql   = "SELECT
+                a,
                 a.id ,
                 a.createdAt ,
 
@@ -44,21 +45,20 @@ class BreakdownController extends Controller
                 a.closed ,
                 a.description,
 
-                GROUP_CONCAT( DISTINCT b.label) as descriptors_element_list,
-                GROUP_CONCAT( DISTINCT c.label) as descriptors_status_list,
-                GROUP_CONCAT( DISTINCT d.label) as descriptors_action_list,
-                GROUP_CONCAT( DISTINCT e.label) as descriptors_contributor_list,
-                GROUP_CONCAT( DISTINCT f.label) as descriptors_list
+
+                GROUP_CONCAT( d.label) as descriptors_list,
+                GROUP_CONCAT( d.id SEPARATOR '####') as descriptors_list_id,
+                GROUP_CONCAT( c.label ) as descriptors_list_category_label,
+                GROUP_CONCAT( c.color ) as descriptors_list_category_color
 
                  FROM AppBundle:Breakdown a
                  LEFT JOIN AppBundle:User u WITH u.id = a.createdBy
-                 LEFT JOIN a.descriptors b WITH b.category = 1
-                 LEFT JOIN a.descriptors c WITH c.category = 2
-                 LEFT JOIN a.descriptors d WITH d.category = 3
-                 LEFT JOIN a.descriptors e WITH e.category = 4
-                 LEFT JOIN a.descriptors f
-
+                 LEFT JOIN a.descriptors d
+                  LEFT JOIN d.category c
                   GROUP BY a.id
+                  HAVING
+                  IF(:closed IS NOT NULL,:closed,'%') = a.closed
+                  AND REGEXP(GROUP_CONCAT( DISTINCT d.id SEPARATOR '####'), :descriptors) = true
                  ";
         $query = $em->createQuery($dql);
         //$query->setParameter('test', 100);
@@ -69,7 +69,9 @@ class BreakdownController extends Controller
         //$query->setParameter('dstop1', '2010-08-01');
        // $query->setParameter('dstop2', '2020-09-01');
        // $query->setParameter('descriptor', '5');
-        //$query->setParameter('closed', '1');
+        $query->setParameter('closed', null);
+        $query->setParameter('descriptors', "#");
+
         //$query->setParameter('notFinished', '0');
 
 
@@ -85,13 +87,15 @@ class BreakdownController extends Controller
 
             $query->setParameter('categories', $categories);
             $query->setParameter('label', "%".$data["label"]."%");*/
+            $query->setParameter('closed', $data["closed"]);
         }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            10
+            10,
+            array('wrap-queries'=>true)
         );
         return $this->render('OperatorBundle:Breakdown:index.html.twig', array(
             'pagination' => $pagination,

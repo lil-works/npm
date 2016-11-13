@@ -74,10 +74,8 @@
                 <th{% if pagination.isSorted('a.closed') %} class="sorted {{ direction }}"{% endif %}>
                     {{ knp_pagination_sortable(pagination, 'closed', 'a.closed') }}
                 </th>
-                <th>Element descriptor</th>
-                <th>Status descriptor</th>
-                <th>Action descriptor</th>
-                <th>Contributor descriptor</th>
+                <th>descriptors</th>
+
 
             </tr>
             </thead>
@@ -117,19 +115,13 @@
                     <td>{% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}</td>
 
 
-                    <td>{% if breakdown.closed %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if breakdown.closed %}<span><i class="glyphicon glyphicon-ok-circle"></i></span>{% else %}<span><i class="glyphicon glyphicon-remove-circle"></i></span>{% endif %}</td>
                     <td>
-                        {{  breakdown.descriptors_element_list }}
+                        {% for descriptor in breakdown.descriptors_list|descriptorListSorter(breakdown.descriptors_list_category_label,breakdown.descriptors_list_category_color) %}
+                            <span class="label label-default" style="background-color: {{ descriptor.color }};">{{ descriptor.label }}</span>
+                        {% endfor %}
                     </td>
-                    <td>
-                        {{  breakdown.descriptors_status_list }}
-                    </td>
-                    <td>
-                        {{  breakdown.descriptors_action_list }}
-                    </td>
-                    <td>
-                        {{  breakdown.descriptors_contributor_list }}
-                    </td>
+
 
                 </tr>
             {% endfor %}
