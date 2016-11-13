@@ -37,7 +37,7 @@ class BreakdownController extends Controller
                 a,
                 a.id ,
                 a.createdAt ,
-
+                u.id,
                 u.name as createdBy ,
                 TIME_TO_SEC ( TIMEDIFF( a.stop, a.start )) as breakdown_length,
                 a.start,
@@ -59,7 +59,7 @@ class BreakdownController extends Controller
                   HAVING
                   IF(:closed IS NOT NULL,:closed,'%') = a.closed
                   AND REGEXP(GROUP_CONCAT( DISTINCT d.id SEPARATOR '##'), :descriptors) = true
-                  AND ( a.createdAt IN (:createdBy) OR IF(:haveCreatedBy IS NULL , 'yes' ,'no') = 'yes' )
+                  AND ( u.id  IN (:createdBy) OR IF(:haveCreatedBy IS NULL , 'yes' ,'no') = 'yes' )
                  ";
         $query = $em->createQuery($dql);
 
@@ -94,7 +94,7 @@ class BreakdownController extends Controller
                 foreach($data["descriptors"] as $descriptor){
                     array_push($aDescriptor,$descriptor->getId());
                 }
-var_dump('#'.implode("#|#",$aDescriptor).'#');
+
                 $query->setParameter('descriptors', '#'.implode("#|#",$aDescriptor).'#');
             }
         }
