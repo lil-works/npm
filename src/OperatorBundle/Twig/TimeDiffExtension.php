@@ -21,7 +21,15 @@ class TimeDiffExtension extends \Twig_Extension
     {
 
         $timeDiff = $d1->diff($d2);
-        return $timeDiff->format('%i minutes , %h hours , %d days');
+
+        if($timeDiff->days == 0){
+            return $timeDiff->format('%h hours, %i min');
+        }
+        if($timeDiff->i == 0){
+            return $timeDiff->format('%d days, %h hours');
+        }
+        return $timeDiff->format('%d days, %h hours, %i min');
+
 
     }
 
