@@ -3,6 +3,7 @@
 namespace OperatorBundle\Controller;
 
 use AppBundle\Entity\BoringMachine;
+use DoctrineExtensions\Query\Mysql\Date;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -15,6 +16,7 @@ use OperatorBundle\Filter\BreakdownFilter;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use \DateTime;
 
 /**
  * Breakdown controller.
@@ -121,10 +123,15 @@ class BreakdownController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $start = new DateTime('-3 week');
+        $stop = new DateTime('+1 week');
+
         $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
 
         return $this->render('OperatorBundle:Breakdown:timeline.html.twig', array(
             'breakdowns' => $breakdowns,
+            'start'=>$start,
+            'stop'=>$stop,
         ));
     }
     /**

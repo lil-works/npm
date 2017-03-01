@@ -35,6 +35,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/operator, roles: ROLE_USER }
-        - { path: ^/analyzer, roles: ROLE_USER }
-        - { path: ^/manager, roles: ROLE_USER }
+        #- { path: ^/operator, roles: ROLE_USER }
+        #- { path: ^/analyzer, roles: ROLE_USER }
+        #- { path: ^/manager, roles: ROLE_USER }
