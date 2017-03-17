@@ -42,6 +42,11 @@ class DefaultController extends Controller
             $edges = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
                 ->AnalyzerEdges2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
+            $edgesWithDoublon = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AppBundle:Descriptor')
+                ->AnalyzerEdgesWithDoublon2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
+
+
             $nodes = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
                 ->AnalyzerNodes2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
@@ -53,7 +58,7 @@ class DefaultController extends Controller
                 }
             }
             $nodes2 = $nodes;
-            $edges2 = $edges;
+            $edges2 = $edgesWithDoublon;
 
 
             $tmpEdges2 = array();

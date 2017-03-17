@@ -146,10 +146,10 @@
                             </a>
                         </td>
                         <td>
-                            {% if   edges2[descriptor.id] is defined %}
+                            {% if edges2[descriptor.id] is defined %}
                             {% for edge in edges2[descriptor.id] %}
                                 <span
-                                        style="font-weight:{{ 100* edge[1]  }};margin:{{ 5 +  edge[1] }}px;font-size: {{ 2*edge[1] + 8 }}px;background-color: {{ edge[0].category.color }}"
+                                        style="font-weight:{{ 100 * edge[1]  }};margin:{{ 8 + 3 * edge[1] }}px {{ 3 + 2 * edge[1] }}px;font-size: {{  edge[1] + 8 }}px;background-color: {{ edge[0].category.color }}"
                                         class="label label-default">{{ edge[0].label }}
                                 </span>
                             {% endfor %}

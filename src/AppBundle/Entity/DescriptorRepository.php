@@ -339,6 +339,87 @@ ORDER BY id1;";
         return $query->getScalarResult();
     }
 
+
+
+
+    public function AnalyzerEdgesWithDoublon2($category, $start = null, $stop = null, $minDuration = null, $maxDuration = null)
+    {
+
+        $categoryIn = array();
+        foreach ($category as $cat) {
+            array_push($categoryIn, $cat->getId());
+        }
+
+
+        $sql = "SELECT DISTINCT
+    id1 AS fromField,
+    id2 AS toField,
+    (SELECT
+            COUNT(b.id)
+        FROM
+            breakdown b
+        WHERE
+            b.closed = 1
+                AND EXISTS( SELECT
+                    1
+                FROM
+                    breakdowns_descriptors bd
+                WHERE
+                    b.id = bd.breakdown_id
+                        AND bd.descriptor_id = id1)
+                AND EXISTS( SELECT
+                    1
+                FROM
+                    breakdowns_descriptors bd
+                WHERE
+                    IF(:minDuration IS NOT NULL AND :maxDuration IS NOT NULL,
+                        (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) BETWEEN :minDuration AND :maxDuration),
+                        IF(:minDuration IS NULL AND :maxDuration IS NOT NULL,
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) <= :maxDuration),
+                            IF(:minDuration IS NOT NULL AND :maxDuration IS NULL,
+                                (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= :minDuration),
+                                (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= 0))))
+                        AND IF(:start IS NOT NULL AND :stop IS NOT NULL,
+                        (b.start BETWEEN :start AND :stop)
+                            OR (b.stop BETWEEN :start AND :stop),
+                        IF(:start IS NULL AND :stop IS NOT NULL,
+                            (b.start <= :stop) OR (b.stop <= :stop),
+                            IF(:start IS NOT NULL AND :stop IS NULL,
+                                (b.start >= :start)
+                                    OR (b.stop >= :start),
+                                (b.start >= 0))))
+                        AND b.id = bd.breakdown_id
+                        AND b.closed = 1
+                        AND bd.descriptor_id = id2)) AS valueField
+FROM
+    (SELECT
+        d1.id AS id1, d2.id AS id2
+    FROM
+        descriptor d1
+    LEFT JOIN descriptor d2 ON d1.id != d2.id AND d2.category IN (:category)
+    WHERE
+        d1.category IN (:category)) s1
+HAVING valueField > 0
+ORDER BY id1;";
+
+
+        $em = $this->getEntityManager();
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('fromField', 'fromField');
+        $rsm->addScalarResult('toField', 'toField');
+        $rsm->addScalarResult('valueField', 'valueField');
+
+        $query = $em->createNativeQuery($sql, $rsm);
+
+        $query->setParameter('start', $start);
+        $query->setParameter('stop', $stop);
+        $query->setParameter('minDuration', $minDuration);
+        $query->setParameter('maxDuration', $maxDuration);
+        $query->setParameter('category', $categoryIn);
+
+        return $query->getScalarResult();
+    }
+
     public function AnalyzerNodes2($category, $start = null, $stop = null, $minDuration = null, $maxDuration = null)
     {
 
