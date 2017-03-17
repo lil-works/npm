@@ -143,7 +143,7 @@
                         <td>{{ descriptor.breakdownCount }}</td>
                         <td>
 
-                            <ul class="list-inline" id="descriptorResultsList">
+                            <ul class="list-inline descriptorResultsList" >
                                 {% set breakdowns = descriptor.breakdownsList|split(',') %}
                                 {% for breakdown in breakdowns %}
                                     <li breakdonwnId="{{ breakdown }}">
@@ -164,7 +164,7 @@
 
     <script>
 
-        $("#descriptorResultsList").find('li').each(function(){
+        $(".descriptorResultsList").find('li').each(function(){
 
             var myUrl = '{{ path('operator_ajax_breakdown_show', { 'id': 'xxxx' }) }}';
             var url = myUrl.replace( "xxxx",$(this).attr('breakdonwnId') );
