@@ -136,13 +136,16 @@
                 <tbody>
                 {% for descriptor in descriptors2 %}
                     <tr>
-                        <td>{{ descriptor.label }}</td>
+                        <td>
+                            <a href="{{ path('manager_descriptor_show', { 'id':  descriptor.id }) }}" target="_blank">
+                                {{ descriptor.label }}
+                            </a>
+                        </td>
 
                         <td>{{ descriptor.breakdownOccuranceRatio }}%</td>
                         <td>{{ descriptor.breakdownLengthRatio }}%</td>
                         <td>{{ descriptor.breakdownCount }}</td>
                         <td>
-
                             <ul class="list-inline descriptorResultsList" >
                                 {% set breakdowns = descriptor.breakdownsList|split(',') %}
                                 {% for breakdown in breakdowns %}
