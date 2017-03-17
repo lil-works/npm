@@ -62,13 +62,14 @@ class DefaultController extends Controller
                     }
                 }
             }
-            $descriptors = json_encode($descriptors);
+
         }
 
         return $this->render('AnalyzerBundle:Default:descriptorBar.html.twig',
             array(
                 'breakdowns'=>$breakdowns,
-                'descriptors'=>$descriptors,
+                'descriptors'=>json_encode($descriptors),
+                'descriptors2'=>$descriptors,
                 'nodes'=>$nodes,
                 'edges'=>$edges,
                 'form' => $form->createView()
