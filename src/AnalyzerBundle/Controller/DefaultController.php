@@ -30,8 +30,11 @@ class DefaultController extends Controller
     public function descriptorBarAction(Request $request)
     {
 
+        $em = $this->getDoctrine()->getManager();
+
+
         $form = $this->get('form.factory')->create(DescriptorTreeFilter::class);
-        $nodes = $edges = $descriptors  = null;
+        $nodes2 = $nodes = $edges = $edges2 = $descriptors  = null;
         $breakdowns = array();
         if ($request->query->has($form->getName())) {
             $form->submit($request->query->get($form->getName()));
@@ -49,6 +52,22 @@ class DefaultController extends Controller
                     }
                 }
             }
+            $nodes2 = $nodes;
+            $edges2 = $edges;
+
+
+            $tmpEdges2 = array();
+            foreach($edges2 as $e){
+                if(!isset($tmpEdges2[$e['fromField']])){
+                    $tmpEdges2[$e['fromField']] = array();
+                }
+                array_push($tmpEdges2[$e['fromField']],array(
+                    $em->getRepository('AppBundle:Descriptor')->find($e['toField']),$e['valueField']
+                ));
+                sort($tmpEdges2[$e['fromField']]);
+            }
+
+            $edges2 = $tmpEdges2;
 
             $nodes = json_encode($nodes);
             $edges = json_encode($edges);
@@ -70,6 +89,8 @@ class DefaultController extends Controller
                 'breakdowns'=>$breakdowns,
                 'descriptors'=>json_encode($descriptors),
                 'descriptors2'=>$descriptors,
+                'nodes2'=>$nodes2,
+                'edges2'=>$edges2,
                 'nodes'=>$nodes,
                 'edges'=>$edges,
                 'form' => $form->createView()
