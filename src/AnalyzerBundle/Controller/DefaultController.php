@@ -106,6 +106,7 @@ class DefaultController extends Controller
         );
 
     }
+    /*
     public function descriptorTreeAction(Request $request)
     {
         $form = $this->get('form.factory')->create(DescriptorTreeFilter::class);
@@ -147,7 +148,7 @@ class DefaultController extends Controller
             )
         );
     }
-
+*/
     public function breakdownTimelineAction()
     {
         $start = new DateTime('-3 week');

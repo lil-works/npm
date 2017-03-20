@@ -180,6 +180,8 @@
 
     <script>
 
+
+
         $(".descriptorResultsList").find('li').each(function(){
 
             var myUrl = '{{ path('operator_ajax_breakdown_show', { 'id': 'xxxx' }) }}';
@@ -194,6 +196,10 @@
 
 
         function drawBarChart(descriptors,data1Label,data2Label) {
+            if(!descriptors){
+                return;
+            }
+
             var labels = [],data=[], data1 =[],data2=[];
             descriptors.forEach(function(o) {
                 labels.push(o.label);
