@@ -1,17 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<style>
-    .vis-item .vis-item-overflow {
-        overflow: visible;
-    }
+    <style>
+        .vis-item .vis-item-overflow {
+            overflow: visible;
+        }
 
-</style>
+    </style>
     <h1>Breakdown Timeline</h1>
     <div id="visualization">
         <div class="menu">
-            <input type="button" id="moveLeft" value="Move left"/>
-            <input type="button" id="moveRight" value="Move right"/>
+            <button type="button" class="btn btn-primary" id="moveLeft">Return to past</button>
+            <button type="button" class="btn btn-primary" id="moveRight">Return to future</button>
+            <button type="button" class="btn btn-primary" id="moveNow">Now</button>
         </div>
     </div>
 
@@ -63,6 +64,13 @@
                 end:   range.end.valueOf()   - interval * percentage
             });
         }
+        function now () {
+
+            timeline.setWindow({
+                start: '{{ start|date("Y-m-d") }}',
+                end: '{{ stop|date("Y-m-d") }}'
+            });
+        }
 
 
         // Create a Timeline
@@ -77,6 +85,7 @@
         // attach events to the navigation buttons
         document.getElementById('moveLeft').onclick  = function () { move( 0.2); };
         document.getElementById('moveRight').onclick = function () { move(-0.2); };
+        document.getElementById('moveNow').onclick = function () { now(); };
 
 
         timeline.on('select', onSelect);

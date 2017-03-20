@@ -5,7 +5,7 @@ namespace AnalyzerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AnalyzerBundle\Filter\DescriptorTreeFilter;
-
+use \DateTime;
 class DefaultController extends Controller
 {
 
@@ -150,6 +150,9 @@ class DefaultController extends Controller
 
     public function breakdownTimelineAction()
     {
-        return $this->render('AnalyzerBundle:Default:breakdownTimeline.html.twig');
+        $start = new DateTime('-3 week');
+        $stop = new DateTime('+1 week');
+
+        return $this->render('AnalyzerBundle:Default:breakdownTimeline.html.twig',array('start'=>$start,'stop'=>$stop));
     }
 }

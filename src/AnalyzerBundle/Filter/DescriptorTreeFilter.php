@@ -42,12 +42,12 @@ class DescriptorTreeFilter extends AbstractType
                 'week' => 'week'
             ),))
             ->add('timePonderation', ChoiceType::class,array('required' => true ,'choices'  => array(
-                'on' => 'on',
-                'off' => 'off'
+                'off' => 'off',
+                'on' => 'on'
             )))
             ->add('interferoPonderation', ChoiceType::class,array('required' => true ,'choices'  => array(
-                'on' => 'on',
-                'off' => 'off'
+                'off' => 'off',
+                'on' => 'on'
             )))
             //->add('minTime', DateTimeType::class,array('required' => false ))
             //->add('maxTime', DateTimeType::class,array('required' => false ))
