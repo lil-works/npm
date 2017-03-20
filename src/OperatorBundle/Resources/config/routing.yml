@@ -32,7 +32,9 @@ operator_breakdown_delete:
 operator_ajax_breakdown_show:
     path:     /operator/ajax/breakdown/show/{id}
     defaults: { _controller: OperatorBundle:Ajax:breakdownShow }
-
+operator_ajax_descriptor_show:
+    path:     /operator/ajax/descriptor/show/{id}
+    defaults: { _controller: OperatorBundle:Ajax:descriptorShow }
 operator_ajax_breakdown_timeline:
     path:     /operator/ajax/breakdown/timeline
     defaults: { _controller: OperatorBundle:Ajax:timeline }

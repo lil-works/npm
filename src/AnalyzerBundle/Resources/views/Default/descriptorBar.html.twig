@@ -140,8 +140,8 @@
                 <tbody>
                 {% for descriptor in descriptors2 %}
                     <tr>
-                        <td>
-                            <a href="{{ path('manager_descriptor_show', { 'id':  descriptor.id }) }}" target="_blank">
+                        <td class="descriptorResultsList2">
+                            <a descriptorId="{{ descriptor.id }}" href="{{ path('manager_descriptor_show', { 'id':  descriptor.id }) }}" target="_blank">
                                {{ descriptor.label }}
                             </a>
                         </td>
@@ -188,12 +188,23 @@
             var url = myUrl.replace( "xxxx",$(this).attr('breakdonwnId') );
 
             $(this).balloon({
-                html: true, position: 'right',
+                html: true, position: 'left',
                 contents: '<img src="{{ asset('bundles/manager/images/balloon-sample-loading.gif') }}" alt="loading..." width="16" height="16">',
                 url:url
             });
         });
 
+        $(".descriptorResultsList2").find('a').each(function(){
+
+            var myUrl = '{{ path('operator_ajax_descriptor_show', { 'id': 'xxxx' }) }}';
+            var url = myUrl.replace( "xxxx",$(this).attr('descriptorId') );
+
+            $(this).balloon({
+                html: true, position: 'right',
+                contents: '<img src="{{ asset('bundles/manager/images/balloon-sample-loading.gif') }}" alt="loading..." width="16" height="16">',
+                url:url
+            });
+        });
 
         function drawBarChart(descriptors,data1Label,data2Label) {
             if(!descriptors){

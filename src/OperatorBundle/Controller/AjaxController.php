@@ -17,7 +17,18 @@ class AjaxController extends Controller
             'breakdown' => $breakdown,
         ));
     }
+    public function descriptorShowAction(Request $request ,$id){
+        $em = $this->getDoctrine()->getManager();
+        $descriptor = $em->getRepository('AppBundle:Descriptor')->find($id);
 
+
+
+        return $this->render('OperatorBundle:Ajax:descriptorShow.html.twig', array(
+            'descriptor' => $descriptor,
+        ));
+
+
+    }
     public function timelineAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $descriptors = $em->getRepository('AppBundle:Breakdown')->OperatorTimeline();

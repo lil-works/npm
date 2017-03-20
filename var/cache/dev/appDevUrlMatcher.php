@@ -198,17 +198,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             if (0 === strpos($pathinfo, '/operator/ajax')) {
-                if (0 === strpos($pathinfo, '/operator/ajax/breakdown')) {
-                    // operator_ajax_breakdown_show
-                    if (0 === strpos($pathinfo, '/operator/ajax/breakdown/show') && preg_match('#^/operator/ajax/breakdown/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'operator_ajax_breakdown_show')), array (  '_controller' => 'OperatorBundle\\Controller\\AjaxController::breakdownShowAction',));
-                    }
+                // operator_ajax_breakdown_show
+                if (0 === strpos($pathinfo, '/operator/ajax/breakdown/show') && preg_match('#^/operator/ajax/breakdown/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'operator_ajax_breakdown_show')), array (  '_controller' => 'OperatorBundle\\Controller\\AjaxController::breakdownShowAction',));
+                }
 
-                    // operator_ajax_breakdown_timeline
-                    if ($pathinfo === '/operator/ajax/breakdown/timeline') {
-                        return array (  '_controller' => 'OperatorBundle\\Controller\\AjaxController::timelineAction',  '_route' => 'operator_ajax_breakdown_timeline',);
-                    }
+                // operator_ajax_descriptor_show
+                if (0 === strpos($pathinfo, '/operator/ajax/descriptor/show') && preg_match('#^/operator/ajax/descriptor/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'operator_ajax_descriptor_show')), array (  '_controller' => 'OperatorBundle\\Controller\\AjaxController::descriptorShowAction',));
+                }
 
+                // operator_ajax_breakdown_timeline
+                if ($pathinfo === '/operator/ajax/breakdown/timeline') {
+                    return array (  '_controller' => 'OperatorBundle\\Controller\\AjaxController::timelineAction',  '_route' => 'operator_ajax_breakdown_timeline',);
                 }
 
                 if (0 === strpos($pathinfo, '/operator/ajax/descriptor/search')) {
