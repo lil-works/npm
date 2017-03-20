@@ -40,7 +40,11 @@ function dpPreset(dpId,presetName,d1Id,d2Id){
 }
 function durationPreset(way,value,unity){
 
-
+    if(!way){
+        $("#duration-min").val(null);
+        $("#duration-max").val(null);
+        return;
+    }
     $("#duration-unity").val(unity)
     if(way == ">"){
         $("#duration-min").val("1");
@@ -214,12 +218,13 @@ function setDateRangePicker(formId,dpId,d1Id,d2Id){
     $('<div class="filterBoxField"><label for="'+dpId+'">date picker</label><input class="form-control" id="'+dpId+'" value="" size="40"></div>').insertBefore($("#filterBoxField-start"));
 
     pickerPresetHtml = '<ul class="filterPresets list list-inline">' +
-    '<li id="dpPreset-forever" onclick="dpPreset(\''+dpId+'\',\'forever\')"><button type="button" class="btn btn-outline-secondary">forever</button></li>' +
-    '<li id="dpPreset-pastYear" onclick="dpPreset(\''+dpId+'\',\'pastYear\')"><button type="button" class="btn btn-outline-secondary">past year</button></li>' +
-    '<li id="dpPreset-pastMonth" onclick="dpPreset(\''+dpId+'\',\'pastMonth\')"><button type="button" class="btn btn-outline-secondary">past month</button></li>' +
-    '<li id="dpPreset-pastWeek" onclick="dpPreset(\''+dpId+'\',\'pastWeek\')"><button type="button" class="btn btn-outline-secondary">past week</button></li>' +
-    '<li id="dpPreset-pastDay" onclick="dpPreset(\''+dpId+'\',\'pastDay\')"><button type="button" class="btn btn-outline-secondary">past day</button></li>' +
+    '<li id="dpPreset-forever" onclick="dpPreset(\''+dpId+'\',\'forever\')"><button type="button" class="btn btn-primary">forever</button></li>' +
+    '<li id="dpPreset-pastYear" onclick="dpPreset(\''+dpId+'\',\'pastYear\')"><button type="button" class="btn btn-secondary">past year</button></li>' +
+    '<li id="dpPreset-pastMonth" onclick="dpPreset(\''+dpId+'\',\'pastMonth\')"><button type="button" class="btn btn-secondary">past month</button></li>' +
+    '<li id="dpPreset-pastWeek" onclick="dpPreset(\''+dpId+'\',\'pastWeek\')"><button type="button" class="btn btn-secondary">past week</button></li>' +
+    '<li id="dpPreset-pastDay" onclick="dpPreset(\''+dpId+'\',\'pastDay\')"><button type="button" class="btn btn-secondary">past day</button></li>' +
     '</ul>';
+
 
     $(pickerPresetHtml).insertAfter($("#"+dpId));
 
@@ -228,7 +233,6 @@ function setDateRangePicker(formId,dpId,d1Id,d2Id){
     '<div class="col-lg-4">'+
     '<label for="duration-unity">time unity</label>' +
     '<select class="form-control" name="duration-unity" id="duration-unity"> '+
-    '<option value="second" selected="selected">second</option>'+
     '<option value="minute">minute</option>'+
     '<option value="hour">hour</option>'+
     '<option value="day">day</option>'+
@@ -249,14 +253,23 @@ function setDateRangePicker(formId,dpId,d1Id,d2Id){
 
     formToDuration();
 
-    pickerPresetHtml = '<hr><ul class="filterPresets list list-inline">' +
-    '<li onclick="durationPreset(\'<\',1,\'hour\')"><button type="button" class="btn btn-outline-secondary">< 1 hour</button></li>' +
-    '<li onclick="durationPreset(\'<\',1,\'day\')"><button type="button" class="btn btn-outline-secondary">< 1 day</button></li>' +
-    '<li onclick="durationPreset(\'<\',1,\'week\')"><button type="button" class="btn btn-outline-secondary">< 1 week</button></li>' +
-    '<li onclick="durationPreset(\'>\',1,\'day\')"><button type="button" class="btn btn-outline-secondary">> 1 day</button></li>' +
-    '<li onclick="durationPreset(\'>\',1,\'hour\')"><button type="button" class="btn btn-outline-secondary">> 1 hour</button></li>' +
-    '<li onclick="durationPreset(\'>\',1,\'week\')"><button type="button" class="btn btn-outline-secondary">> 1 week</button></li>' +
-    '</ul>';
+
+
+    pickerPresetHtml = '<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">' +
+    '<div class="btn-group mr-2" role="group" aria-label="init group">'+
+    '<button onclick="durationPreset()" type="button" class="btn btn-primary">dont\'care care</button>' +
+    '</div>'+
+    '<div class="btn-group mr-2" role="group" aria-label="< group">'+
+    '<button onclick="durationPreset(\'<\',1,\'hour\')" type="button" class="btn btn-secondary">< 1 hour</button>' +
+    '<button onclick="durationPreset(\'<\',1,\'day\')" type="button" class="btn btn-secondary">< 1 day</button>' +
+    '<button onclick="durationPreset(\'<\',1,\'week\')" type="button" class="btn btn-secondary">< 1 week</button>' +
+    '</div>'+
+    '<div class="btn-group mr-2" role="group" aria-label="> group">'+
+    '<button onclick="durationPreset(\'>\',1,\'hour\')" type="button" class="btn btn-secondary">> 1 hour</button>' +
+    '<button onclick="durationPreset(\'>\',1,\'day\')" type="button" class="btn btn-secondary">> 1 day</button>' +
+    '<button onclick="durationPreset(\'>\',1,\'week\')" type="button" class="btn btn-secondary">> 1 week</button>' +
+    '</div>'+
+    '</div>';
 
     $(pickerPresetHtml).appendTo($("#filterBoxField-duration-rewrited"));
 
