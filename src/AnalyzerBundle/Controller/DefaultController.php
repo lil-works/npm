@@ -76,9 +76,12 @@ class DefaultController extends Controller
 
             $nodes = json_encode($nodes);
             $edges = json_encode($edges);
+
+
+            //var_dump($data["timePonderation"],$data["interferoPonderation"]);
             $descriptors = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerFindAll2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
+                ->AnalyzerFindAll2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"],$data["interferoPonderation"],$data["timePonderation"]);
             foreach($descriptors as $descriptor){
                 foreach( explode(',',$descriptor["breakdownsList"]) as $breakdown ){
                     if(!in_array($breakdown,$breakdowns)){

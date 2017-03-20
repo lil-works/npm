@@ -514,7 +514,8 @@ ORDER BY id1;";
         return $query->getScalarResult();
     }
 
-    public function AnalyzerFindAll2($category, $start = null, $stop = null, $minDuration = null, $maxDuration = null)
+
+    public function AnalyzerFindAll2($category, $start = null, $stop = null, $minDuration = null, $maxDuration = null,$interferoPonderation=0,$timePonderation="occurance")
     {
         if($maxDuration == 0){
             $maxDuration = null;
@@ -613,6 +614,124 @@ ORDER BY id1;";
         ";
 
 
+
+        $sql2 = "SELECT
+    descriptorId AS id,
+    descriptorLabel AS label,
+    descriptorCategory AS category_id,
+    GROUP_CONCAT(breakdownId) as breakdownsList ,
+    GROUP_CONCAT(breakdownId,'|',lengthRatio,'|',breakdownInterferoRatio) as breakdownsInfo ,
+
+    COUNT(breakdownId) AS breakdownCount,
+
+
+    IF( :interferoPonderation = 'on' , round(100*COUNT(breakdownId*breakdownInterferoRatio)/tot,2) , round(100*COUNT(breakdownId)/tot,2) ) AS breakdownOccuranceRatio,
+    IF( :interferoPonderation = 'on' , round(100*SUM(lengthRatio*breakdownInterferoRatio),2)  , round(100*SUM(lengthRatio),2) ) AS breakdownLengthRatio,
+
+
+
+
+    GROUP_CONCAT(breakdownInterferoRatio) as breakdownsField ,
+    SUM(breakdownInterferoRatio) as breakdownInterferoRatio
+FROM
+    (SELECT
+			b.id AS breakdownId,
+            d.id AS descriptorId,
+            d.label AS descriptorLabel,
+            d.category AS descriptorCategory,
+            1 - SUM(bi.status) / COUNT(bi.id) AS breakdownInterferoRatio,
+            (SELECT
+                    COUNT(id)
+                FROM
+                    breakdown b
+
+                WHERE
+                IF(:minDuration IS NOT NULL AND :maxDuration IS NOT NULL,
+                    (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) BETWEEN :minDuration AND :maxDuration),
+                    IF(:minDuration IS NULL AND :maxDuration IS NOT NULL,
+                        (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) <= :maxDuration),
+                        IF(:minDuration IS NOT NULL AND :maxDuration IS NULL,
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= :minDuration),
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= 0))))
+                    AND IF(:start IS NOT NULL AND :stop IS NOT NULL,
+                    (b.start BETWEEN :start AND :stop)
+                        OR (b.stop BETWEEN :start AND :stop),
+                    IF(:start IS NULL AND :stop IS NOT NULL,
+                        (b.start <= :stop) OR (b.stop <= :stop),
+                        IF(:start IS NOT NULL AND :stop IS NULL,
+                            (b.start >= :start)
+                                OR (b.stop >= :start),
+                            (b.start >= 0))))
+                    AND d.category IN (:category)
+                    AND b.closed = 1
+
+                    ) AS tot,
+            TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) / (SELECT
+                    SUM(TIME_TO_SEC(TIMEDIFF(stop, start)))
+                FROM
+                    breakdown b
+                WHERE
+                IF(:minDuration IS NOT NULL AND :maxDuration IS NOT NULL,
+                    (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) BETWEEN :minDuration AND :maxDuration),
+                    IF(:minDuration IS NULL AND :maxDuration IS NOT NULL,
+                        (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) <= :maxDuration),
+                        IF(:minDuration IS NOT NULL AND :maxDuration IS NULL,
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= :minDuration),
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= 0))))
+                    AND IF(:start IS NOT NULL AND :stop IS NOT NULL,
+                    (b.start BETWEEN :start AND :stop)
+                        OR (b.stop BETWEEN :start AND :stop),
+                    IF(:start IS NULL AND :stop IS NOT NULL,
+                        (b.start <= :stop) OR (b.stop <= :stop),
+                        IF(:start IS NOT NULL AND :stop IS NULL,
+                            (b.start >= :start)
+                                OR (b.stop >= :start),
+                            (b.start >= 0))))
+                    AND d.category IN (:category)
+                    AND b.closed = 1
+
+
+                    ) AS lengthRatio,
+            d.label
+    FROM
+        breakdown b
+
+
+    LEFT JOIN breakdowns_interferos bi ON bi.breakdown = b.id
+    LEFT JOIN breakdowns_descriptors bd ON bd.breakdown_id = b.id
+    LEFT JOIN descriptor d ON bd.descriptor_id = d.id
+
+	WHERE
+                IF(:minDuration IS NOT NULL AND :maxDuration IS NOT NULL,
+                    (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) BETWEEN :minDuration AND :maxDuration),
+                    IF(:minDuration IS NULL AND :maxDuration IS NOT NULL,
+                        (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) <= :maxDuration),
+                        IF(:minDuration IS NOT NULL AND :maxDuration IS NULL,
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= :minDuration),
+                            (TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) >= 0))))
+                    AND IF(:start IS NOT NULL AND :stop IS NOT NULL,
+                    (b.start BETWEEN :start AND :stop)
+                        OR (b.stop BETWEEN :start AND :stop),
+                    IF(:start IS NULL AND :stop IS NOT NULL,
+                        (b.start <= :stop) OR (b.stop <= :stop),
+                        IF(:start IS NOT NULL AND :stop IS NULL,
+                            (b.start >= :start)
+                                OR (b.stop >= :start),
+                            (b.start >= 0))))
+                    AND d.category IN (:category)
+                    AND b.closed = 1
+
+    GROUP BY b.id , d.id) R1
+GROUP BY descriptorId
+
+ORDER BY  IF( :timePonderation = 'on' ,
+    IF( :interferoPonderation = 'on' , SUM(lengthRatio*breakdownInterferoRatio)  , SUM(lengthRatio) ) ,
+    IF( :interferoPonderation = 'on'  , COUNT(breakdownId*breakdownInterferoRatio)/tot , COUNT(breakdownId)/tot )
+    ) DESC
+";
+
+
+
         $em = $this->getEntityManager();
         $rsm = new ResultSetMapping;
         $rsm->addScalarResult('id', 'id');
@@ -621,7 +740,10 @@ ORDER BY id1;";
         $rsm->addScalarResult('breakdownsList', 'breakdownsList');
         $rsm->addScalarResult('breakdownCount', 'breakdownCount');
         $rsm->addScalarResult('breakdownOccuranceRatio', 'breakdownOccuranceRatio');
-        $query = $em->createNativeQuery($sql, $rsm);
+        #$query = $em->createNativeQuery($sql, $rsm);
+        $query = $em->createNativeQuery($sql2, $rsm);
+        $query->setParameter('timePonderation', $timePonderation);
+        $query->setParameter('interferoPonderation', $interferoPonderation);
         $query->setParameter('start', $start);
         $query->setParameter('stop', $stop);
         $query->setParameter('minDuration', $minDuration);
