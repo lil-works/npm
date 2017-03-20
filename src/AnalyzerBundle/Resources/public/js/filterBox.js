@@ -41,14 +41,15 @@ function dpPreset(dpId,presetName,d1Id,d2Id){
 function durationPreset(way,value,unity){
 
     if(!way){
-        $("#duration-min").val(null);
-        $("#duration-max").val(null);
+        $("#duration-min").val("");
+        $("#duration-max").val("");
         return;
     }
+
     $("#duration-unity").val(unity)
     if(way == ">"){
         $("#duration-min").val("1");
-        $("#duration-max").val(null);
+        $("#duration-max").val("");
     }else{
         $("#duration-min").val("0");
         $("#duration-max").val("1");
@@ -147,9 +148,8 @@ function durationToForm(){
     max = $("#duration-max").val();
 
     $("#descriptorTree_filter_durationUnity").val(unity);
-    if(unity == "second"){
 
-    }else if(unity == "minute"){
+    if(unity == "minute"){
         min = min * 60;
         max = max * 60;
     }else if(unity == "hour"){
@@ -162,6 +162,13 @@ function durationToForm(){
         min = min * 60 * 60 * 24 * 7;
         max = max * 60 * 60 * 24 * 7;
     }
+    if($("#duration-max").val() == ""){
+        max="";
+    }
+    if($("#duration-min").val() == ""){
+        min="";
+    }
+
 
     $("#descriptorTree_filter_minDuration").val(min);
     $("#descriptorTree_filter_maxDuration").val(max);
@@ -173,9 +180,7 @@ function formToDuration(){
     min = $("#descriptorTree_filter_minDuration").val();
     max = $("#descriptorTree_filter_maxDuration").val();
 
-    if(unity == "second"){
-
-    }else if(unity == "minute"){
+    if(unity == "minute"){
         min = min / 60;
         max = max / 60;
     }else if(unity == "hour"){
@@ -188,7 +193,12 @@ function formToDuration(){
         min = min / 60 / 60 / 24 / 7;
         max = max / 60 / 60 / 24 / 7;
     }
-
+    if($("#descriptorTree_filter_maxDuration").val() == ""){
+        max = "";
+    }
+    if($("#descriptorTree_filter_minDuration").val() == ""){
+        min = "";
+    }
 
     $("#duration-min").val(min);
     $("#duration-max").val(max);

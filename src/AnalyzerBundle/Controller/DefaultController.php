@@ -41,15 +41,15 @@ class DefaultController extends Controller
             $data = $form->getData();
             $edges = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerEdges2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
+                ->AnalyzerEdges($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
             $edgesWithDoublon = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerEdgesWithDoublon2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
+                ->AnalyzerEdgesWithDoublon($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
 
 
             $nodes = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerNodes2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
+                ->AnalyzerNodes($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
             foreach($nodes as $node){
                 foreach( explode(',',$node["breakdownsField"]) as $breakdown ){
                     if(!in_array($breakdown,$breakdowns)){
@@ -81,7 +81,7 @@ class DefaultController extends Controller
             //var_dump($data["timePonderation"],$data["interferoPonderation"]);
             $descriptors = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerFindAll2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"],$data["interferoPonderation"],$data["timePonderation"]);
+                ->AnalyzerFindAll($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"],$data["interferoPonderation"],$data["timePonderation"]);
             foreach($descriptors as $descriptor){
                 foreach( explode(',',$descriptor["breakdownsList"]) as $breakdown ){
                     if(!in_array($breakdown,$breakdowns)){
