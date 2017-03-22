@@ -95,14 +95,14 @@
             <tr>
                 <th>Interfero status</th>
                 <td>
-                    <ul class="list-inline" style="color: red;">
+                    <ul class="list-inline" style="color: red;"><h4>antenna/band OFF</h4>
                         {% for breakdownInterfero in breakdown.breakdownsInterferos %}
                             {% if breakdownInterfero.status == false %}
                                 <li>A{{ breakdownInterfero.interfero.antenna }} B{{  breakdownInterfero.interfero.band }}</li>
                             {% endif %}
                         {% endfor %}
                     </ul>
-                    <ul class="list-inline" style="color: green;">
+                    <ul class="list-inline" style="color: green;"><h4>antenna/band ON</h4>
                         {% for breakdownInterfero in breakdown.breakdownsInterferos %}
                             {% if breakdownInterfero.status == true %}
                                 <li>A{{ breakdownInterfero.interfero.antenna }} B{{  breakdownInterfero.interfero.band }}</li>
