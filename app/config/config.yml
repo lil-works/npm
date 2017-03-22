@@ -174,7 +174,7 @@ sonata_seo:
         default:          sonata.seo.page.default
         metas:
             name:
-                keywords:             harmony,scale,chord,visualization,guitar,bass,ukulele,violin
+                keywords:             noema,pareto,iram
                 description:          Designed to track breakdown
                 robots:               index, follow
 
@@ -185,7 +185,7 @@ sonata_seo:
 
                 # Open Graph information
                 # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-                'og:site_name':       iram
+                'og:site_name':       Iram
                 'og:description':     Noema pareto manager
 
             http-equiv:
