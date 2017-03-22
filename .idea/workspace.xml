@@ -41,170 +41,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Controller/DefaultController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.25" vertical-offset="945" max-vertical-offset="2535">
-              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-              <folding>
-                <element signature="e#45#102#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DescriptorRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/DescriptorRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.75" vertical-offset="10050" max-vertical-offset="14355">
-              <caret line="685" column="72" selection-start-line="685" selection-start-column="49" selection-end-line="685" selection-end-column="72" />
-              <folding>
-                <marker date="1490153655000" expanded="true" signature="406:1247" placeholder="SELECT DISTI..id..." />
-                <marker date="1490153655000" expanded="true" signature="456:513" placeholder="SELECT color..descriptor_category..." />
-                <marker date="1490153655000" expanded="true" signature="624:743" placeholder="SELECT d.id ..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="786:1004" placeholder="SELECT s.des..synonym..." />
-                <marker date="1490153655000" expanded="true" signature="814:864" placeholder="SELECT label..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="878:931" placeholder="SELECT categ..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="1781:2512" placeholder="SELECT DISTI..id..." />
-                <marker date="1490153655000" expanded="true" signature="1890:2009" placeholder="SELECT d.id ..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="2052:2270" placeholder="SELECT s.des..synonym..." />
-                <marker date="1490153655000" expanded="true" signature="2080:2130" placeholder="SELECT label..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="2144:2197" placeholder="SELECT categ..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="2996:3116" placeholder="SELECT * FRO..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="3843:6075" placeholder="SELECT DISTI..id..." />
-                <marker date="1490153655000" expanded="true" signature="3933:5816" placeholder="SELECT COUNT..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="4068:4279" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-                <marker date="1490153655000" expanded="true" signature="4309:5815" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-                <marker date="1490153655000" expanded="true" signature="5842:6036" placeholder="SELECT d1.id..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="6984:9189" placeholder="SELECT DISTI..id..." />
-                <marker date="1490153655000" expanded="true" signature="7047:8930" placeholder="SELECT COUNT..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="7182:7393" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-                <marker date="1490153655000" expanded="true" signature="7423:8929" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-                <marker date="1490153655000" expanded="true" signature="8956:9150" placeholder="SELECT d1.id..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="10099:13259" placeholder="SELECT d.id ..descriptor..." />
-                <marker date="1490153655000" expanded="true" signature="10561:11921" placeholder="SELECT SUM((..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="14585:20390" placeholder="SELECT descr..id..." />
-                <marker date="1490153655000" expanded="true" signature="15331:20094" placeholder="SELECT b.id ..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="15569:16974" placeholder="SELECT COUNT..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="17060:18494" placeholder="SELECT SUM(T..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="20412:30017" placeholder="SELECT descr..id..." />
-                <marker date="1490153655000" expanded="true" signature="21385:28016" placeholder="SELECT bSear..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="21690:23098" placeholder="SELECT COUNT..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="23138:24599" placeholder="SELECT SUM(T..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="24645:26320" placeholder="SELECT SUM(i..SUM..." />
-                <marker date="1490153655000" expanded="true" signature="24729:26308" placeholder="SELECT 1 - S..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="28039:29564" placeholder="SELECT SUM(c..counter..." />
-                <marker date="1490153655000" expanded="true" signature="28099:29555" placeholder="SELECT 1 AS ..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="30056:37338" placeholder="SELECT dId a..dId..." />
-                <marker date="1490153655000" expanded="true" signature="30552:32903" placeholder="SELECT dId, ..bId..." />
-                <marker date="1490153655000" expanded="true" signature="30952:32882" placeholder="SELECT bId, ..id..." />
-                <marker date="1490153655000" expanded="true" signature="31113:32855" placeholder="SELECT b.id ..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="32926:34372" placeholder="SELECT SUM(t..SUM..." />
-                <marker date="1490153655000" expanded="true" signature="33000:34368" placeholder="SELECT SUM(T..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="34396:35890" placeholder="SELECT SUM(t..SUM..." />
-                <marker date="1490153655000" expanded="true" signature="34470:35886" placeholder="SELECT 1 - S..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="35914:37228" placeholder="SELECT COUNT..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="38400:38997" placeholder="SELECT count..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="38685:38976" placeholder="SELECT break..id..." />
-                <marker date="1490153655000" expanded="true" signature="38719:38960" placeholder="SELECT b.id ..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="39554:40797" placeholder="SELECT DISTI..id..." />
-                <marker date="1490153655000" expanded="true" signature="39656:40582" placeholder="SELECT COUNT..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="39797:40037" placeholder="SELECT b.id ..breakdown..." />
-                <marker date="1490153655000" expanded="true" signature="40072:40307" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-                <marker date="1490153655000" expanded="true" signature="40341:40581" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-                <marker date="1490153655000" expanded="true" signature="40616:40750" placeholder="SELECT d1.id..descriptor..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="descriptorBar.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/descriptorBar.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="5295">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0" vertical-offset="600" max-vertical-offset="3360">
-              <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="breakdownShow.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Ajax/breakdownShow.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.166667" vertical-offset="941" max-vertical-offset="1485">
-              <caret line="79" column="30" selection-start-line="64" selection-start-column="12" selection-end-line="82" selection-end-column="17" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#td#0;n#tr#7;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ul#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ul#1;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-16.416666" vertical-offset="791" max-vertical-offset="1485">
+              <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Breakdown/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-75.0" vertical-offset="0" max-vertical-offset="1935">
-              <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.06382979" vertical-offset="0" max-vertical-offset="1950">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#ul#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ul#1;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46875" vertical-offset="270" max-vertical-offset="900">
-              <caret line="32" column="44" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppKernel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.75" vertical-offset="0" max-vertical-offset="1035">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2429" max-vertical-offset="3210">
-              <caret line="203" column="1" selection-start-line="203" selection-start-column="1" selection-end-line="203" selection-end-column="1" />
-              <folding>
-                <marker date="1490166549000" expanded="true" signature="6506:7965" placeholder="sonata_seo:" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AjaxController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/AjaxController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="1740">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -379,6 +233,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Default" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1378,142 +1236,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/AjaxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="1740">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.75" vertical-offset="0" max-vertical-offset="1035">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2429" max-vertical-offset="3210">
-          <caret line="203" column="1" selection-start-line="203" selection-start-column="1" selection-end-line="203" selection-end-column="1" />
-          <folding>
-            <marker date="1490166549000" expanded="true" signature="6506:7965" placeholder="sonata_seo:" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/DescriptorRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75" vertical-offset="10050" max-vertical-offset="14355">
+        <state vertical-scroll-proportion="0.44680852" vertical-offset="10050" max-vertical-offset="14355">
           <caret line="685" column="72" selection-start-line="685" selection-start-column="49" selection-end-line="685" selection-end-column="72" />
           <folding>
-            <marker date="1490153655000" expanded="true" signature="406:1247" placeholder="SELECT DISTI..id..." />
-            <marker date="1490153655000" expanded="true" signature="456:513" placeholder="SELECT color..descriptor_category..." />
-            <marker date="1490153655000" expanded="true" signature="624:743" placeholder="SELECT d.id ..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="786:1004" placeholder="SELECT s.des..synonym..." />
-            <marker date="1490153655000" expanded="true" signature="814:864" placeholder="SELECT label..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="878:931" placeholder="SELECT categ..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="1781:2512" placeholder="SELECT DISTI..id..." />
-            <marker date="1490153655000" expanded="true" signature="1890:2009" placeholder="SELECT d.id ..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="2052:2270" placeholder="SELECT s.des..synonym..." />
-            <marker date="1490153655000" expanded="true" signature="2080:2130" placeholder="SELECT label..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="2144:2197" placeholder="SELECT categ..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="2996:3116" placeholder="SELECT * FRO..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="3843:6075" placeholder="SELECT DISTI..id..." />
-            <marker date="1490153655000" expanded="true" signature="3933:5816" placeholder="SELECT COUNT..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="4068:4279" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-            <marker date="1490153655000" expanded="true" signature="4309:5815" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-            <marker date="1490153655000" expanded="true" signature="5842:6036" placeholder="SELECT d1.id..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="6984:9189" placeholder="SELECT DISTI..id..." />
-            <marker date="1490153655000" expanded="true" signature="7047:8930" placeholder="SELECT COUNT..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="7182:7393" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-            <marker date="1490153655000" expanded="true" signature="7423:8929" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-            <marker date="1490153655000" expanded="true" signature="8956:9150" placeholder="SELECT d1.id..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="10099:13259" placeholder="SELECT d.id ..descriptor..." />
-            <marker date="1490153655000" expanded="true" signature="10561:11921" placeholder="SELECT SUM((..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="14585:20390" placeholder="SELECT descr..id..." />
-            <marker date="1490153655000" expanded="true" signature="15331:20094" placeholder="SELECT b.id ..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="15569:16974" placeholder="SELECT COUNT..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="17060:18494" placeholder="SELECT SUM(T..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="20412:30017" placeholder="SELECT descr..id..." />
-            <marker date="1490153655000" expanded="true" signature="21385:28016" placeholder="SELECT bSear..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="21690:23098" placeholder="SELECT COUNT..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="23138:24599" placeholder="SELECT SUM(T..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="24645:26320" placeholder="SELECT SUM(i..SUM..." />
-            <marker date="1490153655000" expanded="true" signature="24729:26308" placeholder="SELECT 1 - S..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="28039:29564" placeholder="SELECT SUM(c..counter..." />
-            <marker date="1490153655000" expanded="true" signature="28099:29555" placeholder="SELECT 1 AS ..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="30056:37338" placeholder="SELECT dId a..dId..." />
-            <marker date="1490153655000" expanded="true" signature="30552:32903" placeholder="SELECT dId, ..bId..." />
-            <marker date="1490153655000" expanded="true" signature="30952:32882" placeholder="SELECT bId, ..id..." />
-            <marker date="1490153655000" expanded="true" signature="31113:32855" placeholder="SELECT b.id ..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="32926:34372" placeholder="SELECT SUM(t..SUM..." />
-            <marker date="1490153655000" expanded="true" signature="33000:34368" placeholder="SELECT SUM(T..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="34396:35890" placeholder="SELECT SUM(t..SUM..." />
-            <marker date="1490153655000" expanded="true" signature="34470:35886" placeholder="SELECT 1 - S..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="35914:37228" placeholder="SELECT COUNT..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="38400:38997" placeholder="SELECT count..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="38685:38976" placeholder="SELECT break..id..." />
-            <marker date="1490153655000" expanded="true" signature="38719:38960" placeholder="SELECT b.id ..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="39554:40797" placeholder="SELECT DISTI..id..." />
-            <marker date="1490153655000" expanded="true" signature="39656:40582" placeholder="SELECT COUNT..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="39797:40037" placeholder="SELECT b.id ..breakdown..." />
-            <marker date="1490153655000" expanded="true" signature="40072:40307" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-            <marker date="1490153655000" expanded="true" signature="40341:40581" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
-            <marker date="1490153655000" expanded="true" signature="40616:40750" placeholder="SELECT d1.id..descriptor..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.25" vertical-offset="945" max-vertical-offset="2535">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="e#45#102#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="600" max-vertical-offset="3360">
-          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/descriptorBar.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="5295">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Ajax/breakdownShow.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.166667" vertical-offset="941" max-vertical-offset="1485">
-          <caret line="79" column="30" selection-start-line="64" selection-start-column="12" selection-end-line="82" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#td#0;n#tr#7;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#1;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Breakdown/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-75.0" vertical-offset="0" max-vertical-offset="1935">
-          <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#ul#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#1;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT color..descriptor_category..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT d.id ..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT s.des..synonym..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT label..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT categ..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT d.id ..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT s.des..synonym..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT label..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT categ..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT d1.id..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT d1.id..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT d.id ..descriptor..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM((..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT descr..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT b.id ..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(T..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT descr..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT bSear..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(T..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(i..SUM..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 - S..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(c..counter..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 AS ..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT dId a..dId..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT dId, ..bId..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT bId, ..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT b.id ..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(t..SUM..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(T..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT SUM(t..SUM..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 - S..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT count..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT break..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT b.id ..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..id..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT b.id ..breakdown..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT 1 FRO..breakdowns_descriptors..." />
+            <marker date="1490153655000" expanded="true" signature="-1:-1" placeholder="SELECT d1.id..descriptor..." />
           </folding>
         </state>
       </provider>
@@ -1523,6 +1304,76 @@
         <state vertical-scroll-proportion="0.46875" vertical-offset="270" max-vertical-offset="900">
           <caret line="32" column="44" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0738255" vertical-offset="600" max-vertical-offset="3360">
+          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/descriptorBar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49881235" vertical-offset="0" max-vertical-offset="5295">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0851064" vertical-offset="945" max-vertical-offset="2535">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding>
+            <element signature="e#45#102#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9574468" vertical-offset="0" max-vertical-offset="1035">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2469636" vertical-offset="2429" max-vertical-offset="3210">
+          <caret line="203" column="1" selection-start-line="203" selection-start-column="1" selection-end-line="203" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Controller/AjaxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63829786" vertical-offset="0" max-vertical-offset="1740">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Ajax/breakdownShow.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.416666" vertical-offset="791" max-vertical-offset="1485">
+          <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperatorBundle/Resources/views/Breakdown/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06382979" vertical-offset="0" max-vertical-offset="1950">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
