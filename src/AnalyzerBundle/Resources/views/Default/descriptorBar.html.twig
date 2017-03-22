@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 {% block body %}
 
+    <div style="height: 800px;">vvv</div>
     <div class="row">
         <div class="col-lg-12">
             <h1>
@@ -111,6 +112,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Bars</h3>
+                    <button onclick="downloadChart();" type="button" class="btn btn-primary">download chart</button>
                 </div>
                 <div class="panel-body">
                     <canvas id="myChart" height="300"  ></canvas>
@@ -331,11 +333,16 @@
         setDateRangePicker('descriptorTree_filter','dateRange','descriptorTree_filter_start','descriptorTree_filter_stop');
 
 
-
+        function downloadChart(){
+            // alert( window.myBar.toBase64Image() );
+            var url_base64 = document.getElementById('myChart').toDataURL('image/png');
+            window.open(url_base64,'_blank');
+        }
 
 
 
     </script>
+
 
 
 

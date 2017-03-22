@@ -64,6 +64,14 @@
     <script type="text/javascript" src="{{ asset('bundles/manager/js/jquery-date-range-picker-master/dist/jquery.daterangepicker.min.js') }}"></script>
 
 
+
+    {#
+    <script type="text/javascript" src="{{ asset('assets/vendor/sigma/sigma.min.js') }}"></script>
+    {% javascripts 'assets/vendor/sigma/plugins/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    #}
+
     {% javascripts '@SiteBundle/Resources/public/js/*' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

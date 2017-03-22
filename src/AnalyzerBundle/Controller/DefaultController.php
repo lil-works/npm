@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AnalyzerBundle\Filter\DescriptorTreeFilter;
 use \DateTime;
+use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
@@ -29,6 +30,9 @@ class DefaultController extends Controller
 
     public function descriptorBarAction(Request $request)
     {
+
+
+
 
         $em = $this->getDoctrine()->getManager();
 

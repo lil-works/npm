@@ -199,3 +199,10 @@ sonata_seo:
             'xmlns':              http://www.w3.org/1999/xhtml
             'xmlns:og':           http://opengraphprotocol.org/schema/
             #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
+
+#knp_snappy:
+#    pdf:
+#        enabled:    true
+#        #binary:     %kernel.root_dir%/../vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64
+#        binary:     /usr/local/bin/wkhtmltopdf
+
