@@ -97,14 +97,14 @@
                 <td>
                     <ul class="list-inline" style="color: red;">
                         {% for breakdownInterfero in breakdown.breakdownsInterferos %}
-                            {% if breakdownInterfero.status == true %}
+                            {% if breakdownInterfero.status == false %}
                                 <li>A{{ breakdownInterfero.interfero.antenna }} B{{  breakdownInterfero.interfero.band }}</li>
                             {% endif %}
                         {% endfor %}
                     </ul>
                     <ul class="list-inline" style="color: green;">
                         {% for breakdownInterfero in breakdown.breakdownsInterferos %}
-                            {% if breakdownInterfero.status == false %}
+                            {% if breakdownInterfero.status == true %}
                                 <li>A{{ breakdownInterfero.interfero.antenna }} B{{  breakdownInterfero.interfero.band }}</li>
                             {% endif %}
                         {% endfor %}
