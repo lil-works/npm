@@ -233,12 +233,12 @@
                 datasets : [{
                     label: data1Label,
                     yAxisID: "y-axis-1",
-                    backgroundColor: "rgba(220,220,220,0.5)",
+                    backgroundColor: "rgba(187,151,55,0.75)",
                     data                  : data1
                 },{
                     label: data2Label,
                     yAxisID: "y-axis-2",
-                    backgroundColor: "rgba(151,187,55,0.5)",
+                    backgroundColor: "rgba(151,187,55,0.25)",
                     data                  : data2
                 }]
             };
@@ -264,6 +264,7 @@
                             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                             display: true,
                             position: "left",
+
                             id: "y-axis-1",
                         }, {
                             ticks: {
@@ -273,6 +274,7 @@
                             display: true,
                             position: "right",
                             id: "y-axis-2",
+
                             gridLines: {
                                 drawOnChartArea: false
                             }
@@ -294,12 +296,12 @@
 
         if($("#descriptorTree_filter_timePonderation option[selected=selected]").val() == 'on'){
             data1Label = "pondered by breakdown length (%)";
-            data2Label = "descriptor occurrence in breakdown(nbr)";
-            descriptors = JSON.parse(JSONDesriptors.replace(/&quot;/g, '\"').replace(/breakdownLengthRatio/g,'value1').replace(/breakdownCount/g,'value2'));
+            data2Label = "descriptor occurrence in breakdown(%)";
+            descriptors = JSON.parse(JSONDesriptors.replace(/&quot;/g, '\"').replace(/breakdownLengthRatio/g,'value1').replace(/breakdownOccuranceRatio/g,'value2'));
         }else{
-            data1Label = "descriptor occurrence in breakdown (nbr)";
+            data1Label = "descriptor occurrence in breakdown (%)";
             data2Label = "pondered by breakdown length (%)";
-            descriptors = JSON.parse(JSONDesriptors.replace(/&quot;/g, '\"').replace(/breakdownCount/g,'value1').replace(/breakdownLengthRatio/g,'value2'));
+            descriptors = JSON.parse(JSONDesriptors.replace(/&quot;/g, '\"').replace(/breakdownOccuranceRatio/g,'value1').replace(/breakdownLengthRatio/g,'value2'));
         }
 
         drawBarChart(descriptors,data1Label,data2Label);
