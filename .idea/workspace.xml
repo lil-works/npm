@@ -174,8 +174,8 @@
       <file leaf-file-name="help.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/help.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3537736" vertical-offset="15" max-vertical-offset="1290">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.35929647" vertical-offset="817" max-vertical-offset="1290">
+              <caret line="64" column="280" selection-start-line="64" selection-start-column="280" selection-end-line="64" selection-end-column="280" />
               <folding />
             </state>
           </provider>
@@ -1502,8 +1502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AnalyzerBundle/Resources/views/Default/help.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3537736" vertical-offset="15" max-vertical-offset="1290">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.35929647" vertical-offset="817" max-vertical-offset="1290">
+          <caret line="64" column="280" selection-start-line="64" selection-start-column="280" selection-end-line="64" selection-end-column="280" />
           <folding />
         </state>
       </provider>

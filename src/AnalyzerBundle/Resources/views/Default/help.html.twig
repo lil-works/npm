@@ -18,16 +18,16 @@
 
                 <p>Les breakdowns sont caracterisés par des descripteurs</p>
                 <ul>
-                    <li>B1 est caracterisé par les descriptors antenna 7 et hexapode</li>
-                    <li>B2 est caracterisé par les descriptors antenna 7 et i2c</li>
+                    <li>B1 est caracterisé par les descriptors {antenna 7} et {hexapod}</li>
+                    <li>B2 est caracterisé par les descriptors {antenna 7} et {i2c}</li>
                 </ul>
 
 
                 <h3>Occurance ratio:</h3>
-                <p>En terme d'occurance, {hexapode} est {i2c} sont cités dans 1 breakdown sur un total de 2
+                <p>En terme d'occurance, {hexapod} est {i2c} sont cités dans 1 breakdown sur un total de 2
                 soit 50%. Tandis que {antenna 7} est cité dans tous les cas.</p>
                 <ul>
-                    <li>occurance ratio {hexapode} = 1/2</li>
+                    <li>occurance ratio {hexapod} = 1/2</li>
                     <li>occurance ratio {i2c} = 1/2</li>
                     <li>occurance ratio {antenna 7} = 1</li>
                 </ul>
@@ -39,7 +39,7 @@
                     Il nous faut d'abord calculer le total des durées des "breakdowns" selectionnés.
                     durée B1 + durée B2 soit 1h + 2h = 3h</p>
                 <ul>
-                    <li>length ratio {hexapode} = durée de B1 / total des durées = 1/3</li>
+                    <li>length ratio {hexapod} = durée de B1 / total des durées = 1/3</li>
                     <li>length ratio {i2c} = durée de B2 / total des durées = 2/3</li>
                     <li>length ratio {antenna 7} = ( durée de B1 + durée de B2 ) / total des durées = (1+2)/3 = 1</li>
                 </ul>
@@ -54,15 +54,15 @@
                 </p>
                 <h4>Pour occurance ratio</h4>
                 <ul>
-                    <li>occurance ratio pondered by interfero {hexapode} = ( occurance ratio {hexapode} * coefficient interfero B1 ) / ( moyenne taux d'affectation de l'interfero ) = (1/2 * 1)/(3/4) = 2/3 </li>
+                    <li>occurance ratio pondered by interfero {hexapod} = ( occurance ratio {hexapod} * coefficient interfero B1 ) / ( moyenne taux d'affectation de l'interfero ) = (1/2 * 1)/(3/4) = 2/3 </li>
                     <li>occurance ratio pondered by interfero {i2c} = ( occurance ratio {i2c} * coefficient interfero B2 ) / ( moyenne taux d'affectation de l'interfero ) = (1/2*1/2)/(3/4) = 1/3 </li>
                     <li>occurance ratio pondered by interfero {antenna 7} = ( occurance ratio {antenna 7}  * ((coefficient interfero B1 + coefficient interfero B2 ) / (nombre d'occurances de DX)) )  / ( moyenne taux d'affectation de l'interfero ) = 1 * ( ( 1 + 1/2 ) / 2 ) / ( 3/4 ) = 1</li>
                 </ul>
                 <h4>Pour le time ponderation ratio</h4>
                 <ul>
-                    <li>length ratio pondered by interfero {hexapode} = ( length ratio {hexapode} * coefficient interfero B1 ) / ( moyenne taux d'affectation de l'interfero ) = (1/3 * 1)/(3/4) = 4/9 </li>
-                    <li>length ratio pondered by interfero {i2c} = ( length ratio {i2c} * coefficient interfero B2 ) / ( moyenne taux d'affectation de l'interfero ) = (2/3*1/2)/(3/4) = 4/9 </li>
-                    <li>length ratio pondered by interfero {antenna 7} = ( time ratio {antenna 7}  * ((coefficient interfero B1 + coefficient interfero B2 ) / (nombre d'occurance de DX)) )  / ( moyenne taux d'affectation de l'interfero ) = 1 * ( ( 1 + 1/2 ) / 2 ) / ( 3/4 ) = 1</li>
+                    <li>length ratio pondered by interfero {hexapod} = ( length ratio {hexapod} * coefficient interfero B1 / nombre d'occurance {hexapod ) / ( moyenne taux d'affectation de l'interfero ) = (1/3 * 1 / 1)/(3/4) = 4/9 </li>
+                    <li>length ratio pondered by interfero {i2c} = ( length ratio {i2c} * coefficient interfero B2 / nombre d'occurance {i2c} ) / ( moyenne taux d'affectation de l'interfero ) = ( 2/3 * 1/2 / 1 )/(3/4) = 4/9 </li>
+                    <li>length ratio pondered by interfero {antenna 7} = ( time ratio {antenna 7}  * ((coefficient interfero B1 + coefficient interfero B2 ) / (nombre d'occurance {antenna 7})) )  / ( moyenne taux d'affectation de l'interfero ) =  ( 1 * (( 1 + 1/2 ) / 2 )) /  3/4  = 1</li>
                 </ul>
 
 
