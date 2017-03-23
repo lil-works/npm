@@ -1,7 +1,9 @@
 analyzer_homepage:
      path:     /analyzer
      defaults: { _controller: AnalyzerBundle:Default:index }
-
+analyzer_help:
+     path:     /analyzer/help
+     defaults: { _controller: AnalyzerBundle:Default:help }
 analyzer_descriptorBar:
      path:     /analyzer/descriptor-bar/{category}
      defaults: { _controller: AnalyzerBundle:Default:descriptorBar , category: 0 }

@@ -38,9 +38,9 @@
     <parameter key="kernel.container_class">appDevDebugProjectContainer</parameter>
     <parameter key="database_host">localhost</parameter>
     <parameter key="database_port">8889</parameter>
-    <parameter key="database_name">npm</parameter>
-    <parameter key="database_user">npm</parameter>
-    <parameter key="database_password">8Hdc4hu6V9bp9Y78</parameter>
+    <parameter key="database_name">npm2</parameter>
+    <parameter key="database_user">root</parameter>
+    <parameter key="database_password">root</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -2208,7 +2208,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>58d23d665f9fb1.04848092</argument>
+            <argument>58d33b7f192e52.59819371</argument>
           </service>
         </argument>
       </argument>
@@ -2584,7 +2584,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>58d23d665f9fb1.04848092</argument>
+            <argument>58d33b7f192e52.59819371</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2997,9 +2997,9 @@
         <argument key="driver">pdo_mysql</argument>
         <argument key="host">localhost</argument>
         <argument key="port">8889</argument>
-        <argument key="dbname">npm</argument>
-        <argument key="user">npm</argument>
-        <argument key="password">8Hdc4hu6V9bp9Y78</argument>
+        <argument key="dbname">npm2</argument>
+        <argument key="user">root</argument>
+        <argument key="password">root</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>

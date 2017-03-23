@@ -22,7 +22,10 @@ class DefaultController extends Controller
             )
         );
     }
-
+    public function helpAction()
+    {
+        return $this->render('AnalyzerBundle:Default:help.html.twig');
+    }
     public function menuAction()
     {
         return $this->render('AnalyzerBundle:Default:menu.html.twig');

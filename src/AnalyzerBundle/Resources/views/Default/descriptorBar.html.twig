@@ -61,6 +61,7 @@
                             {{ form_widget(form.maxDuration) }}
                         </div>
                     </div>
+
                 </div>
 
 
@@ -71,6 +72,9 @@
                 <button class="btn btn-default" id="descriptorTree_filter_submit" type="submit" name="submit-filter" value="apply-filter" >
                     <i class="glyphicon glyphicon-search"></i>search breakdowns
                 </button>
+                {% if descriptors != 'null' %}
+                <button onclick="save();" type="button" class="btn btn-secondary">save</button>
+                {% endif %}
             </form>
         </div>
     </div>
@@ -110,7 +114,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Bars</h3>
-                    <button onclick="downloadChart();" type="button" class="btn btn-primary">download chart</button>
                 </div>
                 <div class="panel-body">
                     <canvas id="myChart" height="300"  ></canvas>
@@ -335,6 +338,12 @@
             // alert( window.myBar.toBase64Image() );
             var url_base64 = document.getElementById('myChart').toDataURL('image/png');
             window.open(url_base64,'_blank');
+        }
+
+        function save(){
+            alert(JSONDesriptors);
+            alert(JSONNodes);
+            alert(JSONEdges);
         }
 
 

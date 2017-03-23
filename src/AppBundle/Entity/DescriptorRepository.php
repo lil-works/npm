@@ -682,12 +682,11 @@ ORDER BY  IF( :timePonderation = 'on' ,
     tI,
     breakdownCount as breakdownCount,
     IF(:interferoPonderation = 'on',
-        ROUND(100 * dBreakdownCountInterfered / tI, 2),
+        ROUND(100 * (dBreakdownCount*dBreakdownInterfero/breakdownCount)/tI, 2),
         ROUND(100 * dBreakdownCount / bC, 2)) AS breakdownOccuranceRatio,
     IF(:interferoPonderation = 'on',
-        ROUND(100 * dBreakdownLengthInterfered / (tL * tI / bC),
-                2),
-        ROUND(100 * dBreakdownLength / tL, 2)) AS breakdownLengthRatio
+        ROUND(100 * (dBreakdownLength/tL)*(dBreakdownInterfero/breakdownCount)/(tI/bC),2),
+        ROUND(100 * dBreakdownLength/tL, 2)) AS breakdownLengthRatio
 FROM
     (SELECT
         dId,

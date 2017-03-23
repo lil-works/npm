@@ -115,6 +115,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'AnalyzerBundle\\Controller\\DefaultController::indexAction',  '_route' => 'analyzer_homepage',);
             }
 
+            // analyzer_help
+            if ($pathinfo === '/analyzer/help') {
+                return array (  '_controller' => 'AnalyzerBundle\\Controller\\DefaultController::helpAction',  '_route' => 'analyzer_help',);
+            }
+
             if (0 === strpos($pathinfo, '/analyzer/descriptor-')) {
                 // analyzer_descriptorBar
                 if (0 === strpos($pathinfo, '/analyzer/descriptor-bar') && preg_match('#^/analyzer/descriptor\\-bar(?:/(?P<category>[^/]++))?$#s', $pathinfo, $matches)) {
