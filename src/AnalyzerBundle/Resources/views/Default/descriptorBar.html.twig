@@ -160,12 +160,16 @@
                         </td>
                         <td>
                             {% if edges2[descriptor.id] is defined %}
-                            {% for edge in edges2[descriptor.id] %}
-                                <span
-                                        style="font-weight:{{ 100 * edge[1]  }};margin:{{ 8 + 3 * edge[1] }}px {{ 3 + 2 * edge[1] }}px;font-size: {{  edge[1] + 8 }}px;background-color: {{ edge[0].category.color }}"
-                                        class="label label-default">{{ edge[0].label }}
-                                </span>
-                            {% endfor %}
+                                {% set tot = 0 %}
+                                {% for edge in edges2[descriptor.id] %}
+                                    {% set tot = tot + 1 %}
+                                {% endfor %}
+                                {% for edge in edges2[descriptor.id] %}
+                                    <span
+                                            style="font-weight:100;margin:{{ 16 + 8 * edge[1] / tot | round  }} {{ 8 + 8 * edge[1] / tot | round  }};font-size: {{  8 + 8 *  edge[1] / tot | round  }}px;background-color: {{ edge[0].category.color }}"
+                                            class="label label-default"><sup>{{  edge[1]  }}</sup>&frasl;<sub>{{ tot }}</sub> {{ edge[0].label }}
+                                    </span>
+                                {% endfor %}
                             {% endif %}
                         </td>
                         <td>{{ descriptor.breakdownOccuranceRatio }}%</td>

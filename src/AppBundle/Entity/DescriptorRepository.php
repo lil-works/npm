@@ -363,6 +363,8 @@ ORDER BY id1;";
 
         if( !isset($datas["maxDuration"]) || $datas["maxDuration"] == 0 ){
             $maxDuration = null;
+        }else{
+            $maxDuration = $datas["maxDuration"];
         }
         $categoryIn = array();
         foreach ($datas["category"] as $cat) {

@@ -85,7 +85,6 @@ class DefaultController extends Controller
             $edges = json_encode($edges);
 
 
-            //var_dump($data["timePonderation"],$data["interferoPonderation"]);
             $descriptors = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Descriptor')
                 ->AnalyzerFindAll($data);
