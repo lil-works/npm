@@ -5,6 +5,9 @@
             <h1>
                 Tree & Bar chart
             </h1>
+            <span class="glyphicon glyphicon-education" aria-hidden="true">
+                <a href="{{ path('analyzer_help') }}">how it works?</a>
+            </span>
         </div>
     </div>
 
@@ -27,20 +30,20 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="filterBoxField">
                             {{ form_label(form.category) }}
                             {{ form_widget(form.category) }}
                         </div>
                         <div class="filterBoxField" id="filterBoxField-ponderation">
                             {{ form_label(form.timePonderation) }}
-                            {{ form_widget(form.timePonderation) }}
+                            {{ form_widget(form.timePonderation,{ 'attr': {'class': 'form-control'} }) }}
                             <br/>
                             {{ form_label(form.interferoPonderation) }}
-                            {{ form_widget(form.interferoPonderation) }}
+                            {{ form_widget(form.interferoPonderation,{ 'attr': {'class': 'form-control'} }) }}
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="filterBoxField" id="filterBoxField-start">
                             {{ form_label(form.start) }}
                             {{ form_widget(form.start) }}
@@ -50,18 +53,25 @@
                             {{ form_widget(form.stop) }}
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
 
                         <div class="filterBoxField" id="filterBoxField-duration">
                             {{ form_label(form.durationUnity) }}
-                            {{ form_widget(form.durationUnity) }}
+                            {{ form_widget(form.durationUnity,{ 'attr': {'class': 'form-control'} }) }}
                             {{ form_label(form.minDuration) }}
-                            {{ form_widget(form.minDuration) }}
+                            {{ form_widget(form.minDuration,{ 'attr': {'class': 'form-control'} }) }}
                             {{ form_label(form.maxDuration) }}
-                            {{ form_widget(form.maxDuration) }}
+                            {{ form_widget(form.maxDuration,{ 'attr': {'class': 'form-control'} }) }}
                         </div>
                     </div>
-
+                    <div class="col-lg-3">
+                        <div class="filterBoxField" id="filterBoxField-limit">
+                            {{ form_label(form.minLimit) }}
+                            {{ form_widget(form.minLimit ,{ 'attr': {'class': 'form-control'} }) }}
+                            {{ form_label(form.maxLimit) }}
+                            {{ form_widget(form.maxLimit ,{ 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
                 </div>
 
 

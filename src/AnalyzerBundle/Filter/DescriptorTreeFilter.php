@@ -49,19 +49,8 @@ class DescriptorTreeFilter extends AbstractType
                 'off' => 'off',
                 'on' => 'on'
             )))
-            //->add('minTime', DateTimeType::class,array('required' => false ))
-            //->add('maxTime', DateTimeType::class,array('required' => false ))
-/*
-            ->add('breakdownLengthUnity', ChoiceType::class,array('required' => false ,'choices'  => array(
-                'minute' => 'minutes',
-                'hour' => 'hours',
-                'day' => 'days',
-                'week' => 'weeks',
-                'month' => 'months',
-
-            ),))
-            ->add('breakdownLengthMin', IntegerType::class,array('required' => false ))
-            ->add('breakdownLengthMax', IntegerType::class,array('required' => false ))*/
+            ->add('minLimit', integerType::class,array('required' => false , 'data' => 0 ))
+            ->add('maxLimit', integerType::class,array('required' => false, 'data' => 100 ))
 
         ;
     }

@@ -9,54 +9,68 @@
 
             <h2>Comment sont calculées les statistiques?</h2>
             <div>
-                Prenons un premier exemple...
-                Disons 2 breakdowns séléctionnés E1 et E2
+                <p>Prenons un exemple...
+                Disons 2 breakdowns séléctionnés E1 et E2</p>
                 <ul>
                     <li>B1 dure 1h et 100% de l'interferometre est OFF</li>
                     <li>B2 dure 2h et 50% de l'interferometre est OFF</li>
                 </ul>
 
-                Les breakdowns sont caracterisés par des descripteurs:
+                <p>Les breakdowns sont caracterisés par des descripteurs</p>
                 <ul>
-                    <li>B1 est caracterisé par les "descriptor" D1 et DX</li>
-                    <li>B2 est caracterisé par les "descriptor" D2 et DX</li>
+                    <li>B1 est caracterisé par les descriptors antenna 7 et hexapode</li>
+                    <li>B2 est caracterisé par les descriptors antenna 7 et i2c</li>
                 </ul>
 
-                <p>Il faut garder en tête que B1 et B2 peuvent être des événements similaires survenus à deux moments differents</p>
 
                 <h3>Occurance ratio:</h3>
-                En terme d'occurance, D1 est D2 sont cités dans 1 breakdown sur un total de 2
-                soit 50%. Tandis que DX est cité dans tous les cas soit 100%
-
-
-                <h3>Time ratio:</h3>
-                Si l'on prend maintenant en compte la durée de chaque breakdown (time ponderation):
-
-                Il nous faut d'abord calculer le total des durées des "breakdowns" selectionnés.
-                durée B1 + durée B2 soit 1h + 2h = 3h
+                <p>En terme d'occurance, {hexapode} est {i2c} sont cités dans 1 breakdown sur un total de 2
+                soit 50%. Tandis que {antenna 7} est cité dans tous les cas.</p>
                 <ul>
-                    <li>D1 = durée de B1 / total des durées  soit  D1 = 1/3</li>
-                    <li>D2 = durée de B2 / total des durées  soit  D2 = 2/3</li>
-                    <li>DX = durée de B1 / total des durées  + durée de B2 / somme des durées   soit  DX = 1/3 + 2/3 = 1</li>
+                    <li>occurance ratio {hexapode} = 1/2</li>
+                    <li>occurance ratio {i2c} = 1/2</li>
+                    <li>occurance ratio {antenna 7} = 1</li>
+                </ul>
+
+
+                <h3>Time ponderation:</h3>
+                <p>Si l'on prend maintenant en compte la durée de chaque breakdown (time ponderation).</p>
+                <p>
+                    Il nous faut d'abord calculer le total des durées des "breakdowns" selectionnés.
+                    durée B1 + durée B2 soit 1h + 2h = 3h</p>
+                <ul>
+                    <li>length ratio {hexapode} = durée de B1 / total des durées = 1/3</li>
+                    <li>length ratio {i2c} = durée de B2 / total des durées = 2/3</li>
+                    <li>length ratio {antenna 7} = ( durée de B1 + durée de B2 ) / total des durées = (1+2)/3 = 1</li>
                 </ul>
 
 
                 <h3>Interfero ponderation</h3>
-                Dans le cas de la ponderation par les données d'interferometre (interfero ponderation).
-                Il nous faut d'abord calculer la moyenne des taux d'affectation de l'interfero sur la selection de "breakdowns"
+                <p>
+                    Dans le cas de la ponderation par les données d'interferometre (interfero ponderation).</p>
+                <p>Il nous faut d'abord calculer la moyenne des taux d'affectation de l'interfero sur la selection de "breakdowns"
                 ( affectation interfero B1 + affectation interfero B2 ) / (nombre de breakdowns)
                 soit ( 1 + 1/2 ) / 2 = 3/4
+                </p>
+                <h4>Pour occurance ratio</h4>
                 <ul>
-                    <li>D1 = ( durée de B1 * coefficient interfero B1 ) / (total des durées * taux d'affectation de l'interfero )  soit  D1 = (1*1)/(3*3/2) = 1/2 </li>
-                    <li>D2 = ( durée de B2 * coefficient interfero B2 ) / (total des durées * taux d'affectation de l'interfero )  soit  D1 = (1*1/2)/(3*2/3) = 1/4 </li>
-                    <li>DX = ( durée de B1 * coefficient interfero B1 +  durée de B2 * coefficient interfero B2  ) / (total des durées * taux d'affectation de l'interfero ) soit  D1 = ((1x<sup>1</sup>&frasl;<sub>2</sub>)+(2x<sup>1</sup>&frasl;<sub>2</sub>))/(3x<sup>2</sup>&frasl;<sub>3</sub>) = <sup>1</sup>&frasl;<sub>4</sub> </li>
+                    <li>occurance ratio pondered by interfero {hexapode} = ( occurance ratio {hexapode} * coefficient interfero B1 ) / ( moyenne taux d'affectation de l'interfero ) = (1/2 * 1)/(3/4) = 2/3 </li>
+                    <li>occurance ratio pondered by interfero {i2c} = ( occurance ratio {i2c} * coefficient interfero B2 ) / ( moyenne taux d'affectation de l'interfero ) = (1/2*1/2)/(3/4) = 1/3 </li>
+                    <li>occurance ratio pondered by interfero {antenna 7} = ( occurance ratio {antenna 7}  * ((coefficient interfero B1 + coefficient interfero B2 ) / (nombre d'occurances de DX)) )  / ( moyenne taux d'affectation de l'interfero ) = 1 * ( ( 1 + 1/2 ) / 2 ) / ( 3/4 ) = 1</li>
                 </ul>
+                <h4>Pour le time ponderation ratio</h4>
+                <ul>
+                    <li>length ratio pondered by interfero {hexapode} = ( length ratio {hexapode} * coefficient interfero B1 ) / ( moyenne taux d'affectation de l'interfero ) = (1/3 * 1)/(3/4) = 4/9 </li>
+                    <li>length ratio pondered by interfero {i2c} = ( length ratio {i2c} * coefficient interfero B2 ) / ( moyenne taux d'affectation de l'interfero ) = (2/3*1/2)/(3/4) = 4/9 </li>
+                    <li>length ratio pondered by interfero {antenna 7} = ( time ratio {antenna 7}  * ((coefficient interfero B1 + coefficient interfero B2 ) / (nombre d'occurance de DX)) )  / ( moyenne taux d'affectation de l'interfero ) = 1 * ( ( 1 + 1/2 ) / 2 ) / ( 3/4 ) = 1</li>
+                </ul>
+
+
+
 
                 <h3>affectation interfero</h3>
                 <p>Chaque "breakdown" enregistre l'état ON ou OFF de tous les couples Antenne,Band (A1,B1|A1,B2|A1,B3 etc...). Soit 24 couples aujourd'hui.
                 le coefficient pour un breakdown est: (somme des OFF)/(total ant,bande)</p>
-
-
             </div>
 
         </div>
