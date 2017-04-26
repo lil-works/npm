@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Person
+ * Analyze
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\AnalyzeRepository")
