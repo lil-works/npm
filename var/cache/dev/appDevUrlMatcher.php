@@ -328,9 +328,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            // manager_interfero
-            if ($pathinfo === '/manager/interfero') {
-                return array (  '_controller' => 'ManagerBundle:Interfero:index',  '_route' => 'manager_interfero',);
+            if (0 === strpos($pathinfo, '/manager/interfero')) {
+                // manager_interfero
+                if ($pathinfo === '/manager/interfero') {
+                    return array (  '_controller' => 'ManagerBundle\\Controller\\InterferoController::indexAction',  '_route' => 'manager_interfero',);
+                }
+
+                // manager_interfero_new
+                if ($pathinfo === '/manager/interfero/new') {
+                    return array (  '_controller' => 'ManagerBundle\\Controller\\InterferoController::newAction',  '_route' => 'manager_interfero_new',);
+                }
+
+                // manager_interfero_edit
+                if (preg_match('#^/manager/interfero/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'manager_interfero_edit')), array (  '_controller' => 'ManagerBundle\\Controller\\InterferoController::editAction',));
+                }
+
+                // manager_interfero_delete
+                if (preg_match('#^/manager/interfero/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'manager_interfero_delete')), array (  '_controller' => 'ManagerBundle\\Controller\\InterferoController::deleteAction',));
+                }
+
             }
 
         }

@@ -51,6 +51,18 @@ manager_interfero:
     path:     /manager/interfero
     defaults: { _controller: ManagerBundle:Interfero:index }
 
+manager_interfero_new:
+    path:     /manager/interfero/new
+    defaults: { _controller: ManagerBundle:Interfero:new }
+
+manager_interfero_edit:
+    path:     /manager/interfero/{id}/edit
+    defaults: { _controller: ManagerBundle:Interfero:edit }
+
+manager_interfero_delete:
+    path:     /manager/interfero/{id}/delete
+    defaults: { _controller: ManagerBundle:Interfero:delete }
+
 ajax_synonym_delete:
     path:     /ajaxSynonymDelete
     defaults: { _controller: ManagerBundle:Ajax:deleteSynonym }

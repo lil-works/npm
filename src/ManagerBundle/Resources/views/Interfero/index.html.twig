@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <ul>
+        <li>
+            <a href="{{ path('manager_interfero_new') }}">Add new antenna/band</a>
+        </li>
+    </ul>
+<ul>
+    {% for antband in currentInterfero %}
+        <li>
+            Antenna {{ antband.antenna }}
+            Band {{ antband.band }}
+            {% if  antband.available == 1%}<span style="color:green;">ON</span>{% else %}<span style="color:red;">OFF</span>{% endif %}
+            <a href="{{ path('manager_interfero_edit',{id:antband.id}) }}">edit</a>
+            {% if antband.breakdownsInterferos|length > 0 %}
+                ({{ antband.breakdownsInterferos|length }} breakdowns)
+            {% else %}
+                <a href="{{ path('manager_interfero_delete',{id:antband.id}) }}">delete</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
