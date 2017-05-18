@@ -52,7 +52,7 @@ $catalogue = new MessageCatalogue('en', array (
     'This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.' => 'This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.',
     'The file was only partially uploaded.' => 'The file was only partially uploaded.',
     'No file was uploaded.' => 'No file was uploaded.',
-    'No temporary folder was configured in php.ini.' => 'No temporary folder was configured in php.ini.',
+    'No temporary folder was configured in php.ini.' => 'No temporary folder was configured in php.ini, or the configured folder does not exist.',
     'Cannot write temporary file to disk.' => 'Cannot write temporary file to disk.',
     'A PHP extension caused the upload to fail.' => 'A PHP extension caused the upload to fail.',
     'This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.' => 'This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.',
@@ -86,25 +86,25 @@ $catalogue = new MessageCatalogue('en', array (
     'This form should not contain extra fields.' => 'This form should not contain extra fields.',
     'The uploaded file was too large. Please try to upload a smaller file.' => 'The uploaded file was too large. Please try to upload a smaller file.',
     'The CSRF token is invalid. Please try to resubmit the form.' => 'The CSRF token is invalid. Please try to resubmit the form.',
-    'fos_user.username.already_used' => 'The username is already used',
-    'fos_user.username.blank' => 'Please enter a username',
-    'fos_user.username.short' => '[-Inf,Inf]The username is too short',
-    'fos_user.username.long' => '[-Inf,Inf]The username is too long',
-    'fos_user.email.already_used' => 'The email is already used',
-    'fos_user.email.blank' => 'Please enter an email',
-    'fos_user.email.short' => '[-Inf,Inf]The email is too short',
-    'fos_user.email.long' => '[-Inf,Inf]The email is too long',
-    'fos_user.email.invalid' => 'The email is not valid',
-    'fos_user.password.blank' => 'Please enter a password',
-    'fos_user.password.short' => '[-Inf,Inf]The password is too short',
-    'fos_user.password.mismatch' => 'The entered passwords don\'t match',
-    'fos_user.new_password.blank' => 'Please enter a new password',
-    'fos_user.new_password.short' => '[-Inf,Inf]The new password is too short',
-    'fos_user.current_password.invalid' => 'The entered password is invalid',
-    'fos_user.group.blank' => 'Please enter a name',
-    'fos_user.group.short' => '[-Inf,Inf]The name is too short',
-    'fos_user.group.long' => '[-Inf,Inf]The name is too long',
-    'fos_group.name.already_used' => 'The name is already used',
+    'fos_user.username.already_used' => 'The username is already used.',
+    'fos_user.username.blank' => 'Please enter a username.',
+    'fos_user.username.short' => 'The username is too short.',
+    'fos_user.username.long' => 'The username is too long.',
+    'fos_user.email.already_used' => 'The email is already used.',
+    'fos_user.email.blank' => 'Please enter an email.',
+    'fos_user.email.short' => 'The email is too short.',
+    'fos_user.email.long' => 'The email is too long.',
+    'fos_user.email.invalid' => 'The email is not valid.',
+    'fos_user.password.blank' => 'Please enter a password.',
+    'fos_user.password.short' => 'The password is too short.',
+    'fos_user.password.mismatch' => 'The entered passwords don\'t match.',
+    'fos_user.new_password.blank' => 'Please enter a new password.',
+    'fos_user.new_password.short' => 'The new password is too short.',
+    'fos_user.current_password.invalid' => 'The entered password is invalid.',
+    'fos_user.group.blank' => 'Please enter a name.',
+    'fos_user.group.short' => 'The name is too short.',
+    'fos_user.group.long' => 'The name is too long.',
+    'fos_group.name.already_used' => 'The name is already used.',
     'fr3d_ldap.username.already_used' => 'The username is already used',
   ),
   'security' => 
@@ -131,9 +131,9 @@ $catalogue = new MessageCatalogue('en', array (
     'group.edit.submit' => 'Update group',
     'group.show.name' => 'Group name',
     'group.new.submit' => 'Create group',
-    'group.flash.updated' => 'The group has been updated',
-    'group.flash.created' => 'The group has been created',
-    'group.flash.deleted' => 'The group has been deleted',
+    'group.flash.updated' => 'The group has been updated.',
+    'group.flash.created' => 'The group has been created.',
+    'group.flash.deleted' => 'The group has been deleted.',
     'security.login.username' => 'Username',
     'security.login.password' => 'Password',
     'security.login.remember_me' => 'Remember me',
@@ -141,29 +141,34 @@ $catalogue = new MessageCatalogue('en', array (
     'profile.show.username' => 'Username',
     'profile.show.email' => 'Email',
     'profile.edit.submit' => 'Update',
-    'profile.flash.updated' => 'The profile has been updated',
+    'profile.flash.updated' => 'The profile has been updated.',
     'change_password.submit' => 'Change password',
-    'change_password.flash.success' => 'The password has been changed',
-    'registration.check_email' => 'An email has been sent to %email%. It contains an activation link you must click to activate your account.',
+    'change_password.flash.success' => 'The password has been changed.',
+    'registration.check_email' => 'An email has been sent to %email%. It contains an activation link you must click to activate your account.
+',
     'registration.confirmed' => 'Congrats %username%, your account is now activated.',
     'registration.back' => 'Back to the originating page.',
     'registration.submit' => 'Register',
-    'registration.flash.user_created' => 'The user has been created successfully',
+    'registration.flash.user_created' => 'The user has been created successfully.',
     'registration.email.subject' => 'Welcome %username%!',
     'registration.email.message' => 'Hello %username%!
 
 To finish activating your account - please visit %confirmationUrl%
 
+This link can only be used once to validate your account.
+
 Regards,
 the Team.
 ',
-    'resetting.password_already_requested' => 'The password for this user has already been requested within the last 24 hours.',
-    'resetting.check_email' => 'An email has been sent to %email%. It contains a link you must click to reset your password.',
-    'resetting.request.invalid_username' => 'The username or email address "%username%" does not exist.',
+    'resetting.check_email' => 'An email has been sent. It contains a link you must click to reset your password.
+Note: You can only request a new password within %tokenLifetime% hours.
+
+If you don\'t get an email check your spam folder or try again.
+',
     'resetting.request.username' => 'Username or email address',
     'resetting.request.submit' => 'Reset password',
     'resetting.reset.submit' => 'Change password',
-    'resetting.flash.success' => 'The password has been reset successfully',
+    'resetting.flash.success' => 'The password has been reset successfully.',
     'resetting.email.subject' => 'Reset Password',
     'resetting.email.message' => 'Hello %username%!
 
@@ -199,6 +204,11 @@ the Team.
     'text.ends' => 'Ends with',
     'text.equals' => 'Equals',
     'text.both' => 'Contains',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Previous',
+    'label_next' => 'Next',
   ),
   'SonataSeoBundle' => 
   array (

@@ -1,5 +1,5 @@
 {
-    "name": "lil.works/noema-pareto-manager",
+    "name": "lil-works/npm",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -14,40 +14,47 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+        ]
     },
     "require": {
         "php": ">=5.5.9",
-        "symfony/symfony": "3.0.*",
-        "doctrine/orm": "^2.5",
+        "bmatzner/fontawesome-bundle": "^4.7",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
-        "symfony/swiftmailer-bundle": "^2.3",
-        "symfony/monolog-bundle": "^2.8",
+        "doctrine/orm": "^2.5",
+        "fr3d/ldap-bundle": "^3.0",
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
+        "friendsofsymfony/user-bundle": "^2.0",
+        "incenteev/composer-parameter-handler": "^2.0",
+        "jms/translation-bundle": "^1.3",
+        "knplabs/knp-menu-bundle": "^2.1",
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "knplabs/knp-snappy-bundle": "^1.4",
+        "lexik/form-filter-bundle": "~5.0",
+        "lexik/translation-bundle": "^4.0",
+        "liip/imagine-bundle": "^1.7",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0",
-        "friendsofsymfony/jsrouting-bundle": "^1.5",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
-        "fr3d/ldap-bundle": "^3.0",
-        "jms/translation-bundle": "dev-master",
-        "lexik/form-filter-bundle": "dev-master",
-        "knplabs/knp-paginator-bundle": "^2.5",
-        "symfony/assetic-bundle": "^2.7",
-        "symfony/finder": "^3.0",
-        "twig/extensions": "^1.3",
-        "knplabs/doctrine-behaviors": "~1.1",
-        "sonata-project/seo-bundle": "^2.0",
-        "beberlei/DoctrineExtensions": "^1.0",
-        "knplabs/knp-snappy-bundle": "^1.4",
-        "h4cc/wkhtmltopdf-amd64": "^0.12.3"
+        "stfalcon/tinymce-bundle": "^2.1",
+        "symfony-cmf/seo-bundle": "^2.0",
+        "symfony/assetic-bundle": "^2.8",
+        "symfony/monolog-bundle": "^3.0.2",
+        "symfony/polyfill-apcu": "^1.0",
+        "symfony/security-acl": "^3.0",
+        "symfony/swiftmailer-bundle": "^2.5",
+        "symfony/symfony": "3.2.*",
+        "twig/twig": "^1.0||^2.0",
+        "vich/uploader-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {
-        "post-install-cmd": [
+        "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
@@ -55,19 +62,15 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
+        "post-install-cmd": [
+            "@symfony-scripts"
+        ],
         "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "@symfony-scripts"
         ]
     },
     "config": {
-        "platform": {
-            "php": "5.5.9"
-        }
+        "sort-packages": true
     },
     "extra": {
         "symfony-app-dir": "app",
@@ -78,6 +81,7 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        }
+        },
+        "branch-alias": null
     }
 }
