@@ -5,6 +5,7 @@ operator_homepage:
 operator_breakdown:
     path:     /operator/breakdown
     defaults: { _controller: OperatorBundle:Breakdown:index }
+    methods: GET
 
 operator_breakdown_timeline:
     path:     /operator/breakdown/timeline

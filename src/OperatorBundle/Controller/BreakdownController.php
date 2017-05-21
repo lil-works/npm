@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use AppBundle\Entity\Breakdown;
 use OperatorBundle\Form\BreakdownType;
-use OperatorBundle\Filter\BreakdownFilter;
+use OperatorBundle\Filter\BreakdownFilterType;
 
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -23,98 +23,50 @@ use \DateTime;
  */
 class BreakdownController extends Controller
 {
-
     /**
      * Lists all Breakdown entities.
      * @Method("GET")
      */
     public function indexAction(Request $request)
     {
-        $em    = $this->get('doctrine.orm.entity_manager');
+        $simpleLiveEditor    = $this->get('app.simpleLiveEditor');
+        $formFilter = $this->get('form.factory')->create(BreakdownFilterType::class);
 
 
+        if ($request->query->has($formFilter->getName())) {
 
-        $form = $this->get('form.factory')->create(BreakdownFilter::class);
-        $dql   = "SELECT
-                a,
-                a.id ,
-                a.createdAt ,
-                u.id as userId,
-                u.name as createdBy ,
-                TIME_TO_SEC ( TIMEDIFF( a.stop, a.start )) as breakdown_length,
-                a.start,
-                a.stop,
-                a.closed ,
-                a.description,
+            // manually bind values from the request
+            $formFilter->submit($request->query->get($formFilter->getName()));
 
+            // initialize a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AppBundle:Breakdown')
+                ->createQueryBuilder('b');
 
-                GROUP_CONCAT( d.label) as descriptors_list,
-                GROUP_CONCAT( d.id SEPARATOR '####') as descriptors_list_id,
-                GROUP_CONCAT( c.label ) as descriptors_list_category_label,
-                GROUP_CONCAT( c.color ) as descriptors_list_category_color
+            // build the query from the given form object
+            $qb = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);
 
-                 FROM AppBundle:Breakdown a
-                 LEFT JOIN AppBundle:User u WITH u.id = a.createdBy
-                 LEFT JOIN a.descriptors d
-                  LEFT JOIN d.category c
-                  GROUP BY a.id
-                  HAVING
-                  IF(:closed IS NOT NULL,:closed,'%') = a.closed
-                  AND REGEXP(GROUP_CONCAT( DISTINCT d.id SEPARATOR '##'), :descriptors) = true
-                  AND ( u.id  IN (:createdBy) OR IF(:haveCreatedBy IS NULL , 'yes' ,'no') = 'yes' )
-                 ";
-        $query = $em->createQuery($dql);
-
-       // $query->setParameter('dcreated1', '2010-09-10');
-       // $query->setParameter('dcreated2', '2020-09-11');
-        //$query->setParameter('dstart1', '2010-08-01');
-        //$query->setParameter('dstart2', '2020-09-01');
-        //$query->setParameter('dstop1', '2010-08-01');
-       // $query->setParameter('dstop2', '2020-09-01');
-       // $query->setParameter('descriptor', '5');
-        $query->setParameter('closed', null);
-        $query->setParameter('descriptors', "#");
-
-        $query->setParameter('createdBy', null);
-        $query->setParameter('haveCreatedBy', null);
-
-
-
-
-        if ($request->query->has($form->getName())) {
-            $form->submit($request->query->get($form->getName()));
-            $data = $form->getData();
-
-            if(count($data["createdBy"])>0) {
-                $query->setParameter('createdBy', $data["createdBy"]);
-                $query->setParameter('haveCreatedBy', 1);
-            }
-
-            $query->setParameter('closed', $data["closed"]);
-            if(count($data["descriptors"])>0){
-                $aDescriptor = array();
-                foreach($data["descriptors"] as $descriptor){
-                    array_push($aDescriptor,$descriptor->getId());
-                }
-
-                $query->setParameter('descriptors', '#'.implode("#|#",$aDescriptor).'#');
-            }
+        }else{
+            $qb = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AppBundle:Breakdown')
+                ->createQueryBuilder('b');
+            ;
         }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $qb,
             $request->query->getInt('page', 1),
-            10,
-            array('wrap-queries'=>true)
+            10
         );
+
+
         return $this->render('OperatorBundle:Breakdown:index.html.twig', array(
             'pagination' => $pagination,
-            'form' => $form->createView()
+            'simple_live_editor'=>$simpleLiveEditor,
+            'formFilter'=>$formFilter->createView()
         ));
     }
-
-
 
     /**
      * Lists all Breakdown entities in timeline.

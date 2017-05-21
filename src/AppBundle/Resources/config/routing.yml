@@ -3,3 +3,8 @@ breakdown_ajax_searchOne:
     path:     /breakdown_ajax_searchOne
     defaults: { _controller: AppBundle:BreakdownAjax:searchOneByLabel }
 
+app_simpleLiveEditor_submitCol:
+    path:     /app-simpleLiveEditor-submitCol/{formType}/{entityName}/{colName}/{rowId}
+    defaults: { _controller: app.simpleLiveEditor:submitCol }
+    options:
+         expose: true

@@ -37,6 +37,14 @@
     <link rel="icon" type="image/x-icon" href="{{ asset_url }}" />
     {% endimage %}
 
+    <script src="{{ asset('bundles/app/js/simpleLiveEditor.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/formCollectionEditor.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/formFilter.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/tabs.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/utils.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/simpleLiveEditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
 
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>

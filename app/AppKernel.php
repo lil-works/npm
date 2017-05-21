@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new FR3D\LdapBundle\FR3DLdapBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
             new ManagerBundle\ManagerBundle(),

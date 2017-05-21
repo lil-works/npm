@@ -23,3 +23,6 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+    app.simpleLiveEditor:
+            class: AppBundle\Service\SimpleLiveEditor
+            arguments: ['@service_container','@templating','@doctrine.orm.entity_manager','@request_stack']

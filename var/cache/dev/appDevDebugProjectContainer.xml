@@ -22,6 +22,7 @@
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="JMSTranslationBundle">JMS\TranslationBundle\JMSTranslationBundle</parameter>
+      <parameter key="BmatznerFontAwesomeBundle">Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle</parameter>
       <parameter key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</parameter>
       <parameter key="SonataSeoBundle">Sonata\SeoBundle\SonataSeoBundle</parameter>
       <parameter key="ManagerBundle">ManagerBundle\ManagerBundle</parameter>
@@ -105,6 +106,11 @@
         <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/jms/translation-bundle/JMS/TranslationBundle</parameter>
         <parameter key="namespace">JMS\TranslationBundle</parameter>
       </parameter>
+      <parameter key="BmatznerFontAwesomeBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle</parameter>
+        <parameter key="namespace">Bmatzner\FontAwesomeBundle</parameter>
+      </parameter>
       <parameter key="FR3DLdapBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/fr3d/ldap-bundle</parameter>
@@ -165,7 +171,7 @@
     <parameter key="kernel.container_class">appDevDebugProjectContainer</parameter>
     <parameter key="database_host">localhost</parameter>
     <parameter key="database_port">8889</parameter>
-    <parameter key="database_name">npm2</parameter>
+    <parameter key="database_name">npm</parameter>
     <parameter key="database_user">npm</parameter>
     <parameter key="database_password">8Hdc4hu6V9bp9Y78</parameter>
     <parameter key="mailer_transport">smtp</parameter>
@@ -679,6 +685,12 @@
     <service id="app.descriptor.subscriber" class="AppBundle\Subscriber\PaginateDescriptorSubscriber">
       <tag name="knp_paginator.subscriber"/>
     </service>
+    <service id="app.simpleliveeditor" class="AppBundle\Service\SimpleLiveEditor">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="templating"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="request_stack"/>
+    </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -745,7 +757,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>bEay6H5z4A</argument>
                 <argument>0</argument>
-                <argument>WcbJrF8zC0n6m3jDhXwXhL</argument>
+                <argument>MM-tlCzVVDkWSeL1Z5IXQS</argument>
                 <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -928,7 +940,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>bz9f8NyHaz</argument>
       <argument>0</argument>
-      <argument>WcbJrF8zC0n6m3jDhXwXhL</argument>
+      <argument>MM-tlCzVVDkWSeL1Z5IXQS</argument>
       <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -938,7 +950,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>N2-SfjqkJT</argument>
       <argument>0</argument>
-      <argument>WcbJrF8zC0n6m3jDhXwXhL</argument>
+      <argument>MM-tlCzVVDkWSeL1Z5IXQS</argument>
       <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -2427,7 +2439,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>591dbf2ae09526.77403926</argument>
+            <argument>5921969d70a653.69219830</argument>
           </service>
         </argument>
       </argument>
@@ -2808,7 +2820,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>591dbf2ae09526.77403926</argument>
+            <argument>5921969d70a653.69219830</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3294,7 +3306,7 @@
         <argument key="driver">pdo_mysql</argument>
         <argument key="host">localhost</argument>
         <argument key="port">8889</argument>
-        <argument key="dbname">npm2</argument>
+        <argument key="dbname">npm</argument>
         <argument key="user">npm</argument>
         <argument key="password">8Hdc4hu6V9bp9Y78</argument>
         <argument key="charset">UTF8</argument>
@@ -3605,6 +3617,7 @@
         <argument key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</argument>
         <argument key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</argument>
         <argument key="JMSTranslationBundle">JMS\TranslationBundle\JMSTranslationBundle</argument>
+        <argument key="BmatznerFontAwesomeBundle">Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle</argument>
         <argument key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</argument>
         <argument key="SonataSeoBundle">Sonata\SeoBundle\SonataSeoBundle</argument>
         <argument key="ManagerBundle">ManagerBundle\ManagerBundle</argument>
