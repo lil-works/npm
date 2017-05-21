@@ -70,7 +70,8 @@
             </tr>
             </thead>
             <tbody>
-            {% for breakdown in pagination %}
+            {% for r in pagination %}
+                {% set breakdown = r[0] %}
                 <tr>
                     <td>
                         <ul class="list-inline">

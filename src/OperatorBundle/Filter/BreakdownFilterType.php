@@ -14,6 +14,7 @@ class BreakdownFilterType extends AbstractType
     {
         $builder
             ->add('createdAt', Filters\DateRangeFilterType::class)
+            #->add('breakdown_length', Filters\NumberFilterType::class)
             ->add('closed', Filters\BooleanFilterType::class)
             ->add('description', Filters\TextFilterType::class)
             ->add('createdBy', Filters\EntityFilterType::class, array(

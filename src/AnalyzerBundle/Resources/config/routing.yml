@@ -1,6 +1,7 @@
 analyzer_homepage:
      path:     /analyzer
      defaults: { _controller: AnalyzerBundle:Default:index }
+
 analyzer_help:
      path:     /analyzer/help
      defaults: { _controller: AnalyzerBundle:Default:help }

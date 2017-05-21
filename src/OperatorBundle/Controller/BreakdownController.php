@@ -32,6 +32,13 @@ class BreakdownController extends Controller
         $simpleLiveEditor    = $this->get('app.simpleLiveEditor');
         $formFilter = $this->get('form.factory')->create(BreakdownFilterType::class);
 
+        $qb = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('AppBundle:Breakdown')
+            ->createQueryBuilder('b')
+            ->select('b,TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) as breakdown_length');
+
+
+
 
         if ($request->query->has($formFilter->getName())) {
 
@@ -41,16 +48,12 @@ class BreakdownController extends Controller
             // initialize a query builder
             $filterBuilder = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Breakdown')
-                ->createQueryBuilder('b');
+                ->createQueryBuilder('b')
+                ->select('b,TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) as breakdown_length');
 
             // build the query from the given form object
             $qb = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);
 
-        }else{
-            $qb = $this->get('doctrine.orm.entity_manager')
-                ->getRepository('AppBundle:Breakdown')
-                ->createQueryBuilder('b');
-            ;
         }
 
         $paginator  = $this->get('knp_paginator');
