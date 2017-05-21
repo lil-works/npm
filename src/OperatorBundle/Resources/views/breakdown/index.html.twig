@@ -24,23 +24,6 @@
                 {{ form_rest(formFilter) }} <input type="submit" class="btn btn-sm btn-primary" name="submit-filter" value="filter" />
             </form>
         </div>
-        {#
-        <div class="col-lg-4  col-sm-6">
-
-            <form method="get" action="" name="breakdown_filter" id="descriptor_filter">
-                <div id="formErrors">
-                    {{ form_errors(form.closed) }}
-                </div>
-                <div class="filterBoxField">
-                    {{ form_label(form.closed) }}
-                    {{ form_widget(form.closed) }}
-                </div>
-                {{ form_rest(form) }}
-                <input id="descriptor_filter_submit" type="submit" name="submit-filter" value="apply-filter" />
-            </form>
-        </div>
-        #}
-
     </div>
 
 
@@ -123,15 +106,8 @@
 
 
                     <td>
-                        {#{% if breakdown.closed %}<span><i class="glyphicon glyphicon-ok-circle"></i></span>{% else %}<span><i class="glyphicon glyphicon-remove-circle"></i></span>{% endif %}#}
                         {{ simple_live_editor.getCol( 'AppBundle\\Form\\Ajax\\Breakdown\\ClosedType','AppBundle:Breakdown','closed',breakdown)|raw }}
                     </td>
-                    {#<td>
-                        {% for descriptor in breakdown.descriptors_list|descriptorListSorter(breakdown.descriptors_list_category_label,breakdown.descriptors_list_category_color) %}
-                            <span class="label label-default" style="background-color: {{ descriptor.color }};">{{ descriptor.label }}</span>
-                        {% endfor %}
-                    </td>
-#}
                     <td>
                         {% for descriptor in breakdown.descriptors %}
                             <span class="label label-default" style="background-color: {{ descriptor.category.color }};">{{ descriptor.label }}</span>
