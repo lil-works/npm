@@ -23,8 +23,9 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="JMSTranslationBundle">JMS\TranslationBundle\JMSTranslationBundle</parameter>
       <parameter key="BmatznerFontAwesomeBundle">Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle</parameter>
-      <parameter key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</parameter>
       <parameter key="SonataSeoBundle">Sonata\SeoBundle\SonataSeoBundle</parameter>
+      <parameter key="CmfSeoBundle">Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle</parameter>
+      <parameter key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</parameter>
       <parameter key="ManagerBundle">ManagerBundle\ManagerBundle</parameter>
       <parameter key="OperatorBundle">OperatorBundle\OperatorBundle</parameter>
       <parameter key="AnalyzerBundle">AnalyzerBundle\AnalyzerBundle</parameter>
@@ -111,15 +112,20 @@
         <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle</parameter>
         <parameter key="namespace">Bmatzner\FontAwesomeBundle</parameter>
       </parameter>
-      <parameter key="FR3DLdapBundle" type="collection">
-        <parameter key="parent">null</parameter>
-        <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/fr3d/ldap-bundle</parameter>
-        <parameter key="namespace">FR3D\LdapBundle</parameter>
-      </parameter>
       <parameter key="SonataSeoBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle</parameter>
         <parameter key="namespace">Sonata\SeoBundle</parameter>
+      </parameter>
+      <parameter key="CmfSeoBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/symfony-cmf/seo-bundle/src</parameter>
+        <parameter key="namespace">Symfony\Cmf\Bundle\SeoBundle</parameter>
+      </parameter>
+      <parameter key="FR3DLdapBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/fr3d/ldap-bundle</parameter>
+        <parameter key="namespace">FR3D\LdapBundle</parameter>
       </parameter>
       <parameter key="ManagerBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -561,6 +567,22 @@
     <parameter key="jms_translation.locales" type="collection"/>
     <parameter key="jms_translation.dumper.add_date">true</parameter>
     <parameter key="jms_translation.dumper.add_references">true</parameter>
+    <parameter key="sonata.seo.exporter.database_source_iterator.class">Exporter\Source\DoctrineDBALConnectionSourceIterator</parameter>
+    <parameter key="sonata.seo.exporter.sitemap_source_iterator.class">Exporter\Source\SymfonySitemapSourceIterator</parameter>
+    <parameter key="sonata.seo.page.default.class">Sonata\SeoBundle\Seo\SeoPage</parameter>
+    <parameter key="sonata.seo.twig.extension.class">Sonata\SeoBundle\Twig\Extension\SeoExtension</parameter>
+    <parameter key="sonata.seo.sitemap.manager.class">Sonata\SeoBundle\Sitemap\SourceManager</parameter>
+    <parameter key="cmf_seo.translation_domain">messages</parameter>
+    <parameter key="cmf_seo.title">%content_title% - Symfony</parameter>
+    <parameter key="cmf_seo.description">seo.description</parameter>
+    <parameter key="cmf_seo.original_route_pattern">redirect</parameter>
+    <parameter key="cmf_seo.error.templates" type="collection"/>
+    <parameter key="cmf_seo.content_key">test</parameter>
+    <parameter key="cmf_seo.form.data_class.seo_metadata">Symfony\Cmf\Bundle\SeoBundle\Model\SeoMetadata</parameter>
+    <parameter key="cmf_seo.form.options" type="collection">
+      <parameter key="generic_metadata">false</parameter>
+      <parameter key="storage">default</parameter>
+    </parameter>
     <parameter key="fr3d_ldap.ldap_manager.class">FR3D\LdapBundle\Ldap\LdapManager</parameter>
     <parameter key="fr3d_ldap.security.user.provider.class">FR3D\LdapBundle\Security\User\LdapUserProvider</parameter>
     <parameter key="fr3d_ldap.security.authentication.provider.class">FR3D\LdapBundle\Security\Authentication\LdapAuthenticationProvider</parameter>
@@ -599,11 +621,6 @@
       </parameter>
       <parameter key="usernameAttribute">uid</parameter>
     </parameter>
-    <parameter key="sonata.seo.exporter.database_source_iterator.class">Exporter\Source\DoctrineDBALConnectionSourceIterator</parameter>
-    <parameter key="sonata.seo.exporter.sitemap_source_iterator.class">Exporter\Source\SymfonySitemapSourceIterator</parameter>
-    <parameter key="sonata.seo.page.default.class">Sonata\SeoBundle\Seo\SeoPage</parameter>
-    <parameter key="sonata.seo.twig.extension.class">Sonata\SeoBundle\Twig\Extension\SeoExtension</parameter>
-    <parameter key="sonata.seo.sitemap.manager.class">Sonata\SeoBundle\Sitemap\SourceManager</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -757,7 +774,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>bEay6H5z4A</argument>
                 <argument>0</argument>
-                <argument>12Eh-+Ak3w0qY9FMoWKjY4</argument>
+                <argument>a982c19vYmhF6v+qFaVp4p</argument>
                 <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -812,6 +829,7 @@
             <argument type="service" id="doctrine"/>
           </service>
         </argument>
+        <argument type="service" id="cmf_seo.cache.file"/>
       </argument>
     </service>
     <service id="kernel.class_cache.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ClassCacheCacheWarmer">
@@ -830,6 +848,7 @@
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer">
       <argument type="collection">
         <argument type="service" id="cache.default_clearer"/>
+        <argument type="service" id="cmf_seo.cache.file"/>
       </argument>
     </service>
     <service id="service_container" synthetic="true">
@@ -940,7 +959,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>bz9f8NyHaz</argument>
       <argument>0</argument>
-      <argument>12Eh-+Ak3w0qY9FMoWKjY4</argument>
+      <argument>a982c19vYmhF6v+qFaVp4p</argument>
       <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -950,7 +969,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>N2-SfjqkJT</argument>
       <argument>0</argument>
-      <argument>12Eh-+Ak3w0qY9FMoWKjY4</argument>
+      <argument>a982c19vYmhF6v+qFaVp4p</argument>
       <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1084,8 +1103,8 @@
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/lexik/form-filter-bundle/Resources/translations/LexikFormFilterBundle.en.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.en.xliff</argument>
-            <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/fr3d/ldap-bundle/Resources/translations/validators.en.yml</argument>
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/sonata-project/seo-bundle/Resources/translations/SonataSeoBundle.en.xliff</argument>
+            <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/fr3d/ldap-bundle/Resources/translations/validators.en.yml</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
@@ -1606,6 +1625,7 @@
               <argument key="Lexik\Bundle\FormFilterBundle\Filter\Form\Type\CollectionAdapterFilterType">lexik_form_filter.type.filter_collection_adapter</argument>
               <argument key="Lexik\Bundle\FormFilterBundle\Filter\Form\Type\SharedableFilterType">lexik_form_filter.type.filter_sharedable</argument>
               <argument key="Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType">lexik_form_filter.type.filter_entity</argument>
+              <argument key="Symfony\Cmf\Bundle\SeoBundle\Form\Type\SeoMetadataType">cmf_seo.form.type.seo_metadata</argument>
             </argument>
             <argument type="collection">
               <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="collection">
@@ -2100,6 +2120,14 @@
         </argument>
         <argument>0</argument>
       </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>cmf_seo.event_listener.seo_content</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
       <call method="addSubscriberService">
         <argument>response_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ResponseListener</argument>
@@ -2207,6 +2235,10 @@
       <call method="addSubscriberService">
         <argument>lexik_form_filter.get_filter.doctrine_orm</argument>
         <argument>Lexik\Bundle\FormFilterBundle\Event\Subscriber\DoctrineORMSubscriber</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>cmf_seo.language_listener</argument>
+        <argument>Symfony\Cmf\Bundle\SeoBundle\EventListener\LanguageListener</argument>
       </call>
       <call method="addSubscriberService">
         <argument>debug.dump_listener</argument>
@@ -2439,7 +2471,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5921df6f1275f1.09504614</argument>
+            <argument>5922276ad94467.61095885</argument>
           </service>
         </argument>
       </argument>
@@ -2820,7 +2852,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5921df6f1275f1.09504614</argument>
+            <argument>5922276ad94467.61095885</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3132,6 +3164,14 @@
             <tag name="twig.extension"/>
             <argument type="service" id="sonata.seo.page.default"/>
             <argument>UTF-8</argument>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Symfony\Cmf\Bundle\SeoBundle\Twig\Extension\CmfSeoExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="cmf_seo.presentation"/>
           </service>
         </argument>
       </call>
@@ -3618,8 +3658,9 @@
         <argument key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</argument>
         <argument key="JMSTranslationBundle">JMS\TranslationBundle\JMSTranslationBundle</argument>
         <argument key="BmatznerFontAwesomeBundle">Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle</argument>
-        <argument key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</argument>
         <argument key="SonataSeoBundle">Sonata\SeoBundle\SonataSeoBundle</argument>
+        <argument key="CmfSeoBundle">Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle</argument>
+        <argument key="FR3DLdapBundle">FR3D\LdapBundle\FR3DLdapBundle</argument>
         <argument key="ManagerBundle">ManagerBundle\ManagerBundle</argument>
         <argument key="OperatorBundle">OperatorBundle\OperatorBundle</argument>
         <argument key="AnalyzerBundle">AnalyzerBundle\AnalyzerBundle</argument>
@@ -4350,6 +4391,128 @@
       <argument type="service" id="translator"/>
       <argument>true</argument>
     </service>
+    <service id="sonata.seo.event.breadcrumb" class="Sonata\SeoBundle\Event\BreadcrumbListener">
+      <tag name="kernel.event_listener" event="sonata.block.event.breadcrumb" method="onBlock"/>
+    </service>
+    <service id="sonata.seo.page.default" class="Sonata\SeoBundle\Seo\SeoPage">
+      <call method="setTitle">
+        <argument>NPM</argument>
+      </call>
+      <call method="setMetas">
+        <argument type="collection">
+          <argument key="name" type="collection">
+            <argument key="description">Noema Pareto Manager</argument>
+            <argument key="keywords">store</argument>
+          </argument>
+        </argument>
+      </call>
+      <call method="setHtmlAttributes">
+        <argument type="collection"/>
+      </call>
+      <call method="setSeparator">
+        <argument> - </argument>
+      </call>
+    </service>
+    <service id="sonata.seo.sitemap.manager" class="Sonata\SeoBundle\Sitemap\SourceManager" shared="false"/>
+    <service id="cmf_seo.config_values" class="Symfony\Cmf\Bundle\SeoBundle\DependencyInjection\ConfigValues">
+      <call method="setTitle">
+        <argument>%%content_title%% - Symfony</argument>
+      </call>
+      <call method="setDescription">
+        <argument>seo.description</argument>
+      </call>
+      <call method="setTranslationDomain">
+        <argument>messages</argument>
+      </call>
+      <call method="setOriginalUrlBehaviour">
+        <argument>redirect</argument>
+      </call>
+    </service>
+    <service id="cmf_seo.form.type.seo_metadata" class="Symfony\Cmf\Bundle\SeoBundle\Form\Type\SeoMetadataType">
+      <tag name="form.type"/>
+      <argument>Symfony\Cmf\Bundle\SeoBundle\Model\SeoMetadata</argument>
+      <argument type="collection">
+        <argument key="generic_metadata">false</argument>
+        <argument key="storage">default</argument>
+      </argument>
+    </service>
+    <service id="cmf_seo.cache.file" class="Symfony\Cmf\Bundle\SeoBundle\Cache\FileCache">
+      <tag name="kernel.cache_warmer"/>
+      <tag name="kernel.cache_clearer"/>
+      <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/var/cache/dev</argument>
+      <argument>cmf_seo</argument>
+    </service>
+    <service id="cmf_seo.presentation" class="Symfony\Cmf\Bundle\SeoBundle\SeoPresentation">
+      <argument type="service" id="sonata.seo.page.default"/>
+      <argument type="service" id="translator"/>
+      <argument type="service" id="cmf_seo.config_values"/>
+      <argument type="service" id="cmf_seo.cache.file"/>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.title"/>
+        <argument>0</argument>
+      </call>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.read_title"/>
+        <argument>0</argument>
+      </call>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.description"/>
+        <argument>0</argument>
+      </call>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.extras"/>
+        <argument>0</argument>
+      </call>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.keywords"/>
+        <argument>0</argument>
+      </call>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.original_url"/>
+        <argument>0</argument>
+      </call>
+      <call method="addExtractor">
+        <argument type="service" id="cmf_seo.extractor_strategy.original_route"/>
+        <argument>0</argument>
+      </call>
+    </service>
+    <service id="cmf_seo.error.suggestion_provider.controller" class="Symfony\Cmf\Bundle\SeoBundle\Controller\SuggestionProviderController">
+      <argument type="service" id="twig"/>
+      <argument>true</argument>
+      <argument type="service" id="cmf_seo.error.exclusion_matcher"/>
+      <argument type="collection"/>
+    </service>
+    <service id="cmf_seo.error.exclusion_matcher" class="Symfony\Cmf\Bundle\SeoBundle\Matcher\ExclusionMatcher"/>
+    <service id="cmf_seo.language_listener" class="Symfony\Cmf\Bundle\SeoBundle\EventListener\LanguageListener">
+      <tag name="kernel.event_subscriber"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.title" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\TitleExtractor">
+      <tag name="cmf_seo.extractor"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.read_title" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\TitleReadExtractor">
+      <tag name="cmf_seo.extractor"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.description" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\DescriptionExtractor">
+      <tag name="cmf_seo.extractor"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.extras" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\ExtrasExtractor">
+      <tag name="cmf_seo.extractor"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.keywords" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\KeywordsExtractor">
+      <tag name="cmf_seo.extractor"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.original_url" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\OriginalUrlExtractor">
+      <tag name="cmf_seo.extractor"/>
+    </service>
+    <service id="cmf_seo.extractor_strategy.original_route" class="Symfony\Cmf\Bundle\SeoBundle\Extractor\OriginalRouteExtractor">
+      <tag name="cmf_seo.extractor"/>
+      <argument type="service" id="router"/>
+    </service>
+    <service id="cmf_seo.event_listener.seo_content" class="Symfony\Cmf\Bundle\SeoBundle\EventListener\ContentListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <argument type="service" id="cmf_seo.presentation"/>
+      <argument>test</argument>
+    </service>
     <service id="fr3d_ldap.ldap_manager.default" class="FR3D\LdapBundle\Ldap\LdapManager">
       <argument type="service" id="fr3d_ldap.ldap_driver.zend"/>
       <argument type="service" id="fr3d_ldap.user_hydrator.default"/>
@@ -4436,43 +4599,6 @@
       </argument>
       <argument type="service" id="monolog.logger.ldap_driver"/>
     </service>
-    <service id="sonata.seo.event.breadcrumb" class="Sonata\SeoBundle\Event\BreadcrumbListener">
-      <tag name="kernel.event_listener" event="sonata.block.event.breadcrumb" method="onBlock"/>
-    </service>
-    <service id="sonata.seo.page.default" class="Sonata\SeoBundle\Seo\SeoPage">
-      <call method="setTitle">
-        <argument>Noema Pareto Manager</argument>
-      </call>
-      <call method="setMetas">
-        <argument type="collection">
-          <argument key="name" type="collection">
-            <argument key="keywords">noema,pareto,iram</argument>
-            <argument key="description">Designed to track breakdown</argument>
-            <argument key="robots">index, follow</argument>
-          </argument>
-          <argument key="property" type="collection">
-            <argument key="og:site_name">Iram</argument>
-            <argument key="og:description">Noema pareto manager</argument>
-          </argument>
-          <argument key="http-equiv" type="collection">
-            <argument key="Content-Type">text/html; charset=utf-8</argument>
-          </argument>
-          <argument key="charset" type="collection">
-            <argument key="UTF-8"></argument>
-          </argument>
-        </argument>
-      </call>
-      <call method="setHtmlAttributes">
-        <argument type="collection">
-          <argument key="xmlns">http://www.w3.org/1999/xhtml</argument>
-          <argument key="xmlns:og">http://opengraphprotocol.org/schema/</argument>
-        </argument>
-      </call>
-      <call method="setSeparator">
-        <argument> - </argument>
-      </call>
-    </service>
-    <service id="sonata.seo.sitemap.manager" class="Sonata\SeoBundle\Sitemap\SourceManager" shared="false"/>
     <service id="ldap.user_hydrator" class="ManagerBundle\Ldap\UserHydrator"/>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
@@ -4992,6 +5118,10 @@
         <argument>SonataSeo</argument>
       </call>
       <call method="addPath">
+        <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/vendor/symfony-cmf/seo-bundle/src/Resources/views</argument>
+        <argument>CmfSeo</argument>
+      </call>
+      <call method="addPath">
         <argument>/Users/lil-works1/Webdisk/www/symfony-master/NoemaParetoManager/src/ManagerBundle/Resources/views</argument>
         <argument>Manager</argument>
       </call>
@@ -5037,10 +5167,11 @@
     <service id="doctrine.orm.default_result_cache" alias="doctrine_cache.providers.doctrine.orm.default_result_cache"/>
     <service id="doctrine.orm.default_query_cache" alias="doctrine_cache.providers.doctrine.orm.default_query_cache"/>
     <service id="fos_user.util.username_canonicalizer" alias="fos_user.util.email_canonicalizer"/>
+    <service id="sonata.seo.page" alias="sonata.seo.page.default"/>
+    <service id="cmf_seo.cache" alias="cmf_seo.cache.file"/>
     <service id="fr3d_ldap.user_hydrator" alias="fr3d_ldap.user_hydrator.default"/>
     <service id="fr3d_ldap.ldap_manager" alias="fr3d_ldap.ldap_manager.default"/>
     <service id="fr3d_ldap.ldap_driver" alias="fr3d_ldap.ldap_driver.zend"/>
-    <service id="sonata.seo.page" alias="sonata.seo.page.default"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
   </services>
 </container>

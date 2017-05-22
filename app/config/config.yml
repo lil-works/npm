@@ -169,39 +169,17 @@ fos_user:
             sender_name: NoemaParetoManager
 
 sonata_seo:
-#    sitemap:
-#        enabled: true
-    encoding:         UTF-8
     page:
-        title:            Noema Pareto Manager
-        default:          sonata.seo.page.default
+        title: NPM
         metas:
             name:
-                keywords:             noema,pareto,iram
-                description:          Designed to track breakdown
-                robots:               index, follow
-
-            property:
-                # Facebook application settings
-                #'fb:app_id':          XXXXXX
-                #'fb:admins':          admin1, admin2
-
-                # Open Graph information
-                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-                'og:site_name':       Iram
-                'og:description':     Noema pareto manager
-
-            http-equiv:
-                'Content-Type':         text/html; charset=utf-8
-                #'X-Ua-Compatible':      IE=EmulateIE7
-
-            charset:
-                UTF-8:    ''
-
-        head:
-            'xmlns':              http://www.w3.org/1999/xhtml
-            'xmlns:og':           http://opengraphprotocol.org/schema/
-            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
+                description: Noema Pareto Manager
+                keywords: store
+cmf_seo:
+    title: "%%content_title%% - Symfony"
+    description: seo.description
+    content_key: test
+    original_route_pattern: redirect
 
 #knp_snappy:
 #    pdf:

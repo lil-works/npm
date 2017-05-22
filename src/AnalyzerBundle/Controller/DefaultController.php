@@ -24,6 +24,9 @@ class DefaultController extends Controller
     }
     public function helpAction()
     {
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Analyzer help');
+
         return $this->render('AnalyzerBundle:Default:help.html.twig');
     }
     public function menuAction()
@@ -98,6 +101,9 @@ class DefaultController extends Controller
 
         }
 
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Analyzer Tree/Bars');
+
         return $this->render('AnalyzerBundle:Default:descriptorBar.html.twig',
             array(
                 'breakdowns'=>$breakdowns,
@@ -159,6 +165,9 @@ class DefaultController extends Controller
     {
         $start = new DateTime('-3 week');
         $stop = new DateTime('+1 week');
+
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Analyzer timeline');
 
         return $this->render('AnalyzerBundle:Default:breakdownTimeline.html.twig',array('start'=>$start,'stop'=>$stop));
     }

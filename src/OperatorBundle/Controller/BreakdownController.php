@@ -64,6 +64,9 @@ class BreakdownController extends Controller
         );
 
 
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Breakdown index');
+
         return $this->render('OperatorBundle:Breakdown:index.html.twig', array(
             'pagination' => $pagination,
             'simple_live_editor'=>$simpleLiveEditor,
@@ -82,6 +85,9 @@ class BreakdownController extends Controller
         $stop = new DateTime('+1 week');
 
         $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
+
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Breakdown timeline');
 
         return $this->render('OperatorBundle:Breakdown:timeline.html.twig', array(
             'breakdowns' => $breakdowns,
@@ -107,6 +113,9 @@ class BreakdownController extends Controller
             }
             $em->persist($breakdown);
             $em->flush();
+
+            $seoPage = $this->get('sonata.seo.page');
+            $seoPage->setTitle('Breakdown create');
 
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
@@ -135,6 +144,8 @@ class BreakdownController extends Controller
         $nodes = json_encode($nodes);
 
 
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Breakdown show');
 
         return $this->render('OperatorBundle:Breakdown:show.html.twig', array(
             'breakdown' => $breakdown,
@@ -178,6 +189,9 @@ class BreakdownController extends Controller
 
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
+
+        $seoPage = $this->get('sonata.seo.page');
+        $seoPage->setTitle('Breakdown edit');
 
         return $this->render('OperatorBundle:Breakdown:edit.html.twig', array(
             'breakdown' => $breakdown,
