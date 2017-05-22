@@ -9,6 +9,13 @@ h1 {
     font-size:30px;
     color:#111155;
 }
+.npm-title{
+    text-shadow:1px 1px #ffffff;
+    font-size: 50px;
+}
+.npm-title-img img{
+    margin: 5px ;
+}
 
 .lead {
     color:#000;

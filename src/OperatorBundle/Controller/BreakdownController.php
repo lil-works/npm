@@ -128,6 +128,12 @@ class BreakdownController extends Controller
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
 
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Operator • Create Breakdown")
+            ->addMeta('name', 'description', "Create breakdown")
+        ;
+
         return $this->render('OperatorBundle:Breakdown:new.html.twig', array(
             'breakdown' => $breakdown,
             'form' => $form->createView(),
