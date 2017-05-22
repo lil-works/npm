@@ -63,9 +63,11 @@ class BreakdownController extends Controller
             10
         );
 
-
-        $seoPage = $this->get('sonata.seo.page');
-        $seoPage->setTitle('Breakdown index');
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Operator • Breakdowns")
+            ->addMeta('name', 'description', "List of breakdowns")
+        ;
 
         return $this->render('OperatorBundle:Breakdown:index.html.twig', array(
             'pagination' => $pagination,
@@ -86,8 +88,11 @@ class BreakdownController extends Controller
 
         $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
 
-        $seoPage = $this->get('sonata.seo.page');
-        $seoPage->setTitle('Breakdown timeline');
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Operator • Timeline")
+            ->addMeta('name', 'description', "List of breakdowns in timeline")
+        ;
 
         return $this->render('OperatorBundle:Breakdown:timeline.html.twig', array(
             'breakdowns' => $breakdowns,
@@ -114,8 +119,11 @@ class BreakdownController extends Controller
             $em->persist($breakdown);
             $em->flush();
 
-            $seoPage = $this->get('sonata.seo.page');
-            $seoPage->setTitle('Breakdown create');
+            $seoPage = $this->container->get('sonata.seo.page');
+            $seoPage
+                ->setTitle($seoPage->getTitle() . " Operator • Create Breakdown")
+                ->addMeta('name', 'description', "Create new breakdown")
+            ;
 
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
@@ -146,6 +154,13 @@ class BreakdownController extends Controller
 
         $seoPage = $this->get('sonata.seo.page');
         $seoPage->setTitle('Breakdown show');
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Operator • Breakdown #".$breakdown->getId())
+            ->addMeta('name', 'description', "Show breakdown")
+        ;
+
 
         return $this->render('OperatorBundle:Breakdown:show.html.twig', array(
             'breakdown' => $breakdown,
@@ -190,9 +205,11 @@ class BreakdownController extends Controller
             return $this->redirectToRoute('operator_breakdown_show', array('id' => $breakdown->getId()));
         }
 
-        $seoPage = $this->get('sonata.seo.page');
-        $seoPage->setTitle('Breakdown edit');
-
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Operator • Edit Breakdown #".$breakdown->getId())
+            ->addMeta('name', 'description', "Edit breakdown")
+        ;
         return $this->render('OperatorBundle:Breakdown:edit.html.twig', array(
             'breakdown' => $breakdown,
             'form' => $editForm->createView(),

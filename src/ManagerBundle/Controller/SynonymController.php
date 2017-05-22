@@ -25,13 +25,7 @@ class SynonymController extends Controller
     public function indexAction(Request $request)
     {
 
-        $seoPage = $this->container->get('sonata.seo.page');
-        $seoPage
-            ->setTitle($seoPage->getTitle() . " Manager • Synonym")
-            ->addMeta('name', 'description', "List of synonym")
-        ;
-
-        $em = $this->getDoctrine()->getManager();
+     $em = $this->getDoctrine()->getManager();
 
         $form = $this->get('form.factory')->create(SynonymFilter::class);
 
@@ -69,6 +63,14 @@ class SynonymController extends Controller
             10,
             array('wrap-queries'=>true)
         );
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Manager • Synonym")
+            ->addMeta('name', 'description', "List of synonym")
+        ;
+
+
 
         return $this->render('ManagerBundle:Synonym:index.html.twig', array(
             'pagination'=>$pagination,

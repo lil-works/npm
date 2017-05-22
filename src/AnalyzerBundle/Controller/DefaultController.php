@@ -15,6 +15,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $lastBreakdowns = $em->getRepository('AppBundle:Breakdown')->findLast(10);
         $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Analyzer ")
+            ->addMeta('name', 'description', "Analyzer some stats")
+        ;
         return $this->render('AnalyzerBundle:Default:index.html.twig',
             array(
                 "lastBreakdowns"=>$lastBreakdowns,
@@ -26,6 +32,12 @@ class DefaultController extends Controller
     {
         $seoPage = $this->get('sonata.seo.page');
         $seoPage->setTitle('Analyzer help');
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Analyzer • Help")
+            ->addMeta('name', 'description', "Some help for analyzers")
+        ;
 
         return $this->render('AnalyzerBundle:Default:help.html.twig');
     }
@@ -101,9 +113,11 @@ class DefaultController extends Controller
 
         }
 
-        $seoPage = $this->get('sonata.seo.page');
-        $seoPage->setTitle('Analyzer Tree/Bars');
-
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Analyzer • Tree/Bars")
+            ->addMeta('name', 'description', "Analyze NPM datas")
+        ;
         return $this->render('AnalyzerBundle:Default:descriptorBar.html.twig',
             array(
                 'breakdowns'=>$breakdowns,
@@ -118,57 +132,17 @@ class DefaultController extends Controller
         );
 
     }
-    /*
-    public function descriptorTreeAction(Request $request)
-    {
-        $form = $this->get('form.factory')->create(DescriptorTreeFilter::class);
 
-        $nodes = $edges = null;
-        $breakdowns = array();
-
-        if ($request->query->has($form->getName())) {
-
-            $form->submit($request->query->get($form->getName()));
-
-            $data = $form->getData();
-
-
-            $edges = $this->get('doctrine.orm.entity_manager')
-                ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerEdges2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
-            $nodes = $this->get('doctrine.orm.entity_manager')
-                ->getRepository('AppBundle:Descriptor')
-                ->AnalyzerNodes2($data["category"],$data["start"],$data["stop"],$data["minDuration"],$data["maxDuration"]);
-
-            foreach($nodes as $node){
-                foreach( explode(',',$node["breakdownsField"]) as $breakdown ){
-                    if(!in_array($breakdown,$breakdowns)){
-                        array_push($breakdowns,$breakdown);
-                    }
-                }
-            }
-            $nodes = json_encode($nodes);
-            $edges = json_encode($edges);
-        }
-
-        return $this->render('AnalyzerBundle:Default:descriptorTree.html.twig',
-            array(
-                'breakdowns'=>$breakdowns,
-                'nodes'=>$nodes,
-                'edges'=>$edges,
-                'form' => $form->createView()
-            )
-        );
-    }
-*/
     public function breakdownTimelineAction()
     {
         $start = new DateTime('-3 week');
         $stop = new DateTime('+1 week');
 
-        $seoPage = $this->get('sonata.seo.page');
-        $seoPage->setTitle('Analyzer timeline');
-
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle($seoPage->getTitle() . " Analyzer • Timeline")
+            ->addMeta('name', 'description', "Closed breakdown in timeline")
+        ;
         return $this->render('AnalyzerBundle:Default:breakdownTimeline.html.twig',array('start'=>$start,'stop'=>$stop));
     }
 }

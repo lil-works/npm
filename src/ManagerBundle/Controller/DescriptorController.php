@@ -23,11 +23,7 @@ class DescriptorController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $seoPage = $this->container->get('sonata.seo.page');
-        $seoPage
-            ->setTitle($seoPage->getTitle() . " Manager • Descriptor")
-            ->addMeta('name', 'description', "List of descriptorx")
-        ;
+
 
 
         $form = $this->get('form.factory')->create(DescriptorFilter::class);
@@ -79,6 +75,12 @@ class DescriptorController extends Controller
             array('wrap-queries'=>true)
         );
 
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle( $seoPage->getTitle() . " - Manager • Descriptor")
+            ->addMeta('name', 'description', "List of descriptors")
+        ;
+
         return $this->render('ManagerBundle:Descriptor:index.html.twig', array(
             'pagination' => $pagination,
             'form' => $form->createView()
@@ -103,6 +105,12 @@ class DescriptorController extends Controller
 
             return $this->redirectToRoute('manager_descriptor_show', array('id' => $descriptor->getId()));
         }
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle( $seoPage->getTitle() . " - Manager • New descriptor")
+            ->addMeta('name', 'description', "List of descriptors")
+        ;
 
         return $this->render('ManagerBundle:Descriptor:new.html.twig', array(
             'descriptor' => $descriptor,
@@ -130,7 +138,11 @@ class DescriptorController extends Controller
         $nodes = json_encode($nodes);
         $edges = json_encode($edges);
 
-
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle( $seoPage->getTitle() . " - Manager • Descriptor #".$descriptor->getLabel())
+            ->addMeta('name', 'description', "Show descriptor")
+        ;
         return $this->render('ManagerBundle:Descriptor:show.html.twig', array(
             'descriptor' => $descriptor,
             'delete_form' => $deleteForm->createView(),
@@ -157,6 +169,12 @@ class DescriptorController extends Controller
 
             return $this->redirectToRoute('manager_descriptor_edit', array('id' => $descriptor->getId()));
         }
+
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage
+            ->setTitle( $seoPage->getTitle() . " - Manager • Edit descriptor #".$descriptor->getLabel())
+            ->addMeta('name', 'description', "Edit descriptor")
+        ;
 
         return $this->render('ManagerBundle:Descriptor:edit.html.twig', array(
             'descriptor' => $descriptor,
