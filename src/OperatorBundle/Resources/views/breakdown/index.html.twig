@@ -42,27 +42,27 @@
             <tr>
                 {% set direction = pagination.getDirection() %}
                 <th>Actions</th>
-                <th{% if pagination.isSorted('a.id') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'id', 'a.id') }}
+                <th{% if pagination.isSorted('b.id') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'id', 'b.id') }}
                 </th>
 
-                <th{% if pagination.isSorted('a.createdAt') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'createdAt', 'a.createdAt') }}
+                <th{% if pagination.isSorted('b.createdAt') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'createdAt', 'b.createdAt') }}
                 </th>
-                <th{% if pagination.isSorted('a.createdBy') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'createdBy', 'a.createdBy') }}
+                <th{% if pagination.isSorted('b.createdBy') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'createdBy', 'b.createdBy') }}
                 </th>
-                <th{% if pagination.isSorted('a.start') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'start', 'a.start') }}
+                <th{% if pagination.isSorted('b.start') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'start', 'b.start') }}
                 </th>
-                <th{% if pagination.isSorted('a.stop') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'stop', 'a.stop') }}
+                <th{% if pagination.isSorted('b.stop') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'stop', 'b.stop') }}
                 </th>
                 <th{% if pagination.isSorted('breakdown_length') %} class="sorted {{ direction }}"{% endif %}>
                     {{ knp_pagination_sortable(pagination, 'length', 'breakdown_length') }}
                 </th>
-                <th{% if pagination.isSorted('a.closed') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'closed', 'a.closed') }}
+                <th{% if pagination.isSorted('b.closed') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'closed', 'b.closed') }}
                 </th>
                 <th>descriptors</th>
 

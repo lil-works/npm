@@ -37,9 +37,6 @@ class BreakdownController extends Controller
             ->createQueryBuilder('b')
             ->select('b,TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) as breakdown_length');
 
-
-
-
         if ($request->query->has($formFilter->getName())) {
 
             // manually bind values from the request
@@ -53,7 +50,6 @@ class BreakdownController extends Controller
 
             // build the query from the given form object
             $qb = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);
-
         }
 
         $paginator  = $this->get('knp_paginator');

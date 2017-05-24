@@ -8,9 +8,19 @@ class AppExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('descriptor', array($this, 'descriptorFilter')),
             new \Twig_SimpleFilter('descriptorListSorter', array($this, 'descriptorListSorter')),
+            new \Twig_SimpleFilter('timelength', array($this, 'timelengthConverter')),
         );
     }
+    private function secondsToTime($seconds) {
+        $dtF = new \DateTime('@0');
+        $dtT = new \DateTime("@$seconds");
+        return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+    }
+    public function timelengthConverter($seconds)
+    {
 
+        return  $this->secondsToTime(intval($seconds));
+    }
     public function descriptorListSorter($descriptors,$categoryLabels,$categoryColors)
     {
         $ad = explode(',',$descriptors);

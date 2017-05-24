@@ -10,21 +10,48 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+    function generateDistribution($datas,$scale){
+        $formatedData = array();
+        foreach($datas as $data){
+            array_push($formatedData, intval($data['bLength']/$scale));
+        }
+
+        $output = array();
+        foreach($formatedData as $v){
+            if(!isset($output[$v])){
+                $output[$v] = 1;
+            }else{
+                $output[$v]++;
+            }
+        }
+        ksort($output);
+
+        return $output;
+    }
+
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $lastBreakdowns = $em->getRepository('AppBundle:Breakdown')->findLast(10);
-        $breakdowns = $em->getRepository('AppBundle:Breakdown')->findAll();
+        $breakdowns = $em->getRepository('AppBundle:Breakdown')->findBy(
+            array('closed'=>1)
+        );
+        $stats = $em->getRepository('AppBundle:Breakdown')->findStats();
 
         $seoPage = $this->container->get('sonata.seo.page');
         $seoPage
             ->setTitle($seoPage->getTitle() . " Analyzer ")
             ->addMeta('name', 'description', "Analyzer some stats")
         ;
+
+
+        $this->generateDistribution($stats['lengths'],60*60);
+
         return $this->render('AnalyzerBundle:Default:index.html.twig',
             array(
                 "lastBreakdowns"=>$lastBreakdowns,
-                "breakdowns"=>$breakdowns
+                "breakdowns"=>$breakdowns,
+                "stats"=>$stats
             )
         );
     }

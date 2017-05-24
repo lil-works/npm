@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div class="row">
         <div class="col-lg-12">
             <h1>Descriptor list</h1>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-lg-8 col-sm-6">
@@ -20,21 +20,12 @@
                 </a>
             </div>
         </div>
-
-        <div class="col-lg-4  col-sm-6">
-            <form method="get" action="" name="descriptor_filter" class="form">
-                {{ form_start(form) }}
-                {{ form_label(form.label) }}
-                {{ form_widget(form.label, { 'attr': {'class': 'form-control'} }) }}
-                {{ form_label(form.category) }}
-                {{ form_widget(form.category, { 'attr': {'class': 'form-control'} }) }}
-                <input class="btn btn-default" type="submit" value="search" />
-                {{ form_end(form) }}
+        <div class="col-lg-4">
+            <form method="get"  class="formFilter">
+                {{ form_rest(formFilter) }} <input type="submit" class="btn btn-sm btn-primary" name="submit-filter" value="filter" />
             </form>
         </div>
-
     </div>
-
 
     <div class="row">
         <div class="col-lg-12">
@@ -52,22 +43,22 @@
                     <input id="myPaginatorDelete" class="btn btn-default" type="submit" value="deleteSelection" onclick="deleteSelection('ajax_descriptor_delete');" /></th>
                 <th>Actions</th>
                 {% set direction = pagination.getDirection() %}
-                <th{% if pagination.isSorted('a.id') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'id', 'a.id') }}
+                <th{% if pagination.isSorted('d.id') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'id', 'd.id') }}
                 </th>
                 {% set direction = pagination.getDirection() %}
-                <th{% if pagination.isSorted('a.label') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'label', 'a.label') }}
+                <th{% if pagination.isSorted('d.label') %} class="sorted {{ direction }}"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'label', 'd.label') }}
                 </th>
                 {% set direction = pagination.getDirection() %}
-                <th{% if pagination.isSorted('b.label') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'category', 'b.label') }}
+                <th>
+                   category
                 </th>
-                <th{% if pagination.isSorted('synonym_count') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'synonym', 'synonym_count') }}
+                <th>
+                    synonyms
                 </th>
-                <th{% if pagination.isSorted('breakdown_count') %} class="sorted {{ direction }}"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'breakdown', 'breakdown_count') }}
+                <th>
+                   breakdown
                 </th>
             </tr>
             </thead>
@@ -75,7 +66,7 @@
             {% for descriptor in pagination %}
                 <tr>
                     <td>
-                        {%  if descriptor.breakdown_count == 0 %}
+                        {%  if descriptor.breakdowns|length == 0 %}
                         <div class="checkbox myPaginatorRow">
                             <input id="paginator_{{ descriptor.id }}" type="checkbox" name="select">
                         </div>
@@ -101,7 +92,7 @@
                                     synonym
                                 </a>
                             </li>
-                            {%  if descriptor.breakdown_count == 0 %}
+                            {%  if descriptor.breakdowns|length == 0 %}
                             <li>
                                 <a href="{{ path('manager_descriptor_delete', { 'id': descriptor.id }) }}">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -117,12 +108,23 @@
                     <td><a href="{{ path('manager_descriptor_show', { 'id': descriptor.id }) }}">{{ descriptor.id }}</a></td>
                     <td>{{ descriptor.label }}</td>
 
-                    <td style="color:{{ descriptor.color }}; ">
-                        {{ descriptor.category_label }}</td>
-                    <td>{{ descriptor.synonym_list }}</td>
+                    <td style="color:{{ descriptor.category.color }}; ">
+                        {{ descriptor.category.label }}</td>
                     <td>
-                        <strong>({{ descriptor.breakdown_count }})</strong>
-                        {{ descriptor.breakdown_list }}
+                        <strong>({{ descriptor.synonyms|length }})</strong>
+                        <ul class="list list-inline">
+                            {% for synonym in  descriptor.synonyms   %}
+                                <li>{{ synonym.label }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <strong>({{ descriptor.breakdowns|length }})</strong>
+                        <ul class="list list-inline">
+                        {% for breakdown in  descriptor.breakdowns   %}
+                            <li>#{{ breakdown.id }}</li>
+                        {% endfor %}
+                        </ul>
                     </td>
 
 

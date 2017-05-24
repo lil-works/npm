@@ -54,6 +54,33 @@
             border: 1px solid;
 
         }
+        .small {
+            font-size: .6em;
+
+        }
+        .keyword {
+            font-weight: bold;
+
+        }
+        .breakdown{
+            color: #d44950;
+        }
+        .descriptor{
+            color: #008800;
+        }
+        .element{
+            color: #BB7777;
+        }
+        .status{
+            color: #77BB77;
+        }
+        .action{
+            color: #7777BB ;
+        }
+        .contributor{
+            color: #BBBB77;
+        }
+
     </style>
 </head>
 
@@ -74,41 +101,52 @@
 
 <section>
     <h2>Historique</h2>
-    <ul>
-        <li>Mars 2016: Demande de Roberto et Ian-Martin de développer une application permettant de détécter et de hierarchiser les causes de la perte du temps d'observation</li>
-        <li>Septembre 2016: Premières saisie</li>
-        <li>Juin 2016: Nous sommes ici</li>
-    </ul>
 
-    <aside class="notes">
-        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-    </aside>
+    <h3>Mars 2016</h3>
+    <p> Demande de Roberto et Jan-Martin de développer une application permettant de détécter et de hierarchiser les causes de la perte du temps d'observation</p>
+
+    <h3>Septembre 2016</h3>
+    <p>Septembre 2016: Premières saisies des operateurs</p>
+
+    <h3>Juin 2016</h3>
+    <p>Nous sommes ici ...</p>
+
 </section>
 
 <!-- Example of nested vertical slides -->
 <section>
     <section>
         <h2>Vilfredo Pareto</h2>
-        <p>
-            Sociologue et economiste italien (1848 - 1923)
-        </p>
-        <p>
-            En 1906 il observe que 20% de la population detient 80% des richesses
-        </p>
-        <p>
-            Le <a href="#" class="navigate-down">principe de pareto</a> découle de cette observtion
 
-        </p>
-        <a href="#" class="image navigate-down">
-            <img src="{{ asset('slide/Vilfredo_Pareto.jpeg') }}">
-        </a>
-    </section>
-    <section>
-        <h2>Principe de Pareto</h2>
-        <p>ou Loi du 80-20</p>
-        <p>Environ 80% des effets sont le produit de 20% des causes</p>
+        <div>
+            <div style="float: left; width:120px;">
+                <a href="#" class="image navigate-down">
+                    <img src="{{ asset('slide/Vilfredo_Pareto.jpeg') }}">
+                </a>
+            </div>
+            <div>
+                <p>
+                    Sociologue et economiste italien (1848 - 1923)
+                </p>
+                <p>
+                    En 1906 il observe que 20% de la population detient 80% des richesses
+                </p>
+                <p>
+                    Le <a href="#" class="navigate-down">principe de pareto</a> découle de cette observation
+                </p>
+
+                <blockquote>
+                <h4>Principe de Pareto (ou loi du 80-20)</h4>
+                <p>Environ 80% des effets sont le produit de 20% des causes</p>
+                </blockquote>
+            </div>
+
+        </div>
+
+
 
     </section>
+
     <section>
         <h2>Optimum paretien</h2>
         <blockquote>
@@ -122,7 +160,7 @@
         <h2>Optimum paretien et Noema</h2>
         <p>Les ressouces permettant d'ameliorer et de maintenir un systeme ne sont pas infinies.</p>
 
-        <p>Outils visant à optimiser l'allocation des ressources</p>
+        <p class="keyword">Outils visant à optimiser l'allocation des ressources</p>
         <img src="{{ asset('slide/80-20.jpeg') }}">
     </section>
 </section>
@@ -137,81 +175,112 @@
             <li>persistance: MySql</li>
 
             <p>
-                Symfony est un framework moderne, sous licence MIT. Il permet l'integration de nombreuses fonctionnalités
+                Symfony est un framework moderne, sous licence MIT. Importante communauté de développeurs. Il permet l'integration de nombreuses fonctionnalités
             </p>
         </ul>
 
     </section>
     <section>
-        <h2>Structure des données</h2>
-        <h4>Descriptors</h4>
+        <h2><span class="keyword descriptor">Descriptors</span></h2>
         <p>
-            Les "descriptors" sont des mot-clefs.
+            Les <span class="keyword descriptor">descriptors</span> sont des mot-clefs.
         </p>
-        <ul>
-            <li>elements: Object physique (antenna 5,hexapod)</li>
-            <li>status: Etat de la matière (stuck,break)</li>
-            <li>action: Action qui a été menée (reboot)</li>
-            <li>contributors: Action qui a été menée (oper,jyc)</li>
+        <ul>Il sont pour l'instant classés dans 4 categories:
+            <li><span class="element">element</span>: object physique (antenna 5,hexapod)</li>
+            <li><span class="status">status</span>: état de la matière (stuck,break)</li>
+            <li><span class="action">action</span>: ce qui a été fait (reboot)</li>
+            <li><span class="contributor">contributor</span>: qui a agit (oper,jyc)</li>
         </ul>
-        <p>Cette liste est dynamique... Nous pouvons ajouter les categorie. (ex: ticket redmine)</p>
+        <blockquote>Cette liste est dynamique... Nous pouvons ajouter des categories.</blockquote>
+        <a class="small" href="{{ path('manager_descriptor') }}">http://npm.iram.fr/descriptor</a>
     </section>
     <section>
-        <h2>Structure des données</h2>
-        <h4>Breakdowns</h4>
+        <h2><span class="keyword interfero">Interfero</span></h2>
+        <p>Ce sont les couples Antenne/Bande normalement disponibles</p>
+
+
+        <a class="small" href="{{ path('manager_interfero') }}">http://npm.iram.fr/interfero</a>
+    </section>
+    <section>
+        <h2><span class="keyword breakdown">Breakdowns</span></h2>
         <p>
-            Les "breakdowns" sont des évenements crées à la suite d'une perte partielle ou totale d'observation
+            Les <span class="keyword breakdown">breakdowns</span> sont des évenements crées à la suite d'une perte partielle ou totale d'observation
         </p>
+
         <ul>
             <li>date début, date fin (donc une durée)</li>
             <li>les éléments de l'interferometre non disponible (toute l'antenne 1, toute la bande 1)</li>
-            <li>une liste de "descriptor" pertinant dans la cause et la résolution du problème</li>
+            <li>une liste de <span class="keyword descriptor">descriptors</span> pertinant dans la cause et la résolution du problème</li>
         </ul>
-        <blockquote>En somme, ce sont les "breakdowns" qui craient le lien entre les "descriptors"</blockquote>
+
+        <blockquote>
+            En somme, ce sont les <span class="keyword breakdown">breakdowns</span> qui fabriquent le lien entre les <span class="keyword descriptor">descriptors</span>
+        </blockquote>
+        <a class="small" href="{{ path('operator_breakdown') }}">http://npm.iram.fr/breakdown</a>
     </section>
     <section>
-
-        <img src="{{ asset('slide/merise.png') }}">
+        <h2>Structure des données</h2>
+        <img style="width: 800px;" src="{{ asset('slide/merise.png') }}">
     </section>
 </section>
 
 <section>
-    <section>
+
         <h2>Utilisateurs</h2>
         <p>4 niveaux d'utilisation</p>
-        <ul>
-            <li>Operator</li>
-            <li>Analyzer</li>
-            <li>Manager</li>
-            <li>Admin</li>
-        </ul>
-    </section>
-    <section>
-        <h2>Operator</h2>
-        <p>Saisie/modification des <a target="_blank" href="{{ path('operator_breakdown_new') }}">breakdowns</a></p>
 
-    </section>
-    <section>
-        <h2>Analyzer</h2>
-        <p>Analyse des breakdown <a target="_blank" href="{{ path('analyzer_descriptorBar') }}">histogrammes et arbre</a></p>
-    </section>
-    <section>
-        <h2>Manager</h2>
-        <p></p>
-    </section>
-    <section>
-        <h2>Admin</h2>
-        <p>Gestion standart des utilisateurs et des donnéesmu</p>
-    </section>
+
+    <table>
+        <tbody>
+        <tr>
+            <td>Operator</td>
+            <td>
+                <ul>
+                    <li>Saisie/modification des <a target="_blank" href="{{ path('operator_breakdown_new') }}">breakdowns</a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Analyze</td>
+            <td>
+                <ul>
+                    <li>Analyse des données <a target="_blank" href="{{ path('analyzer_descriptorBar') }}">histogrammes et arbre</a></li>
+                </ul>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Manager</td>
+            <td>
+                <ul>
+                    <li>Gestion des synonymes</li>
+                    <li>Gestion de l'interfero courant</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Admin</td>
+            <td>
+                <ul>
+                    <li>Sauvegarde</li>
+                    <li>Maintenance</li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
 </section>
 
 <section>
+    <section>
     <h2>Redmine vs Noema Pareto Manager</h2>
     <table >
         <thead>
         <th></th>
-            <th><div><img src="{{ asset('slide/Redmine.png') }}"  style="width: 36px;"> Redmine</div></th>
-            <th><div><img src="{{ asset('slide/npm_120x120.png') }}"  style="width: 36px;"> Noema Pareto Manager</div></th>
+            <th><div><img src="{{ asset('slide/Redmine.png') }}"  style="width: 36px;">Redmine</div></th>
+            <th><div><img src="{{ asset('slide/npm_120x120.png') }}"  style="width: 36px;">Noema Pareto Manager</div></th>
         </thead>
         <tbody>
         <tr>
@@ -236,37 +305,117 @@
         </tr>
         </tbody>
     </table>
-</section>
+    </section>
 
 
+    <section>
+
+        <h2>Quelque remarques</h2>
+        <p>L'application est toujours en développement</p>
 
 
+        <p>
+            La multiplication des outils de reporting conduit frequement la saisie d'un même évenement sur plusieur plateforme (redmine, rapport operateur, google drive).
+            L'application permet la saisie rapide d'un <span class="breakdown keyword">breakdown</span> (moins d'une minute)
+        <p>
 
-<section>
-        <h2>Biais</h2>
+        <p>
+            La saisie des <span class="breakdown descriptor">descriptor</span> est totalement libre.
+            Tout l'enjeu est que chaque operateur utilise les mêmes <span class="breakdown descriptor">descriptors</span> pour les mêmes évenements
+        <p>
+
+
+    </section>
+
+    <section>
+        <h2>Quelque remarques</h2>
+
+        <h4>Biais</h4>
         <p>
             Tendence naturelle (et logique) à donner plus d'importance aux événement LONG et/ou PENIBLE
         </p>
 
+
+        <p>La "politique" concernant la saisie des <span class="breakdown keyword">breakdowns</span> reste à être définie:</p>
+        <blockquote>
+        <ul>
+            <li>A partir de quelle durée minimale entre t-on un nouveau <span class="breakdown keyword">breakdown</span>?</li>
+            <li>Des pannes survenants lors de mauvaises conditions météos doivent-elle être rentrée?</li>
+            <li>...</li>
+        </ul>
+        </blockquote>
+
+    </section>
 </section>
 
-<section id="transitions">
-    <h2>Quelques resultats</h2>
-    <p>
 
-        <a href="?transition=cube#/transitions">Tous les breakdowns (depuis septembre 2016)</a> -
-        <a href="?transition=page#/transitions">Les breakdowns de moins d'une heure</a> -
-        <a href="?transition=concave#/transitions">Tous les breakdown du mois de mars</a>
-    </p>
+
+<section id="transitions">
+    <section>
+        <h2>Quelques resultats</h2>
+        <ul>
+            <li>
+                <a href="https://websrv4.iram.fr/npm/app.php/analyzer/descriptor-bar?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5BminDuration%5D=&descriptorTree_filter%5BmaxDuration%5D=&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100">
+                    Tous les <span class="keyword breakdown">breakdowns</span>
+                </a>
+            </li>
+            <li>
+            <a href="https://websrv4.iram.fr/npm/app.php/analyzer/descriptor-bar?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&duration-unity=hour&descriptorTree_filter%5BdurationUnity%5D=hour&descriptorTree_filter%5BminDuration%5D=0&descriptorTree_filter%5BmaxDuration%5D=3600&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100">
+                Les <span class="keyword breakdown">breakdowns</span> de moins d'une heure
+            </a>
+            </li>
+            <li>
+                <a href="https://websrv4.iram.fr/npm/app.php/analyzer/descriptor-bar?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&duration-unity=day&descriptorTree_filter%5BdurationUnity%5D=day&descriptorTree_filter%5BminDuration%5D=86400&descriptorTree_filter%5BmaxDuration%5D=&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100">
+                    Les <span class="keyword breakdown">breakdowns</span> de plus d'un jour
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('manager_descriptor_show',{id:10}) }}">
+                    Les <span class="keyword descriptor">descriptors</span> associés à l'antenne 8
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Tree</h2>
+        <div>
+            Les <span class="keyword breakdown">breakdowns</span> connectent les <span class="keyword descriptor">descriptors</span> entre eux.
+            <ul>
+                <li>La taille du cercle dépend du nombre de fois ou il apparait</li>
+                <li>L'epaisseur du trait qui relie 2  <span class="keyword descriptor">descriptors</span> dépend du nombre de fois ou ils sont present ensemble</li>
+            </ul>
+        </div>
+
+
+
+
+
+    </section>
+    <section>
+        <h2>Histogramme</h2>
+        <h4>Analyze par occurance</h4>
+        <p>Par defaut, les <span class="keyword descriptor">descriptors</span> sont affichées par nombre d'occurance</p>
+
+        <h4>Time ponderation</h4>
+        <p>
+            Le nombre d'occurences est ponderé par les durées des  <span class="keyword breakdown">breakdowns</span> auquel le  <span class="keyword descriptor">descriptor</span> est associé
+        </p>
+
+        <h4>Interfero ponderation</h4>
+        <p>
+            Le nombre d'occurences est ponderé par le pourcentage de couple antenne/band OFF.
+        </p>
+    </section>
 </section>
 
 <section id="themes">
     <h2>Developpements futures</h2>
+
     <ul>
         <li>Saisie automatique vers Redmine</li>
         <li>Saisie automatique stations.current</li>
         <li>Sauvegarde des analyses + export pdf,csv</li>
-        <li>Possibilité pour les collaborateurs de s'abonner aux actions impliquant certain "descriptor"</li>
+        <li>Possibilité pour les collaborateurs de s'abonner aux actions impliquant certain "descriptors"</li>
         <li>Vos idées...</li>
     </ul>
 

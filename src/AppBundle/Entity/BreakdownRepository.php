@@ -11,6 +11,58 @@ use Doctrine\ORM\Query\ResultSetMapping;
 class BreakdownRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function findStats(){
+        $em = $this->getEntityManager();
+        $output = array(
+            'countAnalyzer'=>null,
+            'countOperator'=>null,
+            'totalTime'=>null,
+            'mediumTime'=>null,
+            'lengths'=>null
+        );
+        $sqlCountOperator = "SELECT count(b.id) as countB  FROM breakdown b";
+        $sqlCountAnalyzer = "SELECT count(b.id) as countB FROM breakdown b
+                    WHERE b.closed = 1 AND stop IS NOT NULL AND start IS NOT NULL";
+        $sqlTotalTime = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(b.stop, b.start))) as totTime FROM breakdown b
+                    WHERE b.closed = 1 AND stop IS NOT NULL AND start IS NOT NULL";
+
+        $sqlLengths = "SELECT b.id,TIME_TO_SEC(TIMEDIFF(b.stop, b.start)) as bLength FROM breakdown b
+                    WHERE b.closed = 1 AND stop IS NOT NULL AND start IS NOT NULL";
+
+
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('countB', 'countB');
+        $query = $em->createNativeQuery($sqlCountOperator, $rsm);
+        $resultCountOperator = $query->getScalarResult();
+        $output['countOperator']  = $resultCountOperator[0]['countB'];
+
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('countB', 'countB');
+        $query = $em->createNativeQuery($sqlCountAnalyzer, $rsm);
+        $resultCountAnalyzer = $query->getScalarResult();
+        $output['countAnalyzer']  = $resultCountAnalyzer[0]['countB'];
+
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('totTime', 'totTime');
+        $query = $em->createNativeQuery($sqlTotalTime, $rsm);
+        $resultTotalTime = $query->getScalarResult();
+        $output['totalTime']  = $resultTotalTime[0]['totTime'];
+
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('bLength', 'bLength');
+        $rsm->addScalarResult('id', 'id');
+        $query = $em->createNativeQuery($sqlLengths, $rsm);
+        $resultLength = $query->getScalarResult();
+
+
+        $output['lengths']  = $resultLength;
+
+
+        $output['mediumTime'] = $output['totalTime'] / $output['countAnalyzer'];
+
+        return $output;
+    }
+
     public function findLast($n = 10){
         return $this->createQueryBuilder('e')->
         orderBy('e.createdAt', 'DESC')->

@@ -5,26 +5,56 @@
 {% block body %}
 
 
-    <h2>some statistics:</h2>
-    <ul>
-        <li>{{ breakdowns|length }} breakdowns</li>
-    </ul>
+    <h2>Some statistics:</h2>
 
-    <h2>last breakdowns:</h2>
-    <ul>
-        {% for breakdown in lastBreakdowns %}
-           <li>
-                #{{ breakdown.id }}
-                {% if breakdown.createdAt %}{{ breakdown.createdAt|date('Y-m-d H:i') }}{% endif %}
-                {% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}
-                {% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}
-                {% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}
+    <table class="table">
+        <thead>
+            <th>Total breakdowns</th>
+            <th>Total breakdowns (closed)</th>
+            <th>Total breakdowns length</th>
+            <th>Medium breakdown length</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ stats['countOperator'] }}</td>
+                <td>{{ stats['countAnalyzer'] }}</td>
+                <td>{{ stats['totalTime']|timelength }}</td>
+                <td>{{ stats['mediumTime']|timelength }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-                {% if breakdown.closed %}Yes{% else %}No{% endif %}
-                {% for element in breakdown.descriptors %}
-                {{ element.label }}
-                {% endfor %}
-            </li>
-        {% endfor %}
-    </ul>
+    <h2>last 10 breakdowns:</h2>
+    <table class="table table-striped">
+        <thead>
+            <th>id</th>
+            <th>start</th>
+            <th>stop</th>
+            <th>length</th>
+            <th>descriptors</th>
+        </thead>
+        <tbody>
+            {% for breakdown in lastBreakdowns %}
+                <tr>
+                    <td >
+                        <a  href="{{ path('operator_breakdown_show', { 'id': breakdown.id }) }}">
+                            #{{ breakdown.id }}
+                        </a>
+                    </td>
+                    <td>{% if breakdown.start %}{{ breakdown.start|date('Y-m-d H:i') }}{% endif %}</td>
+                    <td>{% if breakdown.stop %}{{ breakdown.stop|date('Y-m-d H:i') }}{% endif %}</td>
+                    <td>{% if breakdown.stop %}{{ breakdown.start|timeDiff(breakdown.stop) }}{% else %}?{% endif %}</td>
+                    <td>
+                        {% for descriptor in breakdown.descriptors %}
+                            <span class="label label-default" style="background-color: {{ descriptor.category.color }};">{{ descriptor.label }}</span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script>
+
+</script>
+
 {% endblock %}

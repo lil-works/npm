@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Descriptor;
 
-use ManagerBundle\Filter\DescriptorFilter;
+use ManagerBundle\Filter\DescriptorFilterType;
 
 
 /**
@@ -23,67 +23,48 @@ class DescriptorController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $simpleLiveEditor    = $this->get('app.simpleLiveEditor');
+        $formFilter = $this->get('form.factory')->create(DescriptorFilterType::class);
+
+        $qb = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('AppBundle:Descriptor')
+            ->createQueryBuilder('d')
+            ->select('d')
 
 
+        ;
+        if ($request->query->has($formFilter->getName())) {
 
-        $form = $this->get('form.factory')->create(DescriptorFilter::class);
+            // manually bind values from the request
+            $formFilter->submit($request->query->get($formFilter->getName()));
 
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT
-                a,
-                a.id,
-                a.label,
-                b.label as category_label ,
-                b.color,
-                COUNT(DISTINCT c.id ) as synonym_count,
-                GROUP_CONCAT( DISTINCT c.label ) as synonym_list,
-                COUNT( DISTINCT d.id ) as breakdown_count,
-                GROUP_CONCAT(DISTINCT d.id) as breakdown_list
-                 FROM AppBundle:Descriptor a
-                 LEFT JOIN a.breakdowns d
-                 LEFT JOIN AppBundle:DescriptorCategory b WITH b.id = a.category
-                 LEFT JOIN AppBundle:Synonym c WITH c.descriptor = a.id
-                  WHERE a.category IN (:categories) AND a.label LIKE :label
-                  GROUP BY  a.id
+            // initialize a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AppBundle:Descriptor')
+                ->createQueryBuilder('d')
+                ;
 
-                  ";
-        $query = $em->createQuery($dql);
-
-        $query->setParameter('categories', '1,2,3,4');
-        $query->setParameter('label', '%%');
-
-        if ($request->query->has($form->getName())) {
-            $form->submit($request->query->get($form->getName()));
-            $data = $form->getData();
-            $categories = array();
-            foreach($data["category"]->toArray() as $category){
-                array_push($categories,$category->getId());
-            }
-            if(count($categories) == 0){
-                $categories = array(1,2,3,4);
-            }
-
-            $query->setParameter('categories', $categories);
-            $query->setParameter('label', "%".$data["label"]."%");
+            // build the query from the given form object
+            $qb = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);
         }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $qb,
             $request->query->getInt('page', 1),
-            10,
-            array('wrap-queries'=>true)
+            10
         );
 
         $seoPage = $this->container->get('sonata.seo.page');
         $seoPage
-            ->setTitle( $seoPage->getTitle() . " - Manager • Descriptor")
-            ->addMeta('name', 'description', "List of descriptors")
+            ->setTitle($seoPage->getTitle() . " Manager • Descriptors")
+            ->addMeta('name', 'description', "List of descriptor")
         ;
 
         return $this->render('ManagerBundle:Descriptor:index.html.twig', array(
             'pagination' => $pagination,
-            'form' => $form->createView()
+            'simple_live_editor'=>$simpleLiveEditor,
+            'formFilter'=>$formFilter->createView()
         ));
     }
 
