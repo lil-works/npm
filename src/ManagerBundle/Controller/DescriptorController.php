@@ -106,11 +106,15 @@ class DescriptorController extends Controller
      */
     public function showAction(Descriptor $descriptor)
     {
+
+
         $deleteForm = $this->createDeleteForm($descriptor);
+
 
         $edges = $this->get('doctrine.orm.entity_manager')
             ->getRepository('AppBundle:Descriptor')
             ->ManagerEdges($descriptor);
+
         $nodes = $this->get('doctrine.orm.entity_manager')
             ->getRepository('AppBundle:Descriptor')
             ->ManagerNodes($descriptor);

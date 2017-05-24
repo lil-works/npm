@@ -96,7 +96,7 @@
     <p>
         <small>Masnada Lilian</small>
     </p>
-    <img src="{{ asset('slide/npm_120x120.png') }}" >
+    <img src="{{ asset('bundles/site/images/slide/npm_120x120.png') }}" >
 </section>
 
 <section>
@@ -121,7 +121,7 @@
         <div>
             <div style="float: left; width:120px;">
                 <a href="#" class="image navigate-down">
-                    <img src="{{ asset('slide/Vilfredo_Pareto.jpeg') }}">
+                    <img src="{{ asset('bundles/site/images/slide/Vilfredo_Pareto.jpeg') }}">
                 </a>
             </div>
             <div>
@@ -152,7 +152,7 @@
         <blockquote>
             Situation d'équilibre dans lequel on ne peut ameliorer le bien-être d'un individu sans deteriorer celui d'un autre...
         </blockquote>
-        <img src="{{ asset('slide/justso1.gif') }}">
+        <img src="{{ asset('bundles/site/images/slide/justso1.gif') }}">
 
     </section>
 
@@ -161,7 +161,7 @@
         <p>Les ressouces permettant d'ameliorer et de maintenir un systeme ne sont pas infinies.</p>
 
         <p class="keyword">Outils visant à optimiser l'allocation des ressources</p>
-        <img src="{{ asset('slide/80-20.jpeg') }}">
+        <img src="{{ asset('bundles/site/images/slide/80-20.jpeg') }}">
     </section>
 </section>
 
@@ -208,9 +208,9 @@
         </p>
 
         <ul>
-            <li>date début, date fin (donc une durée)</li>
-            <li>les éléments de l'interferometre non disponible (toute l'antenne 1, toute la bande 1)</li>
-            <li>une liste de <span class="keyword descriptor">descriptors</span> pertinant dans la cause et la résolution du problème</li>
+            <li>date début, date fin</li>
+            <li>les éléments de l'interferometre non disponibles (antenne 1 bande 3, toute la bande 1...)</li>
+            <li>une liste de <span class="keyword descriptor">descriptors</span> pertinants dans la cause et la résolution du problème</li>
         </ul>
 
         <blockquote>
@@ -220,7 +220,7 @@
     </section>
     <section>
         <h2>Structure des données</h2>
-        <img style="width: 800px;" src="{{ asset('slide/merise.png') }}">
+        <img style="width: 800px;" src="{{ asset('bundles/site/images/slide/merise.png') }}">
     </section>
 </section>
 
@@ -279,8 +279,8 @@
     <table >
         <thead>
         <th></th>
-            <th><div><img src="{{ asset('slide/Redmine.png') }}"  style="width: 36px;">Redmine</div></th>
-            <th><div><img src="{{ asset('slide/npm_120x120.png') }}"  style="width: 36px;">Noema Pareto Manager</div></th>
+            <th><div><img src="{{ asset('bundles/site/images/slide/Redmine.png') }}"  style="width: 36px;">Redmine</div></th>
+            <th><div><img src="{{ asset('bundles/site/images/slide/npm_120x120.png') }}"  style="width: 36px;">Noema Pareto Manager</div></th>
         </thead>
         <tbody>
         <tr>
@@ -295,8 +295,8 @@
         </tr>
         <tr>
             <td>Analogie</td>
-            <td><img  src="{{ asset('slide/chene.jpeg') }}"  style="width: 200px;"></td>
-            <td><img src="{{ asset('slide/gland.jpeg') }}" style="width: 200px;"></td>
+            <td><img  src="{{ asset('bundles/site/images/slide/chene.jpeg') }}"  style="width: 200px;"></td>
+            <td><img src="{{ asset('bundles/site/images/slide/gland.jpeg') }}" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Objectif</td>
@@ -315,7 +315,7 @@
 
 
         <p>
-            La multiplication des outils de reporting conduit frequement la saisie d'un même évenement sur plusieur plateforme (redmine, rapport operateur, google drive).
+            La multiplication des outils de reporting conduit fréquemment à saisir un évenement sur plusieur plateforme (redmine, rapport operateur, google drive).
             L'application permet la saisie rapide d'un <span class="breakdown keyword">breakdown</span> (moins d'une minute)
         <p>
 
@@ -386,9 +386,11 @@
         <div>
             Les <span class="keyword breakdown">breakdowns</span> connectent les <span class="keyword descriptor">descriptors</span> entre eux.
             <ul>
-                <li>La taille du cercle dépend du nombre de fois ou il apparait</li>
-                <li>L'epaisseur du trait qui relie 2  <span class="keyword descriptor">descriptors</span> dépend du nombre de fois ou ils sont present ensemble</li>
+                <li>La taille du cercle dépend du nombre de <span class="keyword breakdown">breakdowns</span> dans lequel le <span class="keyword descriptor">descriptor</span> apparait</li>
+                <li>L'epaisseur du trait qui relie 2  <span class="keyword descriptor">descriptors</span> dépend du nombre de fois ou ils sont associés dans un <span class="keyword breakdown">breakdown</span></li>
             </ul>
+            
+            <img src="{{ asset('bundles/site/images/slide/tree.png') }}">
         </div>
 
 
@@ -410,6 +412,7 @@
         <p>
             Le nombre d'occurences est ponderé par le pourcentage de couple antenne/band OFF.
         </p>
+
     </section>
 </section>
 

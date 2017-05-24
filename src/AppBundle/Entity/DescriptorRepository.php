@@ -669,8 +669,9 @@ ORDER BY IF(:timePonderation = 'on',
         return $query->getScalarResult();
     }
 
-    public function ManagerNodes($descriptor)
+    public function ManagerNodes($descriptor,$categories=array())
     {
+
     $sql = "
 
 SELECT count(label) as valueField,label as labelField,d1.category as categoryField,d1.id as idField,d1.category as categoryField  FROM breakdown b1

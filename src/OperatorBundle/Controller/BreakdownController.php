@@ -56,7 +56,8 @@ class BreakdownController extends Controller
         $pagination = $paginator->paginate(
             $qb,
             $request->query->getInt('page', 1),
-            10
+            10,
+            array('defaultSortFieldName' => 'b.createdAt', 'defaultSortDirection' => 'desc')
         );
 
         $seoPage = $this->container->get('sonata.seo.page');
