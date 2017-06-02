@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,8 +17,14 @@ class DescriptorType extends AbstractType
     {
         $builder
             ->add('label')
-            //->add('category')
-            //->add('breakdowns')
+            ->add('category', EntityType::class, array(
+                'class'    => 'AppBundle:DescriptorCategory' ,
+                'choice_label' => function ($obj) { return   $obj->getLabel() ; },
+                'required' => true ,
+                'mapped'=> true,
+                'expanded' => false ,
+                'multiple' => false
+            ))
         ;
     }
     

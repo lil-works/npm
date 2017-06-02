@@ -3,6 +3,7 @@
 html {
   position: relative;
   min-height: 100%;
+    font-family: 'Spinnaker', 'Trebuchet MS';
 }
 body {
   /* Margin bottom by footer height */

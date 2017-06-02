@@ -3,20 +3,18 @@
 
 <head>
     <meta charset="utf-8">
-
-    <title>Noema Pareto Manager</title>
-
+    <title>Presentation - Noema Pareto Manager</title>
     <meta name="description" content="Presentation à propos de l'application Noema Pareto MAnager">
     <meta name="author" content="Masnada Lilian">
-
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-
     <link rel="stylesheet" href="{{ asset('assets/vendor/reveal-js/css/reveal.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/reveal-js/css/theme/default.css') }}">
+
+    {% image '@SiteBundle/Resources/public/images/favicon.ico' %}
+    <link rel="icon" type="image/x-icon" href="{{ asset_url }}" />
+    {% endimage %}
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/reveal-js/lib/css/zenburn.css') }}">
@@ -160,7 +158,7 @@
         <h2>Optimum paretien et Noema</h2>
         <p>Les ressouces permettant d'ameliorer et de maintenir un systeme ne sont pas infinies.</p>
 
-        <p class="keyword">Outils visant à optimiser l'allocation des ressources</p>
+        <p class="keyword">Outil visant à optimiser l'allocation des ressources</p>
         <img src="{{ asset('bundles/site/images/slide/80-20.jpeg') }}">
     </section>
 </section>
@@ -192,14 +190,12 @@
             <li><span class="contributor">contributor</span>: qui a agit (oper,jyc)</li>
         </ul>
         <blockquote>Cette liste est dynamique... Nous pouvons ajouter des categories.</blockquote>
-        <a class="small" href="{{ path('manager_descriptor') }}">http://npm.iram.fr/descriptor</a>
+        <a class="small" href="{{ path('manager_descriptor') }}" target="_blank">http://npm.iram.fr/descriptor</a>
     </section>
     <section>
         <h2><span class="keyword interfero">Interfero</span></h2>
         <p>Ce sont les couples Antenne/Bande normalement disponibles</p>
-
-
-        <a class="small" href="{{ path('manager_interfero') }}">http://npm.iram.fr/interfero</a>
+        <a class="small" href="{{ path('manager_interfero') }}" target="_blank">http://npm.iram.fr/interfero</a>
     </section>
     <section>
         <h2><span class="keyword breakdown">Breakdowns</span></h2>
@@ -214,9 +210,9 @@
         </ul>
 
         <blockquote>
-            En somme, ce sont les <span class="keyword breakdown">breakdowns</span> qui fabriquent le lien entre les <span class="keyword descriptor">descriptors</span>
+            Les <span class="keyword breakdown">breakdowns</span> fabriquent du lien entre les <span class="keyword descriptor">descriptors</span>
         </blockquote>
-        <a class="small" href="{{ path('operator_breakdown') }}">http://npm.iram.fr/breakdown</a>
+        <a class="small" href="{{ path('operator_breakdown') }}" target="_blank">http://npm.iram.fr/breakdown</a>
     </section>
     <section>
         <h2>Structure des données</h2>
@@ -241,7 +237,7 @@
             </td>
         </tr>
         <tr>
-            <td>Analyze</td>
+            <td>Analyzer</td>
             <td>
                 <ul>
                     <li>Analyse des données <a target="_blank" href="{{ path('analyzer_descriptorBar') }}">histogrammes et arbre</a></li>
@@ -289,7 +285,7 @@
             <td>indefinie</td>
         </tr>
         <tr>
-            <td>caracterisique</td>
+            <td>Caracterisique</td>
             <td>robustesse,rigidité</td>
             <td>flexibilité</td>
         </tr>
@@ -310,33 +306,32 @@
 
     <section>
 
-        <h2>Quelque remarques</h2>
-        <p>L'application est toujours en développement</p>
+        <h2>Quelques remarques</h2>
+        <ul>
+            <li>L'application est toujours en développement</li>
+            <li>La multiplication des outils de reporting conduit fréquemment à saisir un évenement sur plusieur plateforme (redmine, rapport operateur, google drive).
+                L'application permet la saisie rapide d'un <span class="breakdown keyword">breakdown</span> (moins d'une minute)</li>
+            <li>
+                La saisie des <span class="breakdown descriptor">descriptors</span> est totalement libre.
+                Tout l'enjeu est que chaque operateur utilise les mêmes <span class="breakdown descriptor">descriptors</span> pour les mêmes évenements
+            </li>
+        </ul>
 
-
-        <p>
-            La multiplication des outils de reporting conduit fréquemment à saisir un évenement sur plusieur plateforme (redmine, rapport operateur, google drive).
-            L'application permet la saisie rapide d'un <span class="breakdown keyword">breakdown</span> (moins d'une minute)
-        <p>
-
-        <p>
-            La saisie des <span class="breakdown descriptor">descriptor</span> est totalement libre.
-            Tout l'enjeu est que chaque operateur utilise les mêmes <span class="breakdown descriptor">descriptors</span> pour les mêmes évenements
-        <p>
 
 
     </section>
 
     <section>
-        <h2>Quelque remarques</h2>
+        <h2>Quelques remarques (suite)</h2>
 
         <h4>Biais</h4>
-        <p>
-            Tendence naturelle (et logique) à donner plus d'importance aux événement LONG et/ou PENIBLE
-        </p>
+        <blockquote>
+            Tendance naturelle (et logique) à donner plus d'importance aux événements LONGS et/ou PENIBLES
+        </blockquote>
 
 
-        <p>La "politique" concernant la saisie des <span class="breakdown keyword">breakdowns</span> reste à être définie:</p>
+        <p>La "politique" concernant la saisie des <span class="breakdown keyword">breakdowns</span> reste à être définie précisemment:</p>
+
         <blockquote>
         <ul>
             <li>A partir de quelle durée minimale entre t-on un nouveau <span class="breakdown keyword">breakdown</span>?</li>
@@ -360,34 +355,34 @@
 
         <ul>
             <li>
-                <a href="https://websrv4.iram.fr/npm/app.php/analyzer/descriptor-bar?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5BminDuration%5D=&descriptorTree_filter%5BmaxDuration%5D=&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100">
+                <a target="_blank" href="{{ path('analyzer_descriptorBar')~'?descriptorTree_filter[category][]=1&descriptorTree_filter[timePonderation]=off&descriptorTree_filter[interferoPonderation]=off&descriptorTree_filter[start][date][month]=&descriptorTree_filter[start][date][day]=&descriptorTree_filter[start][date][year]=&descriptorTree_filter[start][time][hour]=&descriptorTree_filter[start][time][minute]=&descriptorTree_filter[stop][date][month]=&descriptorTree_filter[stop][date][day]=&descriptorTree_filter[stop][date][year]=&descriptorTree_filter[stop][time][hour]=&descriptorTree_filter[stop][time][minute]=&descriptorTree_filter[minDuration]=&descriptorTree_filter[maxDuration]=&descriptorTree_filter[minLimit]=0&descriptorTree_filter[maxLimit]=100' }}">
                     Tous les <span class="keyword breakdown">breakdowns</span>
                 </a>
             </li>
             <li>
-            <a href="https://websrv4.iram.fr/npm/app.php/analyzer/descriptor-bar?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&duration-unity=hour&descriptorTree_filter%5BdurationUnity%5D=hour&descriptorTree_filter%5BminDuration%5D=0&descriptorTree_filter%5BmaxDuration%5D=3600&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100">
+            <a target="_blank" href="{{ path('analyzer_descriptorBar')~'?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&duration-unity=hour&descriptorTree_filter%5BdurationUnity%5D=hour&descriptorTree_filter%5BminDuration%5D=0&descriptorTree_filter%5BmaxDuration%5D=3600&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100' }}">
                 Les <span class="keyword breakdown">breakdowns</span> de moins d'une heure
             </a>
             </li>
             <li>
-                <a href="https://websrv4.iram.fr/npm/app.php/analyzer/descriptor-bar?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&duration-unity=day&descriptorTree_filter%5BdurationUnity%5D=day&descriptorTree_filter%5BminDuration%5D=86400&descriptorTree_filter%5BmaxDuration%5D=&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100">
+                <a target="_blank" href="{{ path('analyzer_descriptorBar')~'?descriptorTree_filter%5Bcategory%5D%5B%5D=1&descriptorTree_filter%5BtimePonderation%5D=off&descriptorTree_filter%5BinterferoPonderation%5D=off&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstart%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstart%5D%5Btime%5D%5Bminute%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bmonth%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Bday%5D=&descriptorTree_filter%5Bstop%5D%5Bdate%5D%5Byear%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bhour%5D=&descriptorTree_filter%5Bstop%5D%5Btime%5D%5Bminute%5D=&duration-unity=day&descriptorTree_filter%5BdurationUnity%5D=day&descriptorTree_filter%5BminDuration%5D=86400&descriptorTree_filter%5BmaxDuration%5D=&descriptorTree_filter%5BminLimit%5D=1&descriptorTree_filter%5BmaxLimit%5D=100' }}">
                     Les <span class="keyword breakdown">breakdowns</span> de plus d'un jour
                 </a>
             </li>
             <li>
-                <a href="{{ path('manager_descriptor_show',{id:10}) }}">
+                <a target="_blank" href="{{ path('manager_descriptor_show',{id:10}) }}">
                     Les <span class="keyword descriptor">descriptors</span> associés à l'antenne 8
                 </a>
             </li>
         </ul>
     </section>
     <section>
-        <h2>Tree</h2>
+        <h2>Arbre</h2>
         <div>
             Les <span class="keyword breakdown">breakdowns</span> connectent les <span class="keyword descriptor">descriptors</span> entre eux.
             <ul>
-                <li>La taille du cercle dépend du nombre de <span class="keyword breakdown">breakdowns</span> dans lequel le <span class="keyword descriptor">descriptor</span> apparait</li>
-                <li>L'epaisseur du trait qui relie 2  <span class="keyword descriptor">descriptors</span> dépend du nombre de fois ou ils sont associés dans un <span class="keyword breakdown">breakdown</span></li>
+                <li>La taille du cercle dépend du nombre de <span class="keyword breakdown">breakdowns</span> dans lesquels le <span class="keyword descriptor">descriptor</span> apparait</li>
+                <li>L'epaisseur du trait qui relie 2 <span class="keyword descriptor">descriptors</span> dépend du nombre de fois ou ils sont associés dans un <span class="keyword breakdown">breakdown</span></li>
             </ul>
             
             <img src="{{ asset('bundles/site/images/slide/tree.png') }}">
@@ -400,31 +395,33 @@
     </section>
     <section>
         <h2>Histogramme</h2>
-        <h4>Analyze par occurance</h4>
-        <p>Par defaut, les <span class="keyword descriptor">descriptors</span> sont affichées par nombre d'occurance</p>
+        <h3>Analyze par occurances</h3>
+        <p>Par defaut, les <span class="keyword descriptor">descriptors</span> sont affichées par nombre d'occurances</p>
 
-        <h4>Time ponderation</h4>
+        <h3>Time ponderation</h3>
         <p>
-            Le nombre d'occurences est ponderé par les durées des  <span class="keyword breakdown">breakdowns</span> auquel le  <span class="keyword descriptor">descriptor</span> est associé
+            Le nombre d'occurences est ponderé par les durées des  <span class="keyword breakdown">breakdowns</span> auxquels le  <span class="keyword descriptor">descriptor</span> est associé
         </p>
 
-        <h4>Interfero ponderation</h4>
+        <h3>Interfero ponderation</h3>
         <p>
-            Le nombre d'occurences est ponderé par le pourcentage de couple antenne/band OFF.
+            Le nombre d'occurences est ponderé par le pourcentage de couple antenne/band OFF
         </p>
 
     </section>
 </section>
 
 <section id="themes">
-    <h2>Developpements futures</h2>
+    <h2>Développements futurs</h2>
 
     <ul>
+        <li>Autres modes de calcul pour la pondération par antennes ON/OFF</li>
+        <li>Outils sophistiqués pour gérer les <span class="keyword descriptor">descriptors</span></li>
         <li>Saisie automatique vers Redmine</li>
         <li>Saisie automatique stations.current</li>
         <li>Sauvegarde des analyses + export pdf,csv</li>
-        <li>Possibilité pour les collaborateurs de s'abonner aux actions impliquant certain "descriptors"</li>
-        <li>Vos idées...</li>
+        <li>Possibilité pour les collaborateurs de s'abonner aux <span class="keyword breakdown">breakdowns</span> qui impliquent certains <span class="keyword descriptor">descriptors</span></li>
+        <li style="font-size: 1.5em">Vos idées, vos besoins...</li>
     </ul>
 
 </section>
@@ -432,7 +429,7 @@
 
 <section>
     <h1>C'est terminé!</h1>
-    <p>Merci de votre attention...</p>
+    <p>Merci pour votre attention...</p>
     <p>Des questions?</p>
 </section>
 
