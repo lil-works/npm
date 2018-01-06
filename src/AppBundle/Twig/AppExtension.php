@@ -28,6 +28,7 @@ class AppExtension extends \Twig_Extension
         $acolor = explode(',',$categoryColors);
         $o = array();
         $a = array(
+            'redmine'=>array(),
             'element'=>array(),
             'status'=>array(),
             'action'=>array(),
@@ -51,6 +52,7 @@ class AppExtension extends \Twig_Extension
     {
         $o = array();
         $a = array(
+            'redmine'=>array(),
             'element'=>array(),
             'status'=>array(),
             'action'=>array(),

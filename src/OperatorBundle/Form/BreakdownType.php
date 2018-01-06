@@ -78,7 +78,6 @@ class BreakdownType extends AbstractType
                 'allow_add'=>true,
                 'required' => false,
                 'entry_type'   => BreakdownsInterferosType::class,
-                // these options are passed to each "email" type
                 'entry_options'  => array(
                     'attr'      => array('class'=>'breakdowns_interferos-class')
                 ),

@@ -388,10 +388,12 @@ function manageFormBreakdown(breakdown_ajax_searchExact,breakdown_ajax_searchAll
 
 
 
+    this.initBoxes(5,'redmine');
     this.initBoxes(1,'element');
     this.initBoxes(2,'status');
     this.initBoxes(3,'action');
     this.initBoxes(4,'contributor');
+
 
 
     $("#descriptorInputs").before('<div id="sequenceMatching"></div>')
