@@ -84,7 +84,11 @@
                     {% for element in breakdown.descriptors|descriptor() %}
                         <li>
                             <span class="label label-default" style="margin:4px;font-size:1em;background-color: {{ element.category.color }}">
-                                {{ element.label }}
+                                {% if  element.category.label == 'redmine' %}
+                                    <a style="color: #000000;text-decoration: none;" href="http://redmine.iram.fr/issues/{{ element.label }}">{{ element.label }}</a>
+                                {% else %}
+                                    {{ element.label }}
+                                {% endif %}
                             </span>
 
                         </li>

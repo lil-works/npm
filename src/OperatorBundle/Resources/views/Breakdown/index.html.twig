@@ -112,7 +112,13 @@
                     </td>
                     <td>
                         {% for descriptor in breakdown.descriptors %}
-                            <span class="label label-default" style="background-color: {{ descriptor.category.color }};">{{ descriptor.label }}</span>
+                            <span class="label label-default" style="background-color: {{ descriptor.category.color }};">
+                            {% if  descriptor.category.label == 'redmine' %}
+                                <a style="color: #000000;text-decoration: none;" href="http://redmine.iram.fr/issues/{{ descriptor.label }}">{{ descriptor.label }}</a>
+                            {% else %}
+                                {{ descriptor.label }}
+                            {% endif %}
+                            </span>
                         {% endfor %}
 
                     </td>
