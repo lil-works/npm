@@ -188,13 +188,15 @@ SELECT
 		COALESCE(GROUP_CONCAT((SELECT label FROM descriptor WHERE category=1 AND id=D.id)),'ø'),' | ',
         COALESCE(GROUP_CONCAT((SELECT label FROM descriptor WHERE category=2 AND id=D.id)),'ø'),' > ',
         COALESCE(GROUP_CONCAT((SELECT label FROM descriptor WHERE category=3 AND id=D.id)),'ø'),' # ',
-        COALESCE(GROUP_CONCAT((SELECT label FROM descriptor WHERE category=4 AND id=D.id)),'ø')
+        COALESCE(GROUP_CONCAT((SELECT label FROM descriptor WHERE category=4 AND id=D.id)),'ø'),' • ',
+        COALESCE(GROUP_CONCAT((SELECT label FROM descriptor WHERE category=5 AND id=D.id)),'ø')
         ) as sequence,
         GROUP_CONCAT((SELECT id FROM descriptor WHERE id=D.id)) as descriptorList,
         GROUP_CONCAT((SELECT id FROM descriptor WHERE category=1 AND id=D.id)) as elementList,
         GROUP_CONCAT((SELECT id FROM descriptor WHERE category=2 AND id=D.id)) as statusList,
         GROUP_CONCAT((SELECT id FROM descriptor WHERE category=3 AND id=D.id)) as actionList,
         GROUP_CONCAT((SELECT id FROM descriptor WHERE category=4 AND id=D.id)) as contributorList,
+        GROUP_CONCAT((SELECT id FROM descriptor WHERE category=4 AND id=D.id)) as redmineList,
     round(rFindScoredBreakdown.score /
     (1 + LENGTH(:descriptorIds) - LENGTH(REPLACE(:descriptorIds, ',', ''))),1) as score
 FROM
@@ -208,7 +210,7 @@ FROM
         FIND_IN_SET(D.id, :descriptorIds)
     GROUP BY B.id
     ORDER BY score DESC
-    LIMIT 10) AS rFindScoredBreakdown
+    LIMIT 25) AS rFindScoredBreakdown
         LEFT JOIN
     breakdowns_descriptors BD ON BD.breakdown_id = rFindScoredBreakdown.breakdown_id
         LEFT JOIN
